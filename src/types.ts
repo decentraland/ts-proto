@@ -357,7 +357,11 @@ export function isOptionalProperty(
   const optionalMessages =
     options.useOptionals === true || options.useOptionals === "messages" || options.useOptionals === "all";
   const optionalAll = options.useOptionals === "all";
+  const optionalRepeatedAndOneOf = options.useOptionals === "repeated_and_oneof" || options.useOptionals === "all";
+
   return (
+    (optionalRepeatedAndOneOf && isRepeated(field)) ||
+    (optionalRepeatedAndOneOf && isWithinOneOf(field)) ||
     (optionalMessages && isMessage(field) && !isRepeated(field)) ||
     (optionalAll && !messageOptions?.mapEntry) ||
     // don't bother verifying that oneof is not union. union oneofs generate their own properties.
@@ -643,9 +647,12 @@ export function toTypeName(ctx: Context, messageDesc: DescriptorProto | undefine
   if (
     (!isWithinOneOf(field) &&
       isMessage(field) &&
-      (options.useOptionals === false || options.useOptionals === "none")) ||
+      (options.useOptionals === false ||
+        options.useOptionals === "none" ||
+        options.useOptionals === "repeated_and_oneof")) ||
     (isWithinOneOf(field) && options.oneof === OneofOption.PROPERTIES) ||
-    (isWithinOneOf(field) && field.proto3Optional)
+    (isWithinOneOf(field) && field.proto3Optional) ||
+    (isWithinOneOf(field) && options.useOptionals === "repeated_and_oneof")
   ) {
     return code`${type} | undefined`;
   }

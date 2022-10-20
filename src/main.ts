@@ -1089,7 +1089,8 @@ function generateDecode(ctx: Context, fullName: string, messageDesc: DescriptorP
       !options.initializeFieldsAsUndefined && isOptionalProperty(field, messageDesc.options, options);
 
     if (isRepeated(field)) {
-      const maybeNonNullAssertion = ctx.options.useOptionals === "all" ? "!" : "";
+      const maybeNonNullAssertion =
+        ctx.options.useOptionals === "all" || ctx.options.useOptionals === "repeated_and_oneof" ? "!" : "";
 
       if (isMapType(ctx, messageDesc, field)) {
         // We need a unique const within the `cast` statement
