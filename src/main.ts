@@ -255,7 +255,7 @@ export function generateFile(ctx: Context, fileDesc: FileDescriptorProto): [stri
         if (staticMembers.length > 0) {
           chunks.push(code`
             export namespace ${def(fullName)} {
-              ${joinCode(staticMembers, { on: "\n" })}
+              ${joinCode(staticMembers, { on: "\n\n" })}
             };
           `);
         }
