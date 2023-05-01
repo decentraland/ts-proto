@@ -11,15 +11,14 @@ function createBaseTestMessage(): TestMessage {
   return { value: "" };
 }
 
-export const TestMessage = {
-  encode(message: TestMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace TestMessage {
+  export function encode(message: TestMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== "") {
       writer.uint32(10).string(message.value);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): TestMessage {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): TestMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTestMessage();
@@ -40,28 +39,25 @@ export const TestMessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): TestMessage {
+  }
+  export function fromJSON(object: any): TestMessage {
     return { value: isSet(object.value) ? String(object.value) : "" };
-  },
-
-  toJSON(message: TestMessage): unknown {
+  }
+  export function toJSON(message: TestMessage): unknown {
     const obj: any = {};
     message.value !== undefined && (obj.value = message.value);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<TestMessage>, I>>(base?: I): TestMessage {
+  }
+  export function create<I extends Exact<DeepPartial<TestMessage>, I>>(base?: I): TestMessage {
     return TestMessage.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<TestMessage>, I>>(object: I): TestMessage {
+  export function fromPartial<I extends Exact<DeepPartial<TestMessage>, I>>(object: I): TestMessage {
     const message = createBaseTestMessage();
     message.value = object.value ?? "";
     return message;
-  },
-};
+  }
+}
 
 /** @deprecated */
 export type TestDefinition = typeof TestDefinition;

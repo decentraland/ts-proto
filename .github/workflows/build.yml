@@ -107,7 +107,7 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             # Test this pull request
-            - The `@dcl/ts-proto` package can be tested in scenes by running
+            - The `@dcl/ts-proto` package can be tested and installed by:
                ```bash
                npm install "${{ secrets.SDK_TEAM_S3_BASE_URL }}/${{ needs.build.outputs.decentraland_ts_proto_s3_bucket_key }}"
                ```

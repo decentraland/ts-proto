@@ -29,8 +29,8 @@ function createBaseMyMessage(): MyMessage {
   return { foo: undefined, foo2: undefined, bar: undefined, quux: undefined, _unknownFields: {} };
 }
 
-export const MyMessage = {
-  encode(message: MyMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace MyMessage {
+  export function encode(message: MyMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.foo !== undefined) {
       writer.uint32(8).int32(message.foo);
     }
@@ -58,9 +58,8 @@ export const MyMessage = {
       }
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): MyMessage {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): MyMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMyMessage();
@@ -112,15 +111,15 @@ export const MyMessage = {
       }
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseRequestType(): RequestType {
   return { _unknownFields: {} };
 }
 
-export const RequestType = {
-  encode(message: RequestType, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace RequestType {
+  export function encode(message: RequestType, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message._unknownFields !== undefined) {
       for (const key in message._unknownFields) {
         const values = message._unknownFields[key];
@@ -136,9 +135,8 @@ export const RequestType = {
       }
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): RequestType {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): RequestType {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseRequestType();
@@ -162,15 +160,15 @@ export const RequestType = {
       }
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseResponseType(): ResponseType {
   return { _unknownFields: {} };
 }
 
-export const ResponseType = {
-  encode(message: ResponseType, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace ResponseType {
+  export function encode(message: ResponseType, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message._unknownFields !== undefined) {
       for (const key in message._unknownFields) {
         const values = message._unknownFields[key];
@@ -186,9 +184,8 @@ export const ResponseType = {
       }
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): ResponseType {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): ResponseType {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseResponseType();
@@ -212,8 +209,8 @@ export const ResponseType = {
       }
     }
     return message;
-  },
-};
+  }
+}
 
 export interface MyService {
   MyMethod(request: RequestType): Promise<ResponseType>;

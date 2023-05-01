@@ -15,15 +15,14 @@ function createBaseObject(): Object {
   return { name: "" };
 }
 
-export const Object = {
-  encode(message: Object, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Object {
+  export function encode(message: Object, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Object {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Object {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseObject();
@@ -44,42 +43,38 @@ export const Object = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Object {
+  }
+  export function fromJSON(object: any): Object {
     return { name: isSet(object.name) ? String(object.name) : "" };
-  },
-
-  toJSON(message: Object): unknown {
+  }
+  export function toJSON(message: Object): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Object>, I>>(base?: I): Object {
+  }
+  export function create<I extends Exact<DeepPartial<Object>, I>>(base?: I): Object {
     return Object.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Object>, I>>(object: I): Object {
+  export function fromPartial<I extends Exact<DeepPartial<Object>, I>>(object: I): Object {
     const message = createBaseObject();
     message.name = object.name ?? "";
     return message;
-  },
-};
+  }
+}
 
 function createBaseError(): Error {
   return { name: "" };
 }
 
-export const Error = {
-  encode(message: Error, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Error {
+  export function encode(message: Error, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Error {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Error {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseError();
@@ -100,28 +95,25 @@ export const Error = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Error {
+  }
+  export function fromJSON(object: any): Error {
     return { name: isSet(object.name) ? String(object.name) : "" };
-  },
-
-  toJSON(message: Error): unknown {
+  }
+  export function toJSON(message: Error): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Error>, I>>(base?: I): Error {
+  }
+  export function create<I extends Exact<DeepPartial<Error>, I>>(base?: I): Error {
     return Error.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Error>, I>>(object: I): Error {
+  export function fromPartial<I extends Exact<DeepPartial<Error>, I>>(object: I): Error {
     const message = createBaseError();
     message.name = object.name ?? "";
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

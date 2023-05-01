@@ -26,15 +26,14 @@ function createBaseTestMessage(): TestMessage {
   return { timestamp: undefined };
 }
 
-export const TestMessage = {
-  encode(message: TestMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace TestMessage {
+  export function encode(message: TestMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.timestamp !== undefined) {
       Timestamp.encode(toTimestamp(message.timestamp), writer.uint32(10).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): TestMessage {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): TestMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTestMessage();
@@ -55,28 +54,25 @@ export const TestMessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): TestMessage {
+  }
+  export function fromJSON(object: any): TestMessage {
     return { timestamp: isSet(object.timestamp) ? fromJsonTimestamp(object.timestamp) : undefined };
-  },
-
-  toJSON(message: TestMessage): unknown {
+  }
+  export function toJSON(message: TestMessage): unknown {
     const obj: any = {};
     message.timestamp !== undefined && (obj.timestamp = message.timestamp.toISOString());
     return obj;
-  },
-
-  create(base?: DeepPartial<TestMessage>): TestMessage {
+  }
+  export function create(base?: DeepPartial<TestMessage>): TestMessage {
     return TestMessage.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial(object: DeepPartial<TestMessage>): TestMessage {
+  export function fromPartial(object: DeepPartial<TestMessage>): TestMessage {
     const message = createBaseTestMessage();
     message.timestamp = object.timestamp ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 /**
  * Test

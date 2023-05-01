@@ -10,28 +10,26 @@ function createBaseMessage(): Message {
   return { data: new Uint8Array() };
 }
 
-export const Message = {
-  fromJSON(object: any): Message {
+export namespace Message {
+  export function fromJSON(object: any): Message {
     return { data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array() };
-  },
-
-  toJSON(message: Message): unknown {
+  }
+  export function toJSON(message: Message): unknown {
     const obj: any = {};
     message.data !== undefined &&
       (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array()));
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Message>, I>>(base?: I): Message {
+  }
+  export function create<I extends Exact<DeepPartial<Message>, I>>(base?: I): Message {
     return Message.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Message>, I>>(object: I): Message {
+  export function fromPartial<I extends Exact<DeepPartial<Message>, I>>(object: I): Message {
     const message = createBaseMessage();
     message.data = object.data ?? new Uint8Array();
     return message;
-  },
-};
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

@@ -38,8 +38,8 @@ function createBaseDateMessage(): DateMessage {
   return { year: 0, month: 0, day: 0 };
 }
 
-export const DateMessage = {
-  encode(message: DateMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace DateMessage {
+  export function encode(message: DateMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.year !== 0) {
       writer.uint32(8).int32(message.year);
     }
@@ -50,9 +50,8 @@ export const DateMessage = {
       writer.uint32(24).int32(message.day);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): DateMessage {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): DateMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseDateMessage();
@@ -87,36 +86,33 @@ export const DateMessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): DateMessage {
+  }
+  export function fromJSON(object: any): DateMessage {
     return {
       year: isSet(object.year) ? Number(object.year) : 0,
       month: isSet(object.month) ? Number(object.month) : 0,
       day: isSet(object.day) ? Number(object.day) : 0,
     };
-  },
-
-  toJSON(message: DateMessage): unknown {
+  }
+  export function toJSON(message: DateMessage): unknown {
     const obj: any = {};
     message.year !== undefined && (obj.year = Math.round(message.year));
     message.month !== undefined && (obj.month = Math.round(message.month));
     message.day !== undefined && (obj.day = Math.round(message.day));
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<DateMessage>, I>>(base?: I): DateMessage {
+  }
+  export function create<I extends Exact<DeepPartial<DateMessage>, I>>(base?: I): DateMessage {
     return DateMessage.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<DateMessage>, I>>(object: I): DateMessage {
+  export function fromPartial<I extends Exact<DeepPartial<DateMessage>, I>>(object: I): DateMessage {
     const message = createBaseDateMessage();
     message.year = object.year ?? 0;
     message.month = object.month ?? 0;
     message.day = object.day ?? 0;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

@@ -99,15 +99,14 @@ function createBaseDoubleValue(): DoubleValue {
   return { value: 0 };
 }
 
-export const DoubleValue = {
-  encode(message: DoubleValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace DoubleValue {
+  export function encode(message: DoubleValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== 0) {
       writer.uint32(9).double(message.value);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): DoubleValue {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): DoubleValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseDoubleValue();
@@ -128,22 +127,21 @@ export const DoubleValue = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseFloatValue(): FloatValue {
   return { value: 0 };
 }
 
-export const FloatValue = {
-  encode(message: FloatValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace FloatValue {
+  export function encode(message: FloatValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== 0) {
       writer.uint32(13).float(message.value);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): FloatValue {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): FloatValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseFloatValue();
@@ -164,22 +162,21 @@ export const FloatValue = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseInt64Value(): Int64Value {
   return { value: 0 };
 }
 
-export const Int64Value = {
-  encode(message: Int64Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Int64Value {
+  export function encode(message: Int64Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== 0) {
       writer.uint32(8).int64(message.value);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Int64Value {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Int64Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseInt64Value();
@@ -200,22 +197,21 @@ export const Int64Value = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseUInt64Value(): UInt64Value {
   return { value: 0 };
 }
 
-export const UInt64Value = {
-  encode(message: UInt64Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace UInt64Value {
+  export function encode(message: UInt64Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== 0) {
       writer.uint32(8).uint64(message.value);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): UInt64Value {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): UInt64Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseUInt64Value();
@@ -236,22 +232,21 @@ export const UInt64Value = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseInt32Value(): Int32Value {
   return { value: 0 };
 }
 
-export const Int32Value = {
-  encode(message: Int32Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Int32Value {
+  export function encode(message: Int32Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== 0) {
       writer.uint32(8).int32(message.value);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Int32Value {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Int32Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseInt32Value();
@@ -272,22 +267,21 @@ export const Int32Value = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseUInt32Value(): UInt32Value {
   return { value: 0 };
 }
 
-export const UInt32Value = {
-  encode(message: UInt32Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace UInt32Value {
+  export function encode(message: UInt32Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== 0) {
       writer.uint32(8).uint32(message.value);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): UInt32Value {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): UInt32Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseUInt32Value();
@@ -308,22 +302,21 @@ export const UInt32Value = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseBoolValue(): BoolValue {
   return { value: false };
 }
 
-export const BoolValue = {
-  encode(message: BoolValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace BoolValue {
+  export function encode(message: BoolValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value === true) {
       writer.uint32(8).bool(message.value);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): BoolValue {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): BoolValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseBoolValue();
@@ -344,22 +337,21 @@ export const BoolValue = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseStringValue(): StringValue {
   return { value: "" };
 }
 
-export const StringValue = {
-  encode(message: StringValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace StringValue {
+  export function encode(message: StringValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== "") {
       writer.uint32(10).string(message.value);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): StringValue {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): StringValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseStringValue();
@@ -380,22 +372,21 @@ export const StringValue = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseBytesValue(): BytesValue {
   return { value: new Uint8Array() };
 }
 
-export const BytesValue = {
-  encode(message: BytesValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace BytesValue {
+  export function encode(message: BytesValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value.length !== 0) {
       writer.uint32(10).bytes(message.value);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): BytesValue {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): BytesValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseBytesValue();
@@ -416,8 +407,8 @@ export const BytesValue = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 type ProtoMetaMessageOptions = {
   options?: { [key: string]: any };

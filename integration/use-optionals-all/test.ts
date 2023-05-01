@@ -103,8 +103,8 @@ function createBaseOptionalsTest(): OptionalsTest {
   };
 }
 
-export const OptionalsTest = {
-  encode(message: OptionalsTest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace OptionalsTest {
+  export function encode(message: OptionalsTest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== undefined && message.id !== 0) {
       writer.uint32(8).int32(message.id);
     }
@@ -194,9 +194,8 @@ export const OptionalsTest = {
       OptionalsTest_TranslationsEntry.encode({ key: key as any, value }, writer.uint32(242).fork()).ldelim();
     });
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): OptionalsTest {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): OptionalsTest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseOptionalsTest();
@@ -407,9 +406,8 @@ export const OptionalsTest = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): OptionalsTest {
+  }
+  export function fromJSON(object: any): OptionalsTest {
     return {
       id: isSet(object.id) ? Number(object.id) : 0,
       child: isSet(object.child) ? Child.fromJSON(object.child) : undefined,
@@ -439,9 +437,8 @@ export const OptionalsTest = {
         }, {})
         : {},
     };
-  },
-
-  toJSON(message: OptionalsTest): unknown {
+  }
+  export function toJSON(message: OptionalsTest): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
     message.child !== undefined && (obj.child = message.child ? Child.toJSON(message.child) : undefined);
@@ -502,13 +499,12 @@ export const OptionalsTest = {
       });
     }
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<OptionalsTest>, I>>(base?: I): OptionalsTest {
+  }
+  export function create<I extends Exact<DeepPartial<OptionalsTest>, I>>(base?: I): OptionalsTest {
     return OptionalsTest.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<OptionalsTest>, I>>(object: I): OptionalsTest {
+  export function fromPartial<I extends Exact<DeepPartial<OptionalsTest>, I>>(object: I): OptionalsTest {
     const message = createBaseOptionalsTest();
     message.id = object.id ?? 0;
     message.child = (object.child !== undefined && object.child !== null) ? Child.fromPartial(object.child) : undefined;
@@ -543,15 +539,18 @@ export const OptionalsTest = {
       {},
     );
     return message;
-  },
-};
+  }
+}
 
 function createBaseOptionalsTest_TranslationsEntry(): OptionalsTest_TranslationsEntry {
   return { key: "", value: "" };
 }
 
-export const OptionalsTest_TranslationsEntry = {
-  encode(message: OptionalsTest_TranslationsEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace OptionalsTest_TranslationsEntry {
+  export function encode(
+    message: OptionalsTest_TranslationsEntry,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
     }
@@ -559,9 +558,8 @@ export const OptionalsTest_TranslationsEntry = {
       writer.uint32(18).string(message.value);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): OptionalsTest_TranslationsEntry {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): OptionalsTest_TranslationsEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseOptionalsTest_TranslationsEntry();
@@ -589,43 +587,41 @@ export const OptionalsTest_TranslationsEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): OptionalsTest_TranslationsEntry {
+  }
+  export function fromJSON(object: any): OptionalsTest_TranslationsEntry {
     return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object.value) ? String(object.value) : "" };
-  },
-
-  toJSON(message: OptionalsTest_TranslationsEntry): unknown {
+  }
+  export function toJSON(message: OptionalsTest_TranslationsEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<OptionalsTest_TranslationsEntry>, I>>(base?: I): OptionalsTest_TranslationsEntry {
+  }
+  export function create<I extends Exact<DeepPartial<OptionalsTest_TranslationsEntry>, I>>(
+    base?: I,
+  ): OptionalsTest_TranslationsEntry {
     return OptionalsTest_TranslationsEntry.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<OptionalsTest_TranslationsEntry>, I>>(
+  export function fromPartial<I extends Exact<DeepPartial<OptionalsTest_TranslationsEntry>, I>>(
     object: I,
   ): OptionalsTest_TranslationsEntry {
     const message = createBaseOptionalsTest_TranslationsEntry();
     message.key = object.key ?? "";
     message.value = object.value ?? "";
     return message;
-  },
-};
+  }
+}
 
 function createBaseChild(): Child {
   return {};
 }
 
-export const Child = {
-  encode(_: Child, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Child {
+  export function encode(_: Child, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Child {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Child {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseChild();
@@ -639,26 +635,23 @@ export const Child = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(_: any): Child {
+  }
+  export function fromJSON(_: any): Child {
     return {};
-  },
-
-  toJSON(_: Child): unknown {
+  }
+  export function toJSON(_: Child): unknown {
     const obj: any = {};
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Child>, I>>(base?: I): Child {
+  }
+  export function create<I extends Exact<DeepPartial<Child>, I>>(base?: I): Child {
     return Child.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Child>, I>>(_: I): Child {
+  export function fromPartial<I extends Exact<DeepPartial<Child>, I>>(_: I): Child {
     const message = createBaseChild();
     return message;
-  },
-};
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

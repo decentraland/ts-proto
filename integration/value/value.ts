@@ -17,8 +17,8 @@ function createBaseValueMessage(): ValueMessage {
   return { value: undefined, anyList: undefined, repeatedAny: [], repeatedStrings: [], structValue: undefined };
 }
 
-export const ValueMessage = {
-  encode(message: ValueMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace ValueMessage {
+  export function encode(message: ValueMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== undefined) {
       Value.encode(Value.wrap(message.value), writer.uint32(10).fork()).ldelim();
     }
@@ -35,9 +35,8 @@ export const ValueMessage = {
       Struct.encode(Struct.wrap(message.structValue), writer.uint32(42).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): ValueMessage {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): ValueMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseValueMessage();
@@ -86,9 +85,8 @@ export const ValueMessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): ValueMessage {
+  }
+  export function fromJSON(object: any): ValueMessage {
     return {
       value: isSet(object?.value) ? object.value : undefined,
       anyList: Array.isArray(object.anyList) ? [...object.anyList] : undefined,
@@ -96,9 +94,8 @@ export const ValueMessage = {
       repeatedStrings: Array.isArray(object?.repeatedStrings) ? object.repeatedStrings.map((e: any) => String(e)) : [],
       structValue: isObject(object.structValue) ? object.structValue : undefined,
     };
-  },
-
-  toJSON(message: ValueMessage): unknown {
+  }
+  export function toJSON(message: ValueMessage): unknown {
     const obj: any = {};
     message.value !== undefined && (obj.value = message.value);
     message.anyList !== undefined && (obj.anyList = message.anyList);
@@ -114,13 +111,12 @@ export const ValueMessage = {
     }
     message.structValue !== undefined && (obj.structValue = message.structValue);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ValueMessage>, I>>(base?: I): ValueMessage {
+  }
+  export function create<I extends Exact<DeepPartial<ValueMessage>, I>>(base?: I): ValueMessage {
     return ValueMessage.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<ValueMessage>, I>>(object: I): ValueMessage {
+  export function fromPartial<I extends Exact<DeepPartial<ValueMessage>, I>>(object: I): ValueMessage {
     const message = createBaseValueMessage();
     message.value = object.value ?? undefined;
     message.anyList = object.anyList ?? undefined;
@@ -128,8 +124,8 @@ export const ValueMessage = {
     message.repeatedStrings = object.repeatedStrings?.map((e) => e) || [];
     message.structValue = object.structValue ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

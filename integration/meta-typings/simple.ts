@@ -210,8 +210,8 @@ function createBaseSimple(): Simple {
   };
 }
 
-export const Simple = {
-  encode(message: Simple, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Simple {
+  export function encode(message: Simple, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
@@ -256,9 +256,8 @@ export const Simple = {
       writer.uint32(106).bytes(message.blob);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Simple {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Simple {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimple();
@@ -383,15 +382,15 @@ export const Simple = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseChild(): Child {
   return { name: "", type: 0 };
 }
 
-export const Child = {
-  encode(message: Child, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Child {
+  export function encode(message: Child, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
@@ -399,9 +398,8 @@ export const Child = {
       writer.uint32(16).int32(message.type);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Child {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Child {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseChild();
@@ -429,15 +427,15 @@ export const Child = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseNested(): Nested {
   return { name: "", message: undefined, state: 0 };
 }
 
-export const Nested = {
-  encode(message: Nested, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Nested {
+  export function encode(message: Nested, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
@@ -448,9 +446,8 @@ export const Nested = {
       writer.uint32(24).int32(message.state);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Nested {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Nested {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseNested();
@@ -485,15 +482,15 @@ export const Nested = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseNested_InnerMessage(): Nested_InnerMessage {
   return { name: "", deep: undefined };
 }
 
-export const Nested_InnerMessage = {
-  encode(message: Nested_InnerMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Nested_InnerMessage {
+  export function encode(message: Nested_InnerMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
@@ -501,9 +498,8 @@ export const Nested_InnerMessage = {
       Nested_InnerMessage_DeepMessage.encode(message.deep, writer.uint32(18).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Nested_InnerMessage {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Nested_InnerMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseNested_InnerMessage();
@@ -531,22 +527,24 @@ export const Nested_InnerMessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseNested_InnerMessage_DeepMessage(): Nested_InnerMessage_DeepMessage {
   return { name: "" };
 }
 
-export const Nested_InnerMessage_DeepMessage = {
-  encode(message: Nested_InnerMessage_DeepMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Nested_InnerMessage_DeepMessage {
+  export function encode(
+    message: Nested_InnerMessage_DeepMessage,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Nested_InnerMessage_DeepMessage {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Nested_InnerMessage_DeepMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseNested_InnerMessage_DeepMessage();
@@ -567,15 +565,15 @@ export const Nested_InnerMessage_DeepMessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseOneOfMessage(): OneOfMessage {
   return { first: undefined, last: undefined };
 }
 
-export const OneOfMessage = {
-  encode(message: OneOfMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace OneOfMessage {
+  export function encode(message: OneOfMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.first !== undefined) {
       writer.uint32(10).string(message.first);
     }
@@ -583,9 +581,8 @@ export const OneOfMessage = {
       writer.uint32(18).string(message.last);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): OneOfMessage {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): OneOfMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseOneOfMessage();
@@ -613,15 +610,15 @@ export const OneOfMessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseSimpleWithWrappers(): SimpleWithWrappers {
   return { name: undefined, age: undefined, enabled: undefined, coins: [], snacks: [] };
 }
 
-export const SimpleWithWrappers = {
-  encode(message: SimpleWithWrappers, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleWithWrappers {
+  export function encode(message: SimpleWithWrappers, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== undefined) {
       StringValue.encode({ value: message.name! }, writer.uint32(10).fork()).ldelim();
     }
@@ -638,9 +635,8 @@ export const SimpleWithWrappers = {
       StringValue.encode({ value: v!! }, writer.uint32(58).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithWrappers {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithWrappers {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleWithWrappers();
@@ -689,22 +685,21 @@ export const SimpleWithWrappers = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseEntity(): Entity {
   return { id: 0 };
 }
 
-export const Entity = {
-  encode(message: Entity, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Entity {
+  export function encode(message: Entity, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== 0) {
       writer.uint32(8).int32(message.id);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Entity {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Entity {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseEntity();
@@ -725,15 +720,15 @@ export const Entity = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseSimpleWithMap(): SimpleWithMap {
   return { entitiesById: {}, nameLookup: {}, intLookup: {}, mapOfTimestamps: {}, mapOfBytes: {} };
 }
 
-export const SimpleWithMap = {
-  encode(message: SimpleWithMap, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleWithMap {
+  export function encode(message: SimpleWithMap, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     Object.entries(message.entitiesById).forEach(([key, value]) => {
       SimpleWithMap_EntitiesByIdEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).ldelim();
     });
@@ -750,9 +745,8 @@ export const SimpleWithMap = {
       SimpleWithMap_MapOfBytesEntry.encode({ key: key as any, value }, writer.uint32(42).fork()).ldelim();
     });
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleWithMap();
@@ -816,15 +810,18 @@ export const SimpleWithMap = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseSimpleWithMap_EntitiesByIdEntry(): SimpleWithMap_EntitiesByIdEntry {
   return { key: 0, value: undefined };
 }
 
-export const SimpleWithMap_EntitiesByIdEntry = {
-  encode(message: SimpleWithMap_EntitiesByIdEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleWithMap_EntitiesByIdEntry {
+  export function encode(
+    message: SimpleWithMap_EntitiesByIdEntry,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (message.key !== 0) {
       writer.uint32(8).int32(message.key);
     }
@@ -832,9 +829,8 @@ export const SimpleWithMap_EntitiesByIdEntry = {
       Entity.encode(message.value, writer.uint32(18).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap_EntitiesByIdEntry {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap_EntitiesByIdEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleWithMap_EntitiesByIdEntry();
@@ -862,15 +858,15 @@ export const SimpleWithMap_EntitiesByIdEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseSimpleWithMap_NameLookupEntry(): SimpleWithMap_NameLookupEntry {
   return { key: "", value: "" };
 }
 
-export const SimpleWithMap_NameLookupEntry = {
-  encode(message: SimpleWithMap_NameLookupEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleWithMap_NameLookupEntry {
+  export function encode(message: SimpleWithMap_NameLookupEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
     }
@@ -878,9 +874,8 @@ export const SimpleWithMap_NameLookupEntry = {
       writer.uint32(18).string(message.value);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap_NameLookupEntry {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap_NameLookupEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleWithMap_NameLookupEntry();
@@ -908,15 +903,15 @@ export const SimpleWithMap_NameLookupEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseSimpleWithMap_IntLookupEntry(): SimpleWithMap_IntLookupEntry {
   return { key: 0, value: 0 };
 }
 
-export const SimpleWithMap_IntLookupEntry = {
-  encode(message: SimpleWithMap_IntLookupEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleWithMap_IntLookupEntry {
+  export function encode(message: SimpleWithMap_IntLookupEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== 0) {
       writer.uint32(8).int32(message.key);
     }
@@ -924,9 +919,8 @@ export const SimpleWithMap_IntLookupEntry = {
       writer.uint32(16).int32(message.value);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap_IntLookupEntry {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap_IntLookupEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleWithMap_IntLookupEntry();
@@ -954,15 +948,18 @@ export const SimpleWithMap_IntLookupEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseSimpleWithMap_MapOfTimestampsEntry(): SimpleWithMap_MapOfTimestampsEntry {
   return { key: "", value: undefined };
 }
 
-export const SimpleWithMap_MapOfTimestampsEntry = {
-  encode(message: SimpleWithMap_MapOfTimestampsEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleWithMap_MapOfTimestampsEntry {
+  export function encode(
+    message: SimpleWithMap_MapOfTimestampsEntry,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
     }
@@ -970,9 +967,8 @@ export const SimpleWithMap_MapOfTimestampsEntry = {
       Timestamp.encode(toTimestamp(message.value), writer.uint32(18).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap_MapOfTimestampsEntry {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap_MapOfTimestampsEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleWithMap_MapOfTimestampsEntry();
@@ -1000,15 +996,15 @@ export const SimpleWithMap_MapOfTimestampsEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseSimpleWithMap_MapOfBytesEntry(): SimpleWithMap_MapOfBytesEntry {
   return { key: "", value: new Uint8Array() };
 }
 
-export const SimpleWithMap_MapOfBytesEntry = {
-  encode(message: SimpleWithMap_MapOfBytesEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleWithMap_MapOfBytesEntry {
+  export function encode(message: SimpleWithMap_MapOfBytesEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
     }
@@ -1016,9 +1012,8 @@ export const SimpleWithMap_MapOfBytesEntry = {
       writer.uint32(18).bytes(message.value);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap_MapOfBytesEntry {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap_MapOfBytesEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleWithMap_MapOfBytesEntry();
@@ -1046,22 +1041,21 @@ export const SimpleWithMap_MapOfBytesEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseSimpleWithSnakeCaseMap(): SimpleWithSnakeCaseMap {
   return { entitiesById: {} };
 }
 
-export const SimpleWithSnakeCaseMap = {
-  encode(message: SimpleWithSnakeCaseMap, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleWithSnakeCaseMap {
+  export function encode(message: SimpleWithSnakeCaseMap, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     Object.entries(message.entitiesById).forEach(([key, value]) => {
       SimpleWithSnakeCaseMap_EntitiesByIdEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).ldelim();
     });
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithSnakeCaseMap {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithSnakeCaseMap {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleWithSnakeCaseMap();
@@ -1085,15 +1079,18 @@ export const SimpleWithSnakeCaseMap = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseSimpleWithSnakeCaseMap_EntitiesByIdEntry(): SimpleWithSnakeCaseMap_EntitiesByIdEntry {
   return { key: 0, value: undefined };
 }
 
-export const SimpleWithSnakeCaseMap_EntitiesByIdEntry = {
-  encode(message: SimpleWithSnakeCaseMap_EntitiesByIdEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleWithSnakeCaseMap_EntitiesByIdEntry {
+  export function encode(
+    message: SimpleWithSnakeCaseMap_EntitiesByIdEntry,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (message.key !== 0) {
       writer.uint32(8).int32(message.key);
     }
@@ -1101,9 +1098,8 @@ export const SimpleWithSnakeCaseMap_EntitiesByIdEntry = {
       Entity.encode(message.value, writer.uint32(18).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithSnakeCaseMap_EntitiesByIdEntry {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithSnakeCaseMap_EntitiesByIdEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleWithSnakeCaseMap_EntitiesByIdEntry();
@@ -1131,22 +1127,21 @@ export const SimpleWithSnakeCaseMap_EntitiesByIdEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseSimpleWithMapOfEnums(): SimpleWithMapOfEnums {
   return { enumsById: {} };
 }
 
-export const SimpleWithMapOfEnums = {
-  encode(message: SimpleWithMapOfEnums, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleWithMapOfEnums {
+  export function encode(message: SimpleWithMapOfEnums, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     Object.entries(message.enumsById).forEach(([key, value]) => {
       SimpleWithMapOfEnums_EnumsByIdEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).ldelim();
     });
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMapOfEnums {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMapOfEnums {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleWithMapOfEnums();
@@ -1170,15 +1165,18 @@ export const SimpleWithMapOfEnums = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseSimpleWithMapOfEnums_EnumsByIdEntry(): SimpleWithMapOfEnums_EnumsByIdEntry {
   return { key: 0, value: 0 };
 }
 
-export const SimpleWithMapOfEnums_EnumsByIdEntry = {
-  encode(message: SimpleWithMapOfEnums_EnumsByIdEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleWithMapOfEnums_EnumsByIdEntry {
+  export function encode(
+    message: SimpleWithMapOfEnums_EnumsByIdEntry,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (message.key !== 0) {
       writer.uint32(8).int32(message.key);
     }
@@ -1186,9 +1184,8 @@ export const SimpleWithMapOfEnums_EnumsByIdEntry = {
       writer.uint32(16).int32(message.value);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMapOfEnums_EnumsByIdEntry {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMapOfEnums_EnumsByIdEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleWithMapOfEnums_EnumsByIdEntry();
@@ -1216,22 +1213,21 @@ export const SimpleWithMapOfEnums_EnumsByIdEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBasePingRequest(): PingRequest {
   return { input: "" };
 }
 
-export const PingRequest = {
-  encode(message: PingRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace PingRequest {
+  export function encode(message: PingRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.input !== "") {
       writer.uint32(10).string(message.input);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): PingRequest {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): PingRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBasePingRequest();
@@ -1252,22 +1248,21 @@ export const PingRequest = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBasePingResponse(): PingResponse {
   return { output: "" };
 }
 
-export const PingResponse = {
-  encode(message: PingResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace PingResponse {
+  export function encode(message: PingResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.output !== "") {
       writer.uint32(10).string(message.output);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): PingResponse {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): PingResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBasePingResponse();
@@ -1288,8 +1283,8 @@ export const PingResponse = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseNumbers(): Numbers {
   return {
@@ -1308,8 +1303,8 @@ function createBaseNumbers(): Numbers {
   };
 }
 
-export const Numbers = {
-  encode(message: Numbers, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Numbers {
+  export function encode(message: Numbers, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.double !== 0) {
       writer.uint32(9).double(message.double);
     }
@@ -1347,9 +1342,8 @@ export const Numbers = {
       writer.uint32(97).sfixed64(message.sfixed64);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Numbers {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Numbers {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseNumbers();
@@ -1447,8 +1441,8 @@ export const Numbers = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseSimpleButOptional(): SimpleButOptional {
   return {
@@ -1462,8 +1456,8 @@ function createBaseSimpleButOptional(): SimpleButOptional {
   };
 }
 
-export const SimpleButOptional = {
-  encode(message: SimpleButOptional, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleButOptional {
+  export function encode(message: SimpleButOptional, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== undefined) {
       writer.uint32(10).string(message.name);
     }
@@ -1486,9 +1480,8 @@ export const SimpleButOptional = {
       DateMessage.encode(message.birthday, writer.uint32(98).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleButOptional {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleButOptional {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleButOptional();
@@ -1551,19 +1544,18 @@ export const SimpleButOptional = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseEmpty(): Empty {
   return {};
 }
 
-export const Empty = {
-  encode(_: Empty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Empty {
+  export function encode(_: Empty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Empty {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Empty {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseEmpty();
@@ -1577,8 +1569,8 @@ export const Empty = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 export interface PingService {
   ping(request: PingRequest): Promise<PingResponse>;

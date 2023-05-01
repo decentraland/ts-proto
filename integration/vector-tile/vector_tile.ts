@@ -83,15 +83,14 @@ function createBaseTile(): Tile {
   return { layers: [] };
 }
 
-export const Tile = {
-  encode(message: Tile, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Tile {
+  export function encode(message: Tile, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.layers) {
       Tile_Layer.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Tile {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Tile {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTile();
@@ -112,13 +111,11 @@ export const Tile = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Tile {
+  }
+  export function fromJSON(object: any): Tile {
     return { layers: Array.isArray(object?.layers) ? object.layers.map((e: any) => Tile_Layer.fromJSON(e)) : [] };
-  },
-
-  toJSON(message: Tile): unknown {
+  }
+  export function toJSON(message: Tile): unknown {
     const obj: any = {};
     if (message.layers) {
       obj.layers = message.layers.map((e) => e ? Tile_Layer.toJSON(e) : undefined);
@@ -126,25 +123,24 @@ export const Tile = {
       obj.layers = [];
     }
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Tile>, I>>(base?: I): Tile {
+  }
+  export function create<I extends Exact<DeepPartial<Tile>, I>>(base?: I): Tile {
     return Tile.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Tile>, I>>(object: I): Tile {
+  export function fromPartial<I extends Exact<DeepPartial<Tile>, I>>(object: I): Tile {
     const message = createBaseTile();
     message.layers = object.layers?.map((e) => Tile_Layer.fromPartial(e)) || [];
     return message;
-  },
-};
+  }
+}
 
 function createBaseTile_Value(): Tile_Value {
   return { stringValue: "", floatValue: 0, doubleValue: 0, intValue: 0, uintValue: 0, sintValue: 0, boolValue: false };
 }
 
-export const Tile_Value = {
-  encode(message: Tile_Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Tile_Value {
+  export function encode(message: Tile_Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.stringValue !== "") {
       writer.uint32(10).string(message.stringValue);
     }
@@ -167,9 +163,8 @@ export const Tile_Value = {
       writer.uint32(56).bool(message.boolValue);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Tile_Value {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Tile_Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTile_Value();
@@ -232,9 +227,8 @@ export const Tile_Value = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Tile_Value {
+  }
+  export function fromJSON(object: any): Tile_Value {
     return {
       stringValue: isSet(object.stringValue) ? String(object.stringValue) : "",
       floatValue: isSet(object.floatValue) ? Number(object.floatValue) : 0,
@@ -244,9 +238,8 @@ export const Tile_Value = {
       sintValue: isSet(object.sintValue) ? Number(object.sintValue) : 0,
       boolValue: isSet(object.boolValue) ? Boolean(object.boolValue) : false,
     };
-  },
-
-  toJSON(message: Tile_Value): unknown {
+  }
+  export function toJSON(message: Tile_Value): unknown {
     const obj: any = {};
     message.stringValue !== undefined && (obj.stringValue = message.stringValue);
     message.floatValue !== undefined && (obj.floatValue = message.floatValue);
@@ -256,13 +249,12 @@ export const Tile_Value = {
     message.sintValue !== undefined && (obj.sintValue = Math.round(message.sintValue));
     message.boolValue !== undefined && (obj.boolValue = message.boolValue);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Tile_Value>, I>>(base?: I): Tile_Value {
+  }
+  export function create<I extends Exact<DeepPartial<Tile_Value>, I>>(base?: I): Tile_Value {
     return Tile_Value.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Tile_Value>, I>>(object: I): Tile_Value {
+  export function fromPartial<I extends Exact<DeepPartial<Tile_Value>, I>>(object: I): Tile_Value {
     const message = createBaseTile_Value();
     message.stringValue = object.stringValue ?? "";
     message.floatValue = object.floatValue ?? 0;
@@ -272,15 +264,15 @@ export const Tile_Value = {
     message.sintValue = object.sintValue ?? 0;
     message.boolValue = object.boolValue ?? false;
     return message;
-  },
-};
+  }
+}
 
 function createBaseTile_Feature(): Tile_Feature {
   return { id: 0, tags: [], type: 0, geometry: [] };
 }
 
-export const Tile_Feature = {
-  encode(message: Tile_Feature, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Tile_Feature {
+  export function encode(message: Tile_Feature, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== 0) {
       writer.uint32(8).uint64(message.id);
     }
@@ -298,9 +290,8 @@ export const Tile_Feature = {
     }
     writer.ldelim();
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Tile_Feature {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Tile_Feature {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTile_Feature();
@@ -362,18 +353,16 @@ export const Tile_Feature = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Tile_Feature {
+  }
+  export function fromJSON(object: any): Tile_Feature {
     return {
       id: isSet(object.id) ? Number(object.id) : 0,
       tags: Array.isArray(object?.tags) ? object.tags.map((e: any) => Number(e)) : [],
       type: isSet(object.type) ? tile_GeomTypeFromJSON(object.type) : 0,
       geometry: Array.isArray(object?.geometry) ? object.geometry.map((e: any) => Number(e)) : [],
     };
-  },
-
-  toJSON(message: Tile_Feature): unknown {
+  }
+  export function toJSON(message: Tile_Feature): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
     if (message.tags) {
@@ -388,28 +377,27 @@ export const Tile_Feature = {
       obj.geometry = [];
     }
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Tile_Feature>, I>>(base?: I): Tile_Feature {
+  }
+  export function create<I extends Exact<DeepPartial<Tile_Feature>, I>>(base?: I): Tile_Feature {
     return Tile_Feature.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Tile_Feature>, I>>(object: I): Tile_Feature {
+  export function fromPartial<I extends Exact<DeepPartial<Tile_Feature>, I>>(object: I): Tile_Feature {
     const message = createBaseTile_Feature();
     message.id = object.id ?? 0;
     message.tags = object.tags?.map((e) => e) || [];
     message.type = object.type ?? 0;
     message.geometry = object.geometry?.map((e) => e) || [];
     return message;
-  },
-};
+  }
+}
 
 function createBaseTile_Layer(): Tile_Layer {
   return { version: 0, name: "", features: [], keys: [], values: [], extent: 0 };
 }
 
-export const Tile_Layer = {
-  encode(message: Tile_Layer, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Tile_Layer {
+  export function encode(message: Tile_Layer, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.version !== 0) {
       writer.uint32(120).uint32(message.version);
     }
@@ -429,9 +417,8 @@ export const Tile_Layer = {
       writer.uint32(40).uint32(message.extent);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Tile_Layer {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Tile_Layer {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTile_Layer();
@@ -487,9 +474,8 @@ export const Tile_Layer = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Tile_Layer {
+  }
+  export function fromJSON(object: any): Tile_Layer {
     return {
       version: isSet(object.version) ? Number(object.version) : 0,
       name: isSet(object.name) ? String(object.name) : "",
@@ -498,9 +484,8 @@ export const Tile_Layer = {
       values: Array.isArray(object?.values) ? object.values.map((e: any) => Tile_Value.fromJSON(e)) : [],
       extent: isSet(object.extent) ? Number(object.extent) : 0,
     };
-  },
-
-  toJSON(message: Tile_Layer): unknown {
+  }
+  export function toJSON(message: Tile_Layer): unknown {
     const obj: any = {};
     message.version !== undefined && (obj.version = Math.round(message.version));
     message.name !== undefined && (obj.name = message.name);
@@ -521,13 +506,12 @@ export const Tile_Layer = {
     }
     message.extent !== undefined && (obj.extent = Math.round(message.extent));
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Tile_Layer>, I>>(base?: I): Tile_Layer {
+  }
+  export function create<I extends Exact<DeepPartial<Tile_Layer>, I>>(base?: I): Tile_Layer {
     return Tile_Layer.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Tile_Layer>, I>>(object: I): Tile_Layer {
+  export function fromPartial<I extends Exact<DeepPartial<Tile_Layer>, I>>(object: I): Tile_Layer {
     const message = createBaseTile_Layer();
     message.version = object.version ?? 0;
     message.name = object.name ?? "";
@@ -536,8 +520,8 @@ export const Tile_Layer = {
     message.values = object.values?.map((e) => Tile_Value.fromPartial(e)) || [];
     message.extent = object.extent ?? 0;
     return message;
-  },
-};
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

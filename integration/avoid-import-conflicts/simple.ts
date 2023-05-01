@@ -73,8 +73,8 @@ function createBaseSimple(): Simple {
   return { name: "", otherSimple: undefined };
 }
 
-export const Simple = {
-  encode(message: Simple, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Simple {
+  export function encode(message: Simple, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
@@ -82,9 +82,8 @@ export const Simple = {
       Simple3.encode(message.otherSimple, writer.uint32(18).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Simple {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Simple {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimple();
@@ -112,43 +111,40 @@ export const Simple = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Simple {
+  }
+  export function fromJSON(object: any): Simple {
     return {
       name: isSet(object.name) ? String(object.name) : "",
       otherSimple: isSet(object.otherSimple) ? Simple3.fromJSON(object.otherSimple) : undefined,
     };
-  },
-
-  toJSON(message: Simple): unknown {
+  }
+  export function toJSON(message: Simple): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     message.otherSimple !== undefined &&
       (obj.otherSimple = message.otherSimple ? Simple3.toJSON(message.otherSimple) : undefined);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Simple>, I>>(base?: I): Simple {
+  }
+  export function create<I extends Exact<DeepPartial<Simple>, I>>(base?: I): Simple {
     return Simple.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Simple>, I>>(object: I): Simple {
+  export function fromPartial<I extends Exact<DeepPartial<Simple>, I>>(object: I): Simple {
     const message = createBaseSimple();
     message.name = object.name ?? "";
     message.otherSimple = (object.otherSimple !== undefined && object.otherSimple !== null)
       ? Simple3.fromPartial(object.otherSimple)
       : undefined;
     return message;
-  },
-};
+  }
+}
 
 function createBaseSimpleEnums(): SimpleEnums {
   return { localEnum: 0, importEnum: 0 };
 }
 
-export const SimpleEnums = {
-  encode(message: SimpleEnums, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleEnums {
+  export function encode(message: SimpleEnums, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.localEnum !== 0) {
       writer.uint32(8).int32(message.localEnum);
     }
@@ -156,9 +152,8 @@ export const SimpleEnums = {
       writer.uint32(16).int32(message.importEnum);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleEnums {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleEnums {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleEnums();
@@ -186,47 +181,43 @@ export const SimpleEnums = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): SimpleEnums {
+  }
+  export function fromJSON(object: any): SimpleEnums {
     return {
       localEnum: isSet(object.localEnum) ? simpleEnumFromJSON(object.localEnum) : 0,
       importEnum: isSet(object.importEnum) ? simpleEnumFromJSON4(object.importEnum) : 0,
     };
-  },
-
-  toJSON(message: SimpleEnums): unknown {
+  }
+  export function toJSON(message: SimpleEnums): unknown {
     const obj: any = {};
     message.localEnum !== undefined && (obj.localEnum = simpleEnumToJSON(message.localEnum));
     message.importEnum !== undefined && (obj.importEnum = simpleEnumToJSON5(message.importEnum));
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SimpleEnums>, I>>(base?: I): SimpleEnums {
+  }
+  export function create<I extends Exact<DeepPartial<SimpleEnums>, I>>(base?: I): SimpleEnums {
     return SimpleEnums.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<SimpleEnums>, I>>(object: I): SimpleEnums {
+  export function fromPartial<I extends Exact<DeepPartial<SimpleEnums>, I>>(object: I): SimpleEnums {
     const message = createBaseSimpleEnums();
     message.localEnum = object.localEnum ?? 0;
     message.importEnum = object.importEnum ?? 0;
     return message;
-  },
-};
+  }
+}
 
 function createBaseFooServiceCreateRequest(): FooServiceCreateRequest {
   return { kind: 0 };
 }
 
-export const FooServiceCreateRequest = {
-  encode(message: FooServiceCreateRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace FooServiceCreateRequest {
+  export function encode(message: FooServiceCreateRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.kind !== 0) {
       writer.uint32(8).int32(message.kind);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): FooServiceCreateRequest {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): FooServiceCreateRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseFooServiceCreateRequest();
@@ -247,42 +238,40 @@ export const FooServiceCreateRequest = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): FooServiceCreateRequest {
+  }
+  export function fromJSON(object: any): FooServiceCreateRequest {
     return { kind: isSet(object.kind) ? fooServiceFromJSON(object.kind) : 0 };
-  },
-
-  toJSON(message: FooServiceCreateRequest): unknown {
+  }
+  export function toJSON(message: FooServiceCreateRequest): unknown {
     const obj: any = {};
     message.kind !== undefined && (obj.kind = fooServiceToJSON(message.kind));
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<FooServiceCreateRequest>, I>>(base?: I): FooServiceCreateRequest {
+  }
+  export function create<I extends Exact<DeepPartial<FooServiceCreateRequest>, I>>(base?: I): FooServiceCreateRequest {
     return FooServiceCreateRequest.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<FooServiceCreateRequest>, I>>(object: I): FooServiceCreateRequest {
+  export function fromPartial<I extends Exact<DeepPartial<FooServiceCreateRequest>, I>>(
+    object: I,
+  ): FooServiceCreateRequest {
     const message = createBaseFooServiceCreateRequest();
     message.kind = object.kind ?? 0;
     return message;
-  },
-};
+  }
+}
 
 function createBaseFooServiceCreateResponse(): FooServiceCreateResponse {
   return { kind: 0 };
 }
 
-export const FooServiceCreateResponse = {
-  encode(message: FooServiceCreateResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace FooServiceCreateResponse {
+  export function encode(message: FooServiceCreateResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.kind !== 0) {
       writer.uint32(8).int32(message.kind);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): FooServiceCreateResponse {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): FooServiceCreateResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseFooServiceCreateResponse();
@@ -303,28 +292,29 @@ export const FooServiceCreateResponse = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): FooServiceCreateResponse {
+  }
+  export function fromJSON(object: any): FooServiceCreateResponse {
     return { kind: isSet(object.kind) ? fooServiceFromJSON(object.kind) : 0 };
-  },
-
-  toJSON(message: FooServiceCreateResponse): unknown {
+  }
+  export function toJSON(message: FooServiceCreateResponse): unknown {
     const obj: any = {};
     message.kind !== undefined && (obj.kind = fooServiceToJSON(message.kind));
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<FooServiceCreateResponse>, I>>(base?: I): FooServiceCreateResponse {
+  }
+  export function create<I extends Exact<DeepPartial<FooServiceCreateResponse>, I>>(
+    base?: I,
+  ): FooServiceCreateResponse {
     return FooServiceCreateResponse.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<FooServiceCreateResponse>, I>>(object: I): FooServiceCreateResponse {
+  export function fromPartial<I extends Exact<DeepPartial<FooServiceCreateResponse>, I>>(
+    object: I,
+  ): FooServiceCreateResponse {
     const message = createBaseFooServiceCreateResponse();
     message.kind = object.kind ?? 0;
     return message;
-  },
-};
+  }
+}
 
 export interface FooService {
   Create(request: FooServiceCreateRequest): Promise<FooServiceCreateResponse>;

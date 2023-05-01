@@ -44,15 +44,14 @@ function createBaseChild(): Child {
   return { name: "" };
 }
 
-export const Child = {
-  encode(message: Child, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Child {
+  export function encode(message: Child, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Child {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Child {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseChild();
@@ -73,28 +72,25 @@ export const Child = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Child {
+  }
+  export function fromJSON(object: any): Child {
     return { name: isSet(object.name) ? String(object.name) : "" };
-  },
-
-  toJSON(message: Child): unknown {
+  }
+  export function toJSON(message: Child): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Child>, I>>(base?: I): Child {
+  }
+  export function create<I extends Exact<DeepPartial<Child>, I>>(base?: I): Child {
     return Child.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Child>, I>>(object: I): Child {
+  export function fromPartial<I extends Exact<DeepPartial<Child>, I>>(object: I): Child {
     const message = createBaseChild();
     message.name = object.name ?? "";
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

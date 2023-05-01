@@ -12,15 +12,14 @@ function createBaseMetadata(): Metadata {
   return { lastEdited: undefined };
 }
 
-export const Metadata = {
-  encode(message: Metadata, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Metadata {
+  export function encode(message: Metadata, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.lastEdited !== undefined) {
       Timestamp.encode(message.lastEdited, writer.uint32(10).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Metadata {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Metadata {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMetadata();
@@ -41,30 +40,27 @@ export const Metadata = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Metadata {
+  }
+  export function fromJSON(object: any): Metadata {
     return { lastEdited: isSet(object.lastEdited) ? fromJsonTimestamp(object.lastEdited) : undefined };
-  },
-
-  toJSON(message: Metadata): unknown {
+  }
+  export function toJSON(message: Metadata): unknown {
     const obj: any = {};
     message.lastEdited !== undefined && (obj.lastEdited = fromTimestamp(message.lastEdited).toISOString());
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Metadata>, I>>(base?: I): Metadata {
+  }
+  export function create<I extends Exact<DeepPartial<Metadata>, I>>(base?: I): Metadata {
     return Metadata.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Metadata>, I>>(object: I): Metadata {
+  export function fromPartial<I extends Exact<DeepPartial<Metadata>, I>>(object: I): Metadata {
     const message = createBaseMetadata();
     message.lastEdited = (object.lastEdited !== undefined && object.lastEdited !== null)
       ? Timestamp.fromPartial(object.lastEdited)
       : undefined;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

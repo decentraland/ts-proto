@@ -11,15 +11,14 @@ function createBaseSimpleMessage(): SimpleMessage {
   return { numberField: 0 };
 }
 
-export const SimpleMessage = {
-  encode(message: SimpleMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleMessage {
+  export function encode(message: SimpleMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.numberField !== 0) {
       writer.uint32(8).int32(message.numberField);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleMessage {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleMessage();
@@ -40,28 +39,25 @@ export const SimpleMessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): SimpleMessage {
+  }
+  export function fromJSON(object: any): SimpleMessage {
     return { numberField: isSet(object.numberField) ? Number(object.numberField) : 0 };
-  },
-
-  toJSON(message: SimpleMessage): unknown {
+  }
+  export function toJSON(message: SimpleMessage): unknown {
     const obj: any = {};
     message.numberField !== undefined && (obj.numberField = Math.round(message.numberField));
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SimpleMessage>, I>>(base?: I): SimpleMessage {
+  }
+  export function create<I extends Exact<DeepPartial<SimpleMessage>, I>>(base?: I): SimpleMessage {
     return SimpleMessage.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<SimpleMessage>, I>>(object: I): SimpleMessage {
+  export function fromPartial<I extends Exact<DeepPartial<SimpleMessage>, I>>(object: I): SimpleMessage {
     const message = createBaseSimpleMessage();
     message.numberField = object.numberField ?? 0;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

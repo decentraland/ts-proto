@@ -16,15 +16,14 @@ function createBaseUser(): User {
   return { name: "" };
 }
 
-export const User = {
-  encode(message: User, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace User {
+  export function encode(message: User, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): User {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): User {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseUser();
@@ -45,39 +44,35 @@ export const User = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): User {
+  }
+  export function fromJSON(object: any): User {
     return { name: isSet(object.name) ? String(object.name) : "" };
-  },
-
-  toJSON(message: User): unknown {
+  }
+  export function toJSON(message: User): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<User>, I>>(base?: I): User {
+  }
+  export function create<I extends Exact<DeepPartial<User>, I>>(base?: I): User {
     return User.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<User>, I>>(object: I): User {
+  export function fromPartial<I extends Exact<DeepPartial<User>, I>>(object: I): User {
     const message = createBaseUser();
     message.name = object.name ?? "";
     return message;
-  },
-};
+  }
+}
 
 function createBaseEmpty(): Empty {
   return {};
 }
 
-export const Empty = {
-  encode(_: Empty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Empty {
+  export function encode(_: Empty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Empty {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Empty {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseEmpty();
@@ -91,26 +86,23 @@ export const Empty = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(_: any): Empty {
+  }
+  export function fromJSON(_: any): Empty {
     return {};
-  },
-
-  toJSON(_: Empty): unknown {
+  }
+  export function toJSON(_: Empty): unknown {
     const obj: any = {};
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Empty>, I>>(base?: I): Empty {
+  }
+  export function create<I extends Exact<DeepPartial<Empty>, I>>(base?: I): Empty {
     return Empty.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Empty>, I>>(_: I): Empty {
+  export function fromPartial<I extends Exact<DeepPartial<Empty>, I>>(_: I): Empty {
     const message = createBaseEmpty();
     return message;
-  },
-};
+  }
+}
 
 export interface UserState {
   GetUsers(request: Empty): Observable<User>;

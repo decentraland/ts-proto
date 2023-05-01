@@ -12,15 +12,14 @@ function createBaseFieldMaskMessage(): FieldMaskMessage {
   return { fieldMask: undefined };
 }
 
-export const FieldMaskMessage = {
-  encode(message: FieldMaskMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace FieldMaskMessage {
+  export function encode(message: FieldMaskMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.fieldMask !== undefined) {
       FieldMask.encode(FieldMask.wrap(message.fieldMask), writer.uint32(10).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): FieldMaskMessage {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): FieldMaskMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseFieldMaskMessage();
@@ -41,28 +40,25 @@ export const FieldMaskMessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): FieldMaskMessage {
+  }
+  export function fromJSON(object: any): FieldMaskMessage {
     return { fieldMask: isSet(object.fieldMask) ? FieldMask.unwrap(FieldMask.fromJSON(object.fieldMask)) : undefined };
-  },
-
-  toJSON(message: FieldMaskMessage): unknown {
+  }
+  export function toJSON(message: FieldMaskMessage): unknown {
     const obj: any = {};
     message.fieldMask !== undefined && (obj.fieldMask = FieldMask.toJSON(FieldMask.wrap(message.fieldMask)));
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<FieldMaskMessage>, I>>(base?: I): FieldMaskMessage {
+  }
+  export function create<I extends Exact<DeepPartial<FieldMaskMessage>, I>>(base?: I): FieldMaskMessage {
     return FieldMaskMessage.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<FieldMaskMessage>, I>>(object: I): FieldMaskMessage {
+  export function fromPartial<I extends Exact<DeepPartial<FieldMaskMessage>, I>>(object: I): FieldMaskMessage {
     const message = createBaseFieldMaskMessage();
     message.fieldMask = object.fieldMask ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

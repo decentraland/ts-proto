@@ -97,115 +97,115 @@ function createBaseDoubleValue(): DoubleValue {
   return { value: 0 };
 }
 
-export const DoubleValue = {
-  encode(message: DoubleValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace DoubleValue {
+  export function encode(message: DoubleValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== 0) {
       writer.uint32(9).double(message.value);
     }
     return writer;
-  },
-};
+  }
+}
 
 function createBaseFloatValue(): FloatValue {
   return { value: 0 };
 }
 
-export const FloatValue = {
-  encode(message: FloatValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace FloatValue {
+  export function encode(message: FloatValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== 0) {
       writer.uint32(13).float(message.value);
     }
     return writer;
-  },
-};
+  }
+}
 
 function createBaseInt64Value(): Int64Value {
   return { value: 0 };
 }
 
-export const Int64Value = {
-  encode(message: Int64Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Int64Value {
+  export function encode(message: Int64Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== 0) {
       writer.uint32(8).int64(message.value);
     }
     return writer;
-  },
-};
+  }
+}
 
 function createBaseUInt64Value(): UInt64Value {
   return { value: 0 };
 }
 
-export const UInt64Value = {
-  encode(message: UInt64Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace UInt64Value {
+  export function encode(message: UInt64Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== 0) {
       writer.uint32(8).uint64(message.value);
     }
     return writer;
-  },
-};
+  }
+}
 
 function createBaseInt32Value(): Int32Value {
   return { value: 0 };
 }
 
-export const Int32Value = {
-  encode(message: Int32Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Int32Value {
+  export function encode(message: Int32Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== 0) {
       writer.uint32(8).int32(message.value);
     }
     return writer;
-  },
-};
+  }
+}
 
 function createBaseUInt32Value(): UInt32Value {
   return { value: 0 };
 }
 
-export const UInt32Value = {
-  encode(message: UInt32Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace UInt32Value {
+  export function encode(message: UInt32Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== 0) {
       writer.uint32(8).uint32(message.value);
     }
     return writer;
-  },
-};
+  }
+}
 
 function createBaseBoolValue(): BoolValue {
   return { value: false };
 }
 
-export const BoolValue = {
-  encode(message: BoolValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace BoolValue {
+  export function encode(message: BoolValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value === true) {
       writer.uint32(8).bool(message.value);
     }
     return writer;
-  },
-};
+  }
+}
 
 function createBaseStringValue(): StringValue {
   return { value: "" };
 }
 
-export const StringValue = {
-  encode(message: StringValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace StringValue {
+  export function encode(message: StringValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== "") {
       writer.uint32(10).string(message.value);
     }
     return writer;
-  },
-};
+  }
+}
 
 function createBaseBytesValue(): BytesValue {
   return { value: new Uint8Array() };
 }
 
-export const BytesValue = {
-  encode(message: BytesValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace BytesValue {
+  export function encode(message: BytesValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value.length !== 0) {
       writer.uint32(10).bytes(message.value);
     }
     return writer;
-  },
-};
+  }
+}

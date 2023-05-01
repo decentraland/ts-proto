@@ -11,8 +11,8 @@ function createBaseEncode(): Encode {
   return { encode: "" };
 }
 
-export const Encode = {
-  decode(input: _m0.Reader | Uint8Array, length?: number): Encode {
+export namespace Encode {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Encode {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseEncode();
@@ -33,5 +33,5 @@ export const Encode = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}

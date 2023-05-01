@@ -37,8 +37,8 @@ function createBaseSimple(): Simple {
   return { name: "", age: 0, child: undefined, testField: "", testNotDeprecated: "" };
 }
 
-export const Simple = {
-  encode(message: Simple, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Simple {
+  export function encode(message: Simple, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
@@ -55,9 +55,8 @@ export const Simple = {
       writer.uint32(42).string(message.testNotDeprecated);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Simple {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Simple {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimple();
@@ -106,9 +105,8 @@ export const Simple = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Simple {
+  }
+  export function fromJSON(object: any): Simple {
     return {
       name: isSet(object.name) ? String(object.name) : "",
       age: isSet(object.age) ? Number(object.age) : 0,
@@ -116,9 +114,8 @@ export const Simple = {
       testField: isSet(object.testField) ? String(object.testField) : "",
       testNotDeprecated: isSet(object.testNotDeprecated) ? String(object.testNotDeprecated) : "",
     };
-  },
-
-  toJSON(message: Simple): unknown {
+  }
+  export function toJSON(message: Simple): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     message.age !== undefined && (obj.age = Math.round(message.age));
@@ -126,13 +123,12 @@ export const Simple = {
     message.testField !== undefined && (obj.testField = message.testField);
     message.testNotDeprecated !== undefined && (obj.testNotDeprecated = message.testNotDeprecated);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Simple>, I>>(base?: I): Simple {
+  }
+  export function create<I extends Exact<DeepPartial<Simple>, I>>(base?: I): Simple {
     return Simple.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Simple>, I>>(object: I): Simple {
+  export function fromPartial<I extends Exact<DeepPartial<Simple>, I>>(object: I): Simple {
     const message = createBaseSimple();
     message.name = object.name ?? "";
     message.age = object.age ?? 0;
@@ -140,22 +136,21 @@ export const Simple = {
     message.testField = object.testField ?? "";
     message.testNotDeprecated = object.testNotDeprecated ?? "";
     return message;
-  },
-};
+  }
+}
 
 function createBaseChild(): Child {
   return { name: "" };
 }
 
-export const Child = {
-  encode(message: Child, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Child {
+  export function encode(message: Child, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Child {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Child {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseChild();
@@ -176,28 +171,25 @@ export const Child = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Child {
+  }
+  export function fromJSON(object: any): Child {
     return { name: isSet(object.name) ? String(object.name) : "" };
-  },
-
-  toJSON(message: Child): unknown {
+  }
+  export function toJSON(message: Child): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Child>, I>>(base?: I): Child {
+  }
+  export function create<I extends Exact<DeepPartial<Child>, I>>(base?: I): Child {
     return Child.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Child>, I>>(object: I): Child {
+  export function fromPartial<I extends Exact<DeepPartial<Child>, I>>(object: I): Child {
     const message = createBaseChild();
     message.name = object.name ?? "";
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

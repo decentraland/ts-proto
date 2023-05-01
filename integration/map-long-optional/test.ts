@@ -19,8 +19,8 @@ function createBaseMapBigInt(): MapBigInt {
   return {};
 }
 
-export const MapBigInt = {
-  encode(message: MapBigInt, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace MapBigInt {
+  export function encode(message: MapBigInt, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     (message.map || new Map()).forEach((value, key) => {
       MapBigInt_MapEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).ldelim();
     });
@@ -39,9 +39,8 @@ export const MapBigInt = {
       }
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): MapBigInt {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): MapBigInt {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMapBigInt();
@@ -82,9 +81,8 @@ export const MapBigInt = {
       }
     }
     return message;
-  },
-
-  fromJSON(object: any): MapBigInt {
+  }
+  export function fromJSON(object: any): MapBigInt {
     return {
       map: isObject(object.map)
         ? Object.entries(object.map).reduce<Map<Long, Long>>((acc, [key, value]) => {
@@ -93,9 +91,8 @@ export const MapBigInt = {
         }, new Map())
         : undefined,
     };
-  },
-
-  toJSON(message: MapBigInt): unknown {
+  }
+  export function toJSON(message: MapBigInt): unknown {
     const obj: any = {};
     obj.map = {};
     if (message.map) {
@@ -104,13 +101,12 @@ export const MapBigInt = {
       });
     }
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MapBigInt>, I>>(base?: I): MapBigInt {
+  }
+  export function create<I extends Exact<DeepPartial<MapBigInt>, I>>(base?: I): MapBigInt {
     return MapBigInt.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<MapBigInt>, I>>(object: I): MapBigInt {
+  export function fromPartial<I extends Exact<DeepPartial<MapBigInt>, I>>(object: I): MapBigInt {
     const message = createBaseMapBigInt();
     message.map = (object.map === undefined || object.map === null) ? undefined : (() => {
       const m = new Map();
@@ -122,15 +118,15 @@ export const MapBigInt = {
       return m;
     })();
     return message;
-  },
-};
+  }
+}
 
 function createBaseMapBigInt_MapEntry(): MapBigInt_MapEntry {
   return { key: Long.UZERO, value: Long.ZERO };
 }
 
-export const MapBigInt_MapEntry = {
-  encode(message: MapBigInt_MapEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace MapBigInt_MapEntry {
+  export function encode(message: MapBigInt_MapEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (!message.key.isZero()) {
       writer.uint32(9).fixed64(message.key);
     }
@@ -152,9 +148,8 @@ export const MapBigInt_MapEntry = {
       }
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): MapBigInt_MapEntry {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): MapBigInt_MapEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMapBigInt_MapEntry();
@@ -196,33 +191,30 @@ export const MapBigInt_MapEntry = {
       }
     }
     return message;
-  },
-
-  fromJSON(object: any): MapBigInt_MapEntry {
+  }
+  export function fromJSON(object: any): MapBigInt_MapEntry {
     return {
       key: isSet(object.key) ? Long.fromValue(object.key) : Long.UZERO,
       value: isSet(object.value) ? Long.fromValue(object.value) : Long.ZERO,
     };
-  },
-
-  toJSON(message: MapBigInt_MapEntry): unknown {
+  }
+  export function toJSON(message: MapBigInt_MapEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = (message.key || Long.UZERO).toString());
     message.value !== undefined && (obj.value = (message.value || Long.ZERO).toString());
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MapBigInt_MapEntry>, I>>(base?: I): MapBigInt_MapEntry {
+  }
+  export function create<I extends Exact<DeepPartial<MapBigInt_MapEntry>, I>>(base?: I): MapBigInt_MapEntry {
     return MapBigInt_MapEntry.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<MapBigInt_MapEntry>, I>>(object: I): MapBigInt_MapEntry {
+  export function fromPartial<I extends Exact<DeepPartial<MapBigInt_MapEntry>, I>>(object: I): MapBigInt_MapEntry {
     const message = createBaseMapBigInt_MapEntry();
     message.key = (object.key !== undefined && object.key !== null) ? Long.fromValue(object.key) : Long.UZERO;
     message.value = (object.value !== undefined && object.value !== null) ? Long.fromValue(object.value) : Long.ZERO;
     return message;
-  },
-};
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

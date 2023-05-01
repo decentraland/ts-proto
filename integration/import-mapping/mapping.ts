@@ -32,15 +32,14 @@ function createBaseWithEmtpy(): WithEmtpy {
   return { empty: undefined };
 }
 
-export const WithEmtpy = {
-  encode(message: WithEmtpy, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace WithEmtpy {
+  export function encode(message: WithEmtpy, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.empty !== undefined) {
       Empty.encode(message.empty, writer.uint32(10).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): WithEmtpy {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): WithEmtpy {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseWithEmtpy();
@@ -61,42 +60,38 @@ export const WithEmtpy = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): WithEmtpy {
+  }
+  export function fromJSON(object: any): WithEmtpy {
     return { empty: isSet(object.empty) ? Empty.fromJSON(object.empty) : undefined };
-  },
-
-  toJSON(message: WithEmtpy): unknown {
+  }
+  export function toJSON(message: WithEmtpy): unknown {
     const obj: any = {};
     message.empty !== undefined && (obj.empty = message.empty ? Empty.toJSON(message.empty) : undefined);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<WithEmtpy>, I>>(base?: I): WithEmtpy {
+  }
+  export function create<I extends Exact<DeepPartial<WithEmtpy>, I>>(base?: I): WithEmtpy {
     return WithEmtpy.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<WithEmtpy>, I>>(object: I): WithEmtpy {
+  export function fromPartial<I extends Exact<DeepPartial<WithEmtpy>, I>>(object: I): WithEmtpy {
     const message = createBaseWithEmtpy();
     message.empty = (object.empty !== undefined && object.empty !== null) ? Empty.fromPartial(object.empty) : undefined;
     return message;
-  },
-};
+  }
+}
 
 function createBaseWithStruct(): WithStruct {
   return { strut: undefined };
 }
 
-export const WithStruct = {
-  encode(message: WithStruct, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace WithStruct {
+  export function encode(message: WithStruct, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.strut !== undefined) {
       Struct.encode(Struct.wrap(message.strut), writer.uint32(10).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): WithStruct {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): WithStruct {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseWithStruct();
@@ -117,42 +112,38 @@ export const WithStruct = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): WithStruct {
+  }
+  export function fromJSON(object: any): WithStruct {
     return { strut: isObject(object.strut) ? object.strut : undefined };
-  },
-
-  toJSON(message: WithStruct): unknown {
+  }
+  export function toJSON(message: WithStruct): unknown {
     const obj: any = {};
     message.strut !== undefined && (obj.strut = message.strut);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<WithStruct>, I>>(base?: I): WithStruct {
+  }
+  export function create<I extends Exact<DeepPartial<WithStruct>, I>>(base?: I): WithStruct {
     return WithStruct.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<WithStruct>, I>>(object: I): WithStruct {
+  export function fromPartial<I extends Exact<DeepPartial<WithStruct>, I>>(object: I): WithStruct {
     const message = createBaseWithStruct();
     message.strut = object.strut ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 function createBaseWithTimestamp(): WithTimestamp {
   return { timestamp: undefined };
 }
 
-export const WithTimestamp = {
-  encode(message: WithTimestamp, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace WithTimestamp {
+  export function encode(message: WithTimestamp, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.timestamp !== undefined) {
       Timestamp.encode(toTimestamp(message.timestamp), writer.uint32(10).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): WithTimestamp {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): WithTimestamp {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseWithTimestamp();
@@ -173,35 +164,32 @@ export const WithTimestamp = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): WithTimestamp {
+  }
+  export function fromJSON(object: any): WithTimestamp {
     return { timestamp: isSet(object.timestamp) ? fromJsonTimestamp(object.timestamp) : undefined };
-  },
-
-  toJSON(message: WithTimestamp): unknown {
+  }
+  export function toJSON(message: WithTimestamp): unknown {
     const obj: any = {};
     message.timestamp !== undefined && (obj.timestamp = message.timestamp.toISOString());
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<WithTimestamp>, I>>(base?: I): WithTimestamp {
+  }
+  export function create<I extends Exact<DeepPartial<WithTimestamp>, I>>(base?: I): WithTimestamp {
     return WithTimestamp.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<WithTimestamp>, I>>(object: I): WithTimestamp {
+  export function fromPartial<I extends Exact<DeepPartial<WithTimestamp>, I>>(object: I): WithTimestamp {
     const message = createBaseWithTimestamp();
     message.timestamp = object.timestamp ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 function createBaseWithAll(): WithAll {
   return { empty: undefined, strut: undefined, timestamp: undefined, duration: undefined, veryVerySecret: undefined };
 }
 
-export const WithAll = {
-  encode(message: WithAll, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace WithAll {
+  export function encode(message: WithAll, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.empty !== undefined) {
       Empty.encode(message.empty, writer.uint32(10).fork()).ldelim();
     }
@@ -218,9 +206,8 @@ export const WithAll = {
       VeryVerySecret.encode(message.veryVerySecret, writer.uint32(42).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): WithAll {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): WithAll {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseWithAll();
@@ -269,9 +256,8 @@ export const WithAll = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): WithAll {
+  }
+  export function fromJSON(object: any): WithAll {
     return {
       empty: isSet(object.empty) ? Empty.fromJSON(object.empty) : undefined,
       strut: isObject(object.strut) ? object.strut : undefined,
@@ -279,9 +265,8 @@ export const WithAll = {
       duration: isSet(object.duration) ? Duration.fromJSON(object.duration) : undefined,
       veryVerySecret: isSet(object.veryVerySecret) ? VeryVerySecret.fromJSON(object.veryVerySecret) : undefined,
     };
-  },
-
-  toJSON(message: WithAll): unknown {
+  }
+  export function toJSON(message: WithAll): unknown {
     const obj: any = {};
     message.empty !== undefined && (obj.empty = message.empty ? Empty.toJSON(message.empty) : undefined);
     message.strut !== undefined && (obj.strut = message.strut);
@@ -290,13 +275,12 @@ export const WithAll = {
     message.veryVerySecret !== undefined &&
       (obj.veryVerySecret = message.veryVerySecret ? VeryVerySecret.toJSON(message.veryVerySecret) : undefined);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<WithAll>, I>>(base?: I): WithAll {
+  }
+  export function create<I extends Exact<DeepPartial<WithAll>, I>>(base?: I): WithAll {
     return WithAll.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<WithAll>, I>>(object: I): WithAll {
+  export function fromPartial<I extends Exact<DeepPartial<WithAll>, I>>(object: I): WithAll {
     const message = createBaseWithAll();
     message.empty = (object.empty !== undefined && object.empty !== null) ? Empty.fromPartial(object.empty) : undefined;
     message.strut = object.strut ?? undefined;
@@ -308,8 +292,8 @@ export const WithAll = {
       ? VeryVerySecret.fromPartial(object.veryVerySecret)
       : undefined;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

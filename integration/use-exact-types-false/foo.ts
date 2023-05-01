@@ -12,8 +12,8 @@ function createBaseFoo(): Foo {
   return { bar: "", baz: "" };
 }
 
-export const Foo = {
-  encode(message: Foo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Foo {
+  export function encode(message: Foo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.bar !== "") {
       writer.uint32(10).string(message.bar);
     }
@@ -21,9 +21,8 @@ export const Foo = {
       writer.uint32(18).string(message.baz);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Foo {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Foo {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseFoo();
@@ -51,30 +50,27 @@ export const Foo = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Foo {
+  }
+  export function fromJSON(object: any): Foo {
     return { bar: isSet(object.bar) ? String(object.bar) : "", baz: isSet(object.baz) ? String(object.baz) : "" };
-  },
-
-  toJSON(message: Foo): unknown {
+  }
+  export function toJSON(message: Foo): unknown {
     const obj: any = {};
     message.bar !== undefined && (obj.bar = message.bar);
     message.baz !== undefined && (obj.baz = message.baz);
     return obj;
-  },
-
-  create(base?: DeepPartial<Foo>): Foo {
+  }
+  export function create(base?: DeepPartial<Foo>): Foo {
     return Foo.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial(object: DeepPartial<Foo>): Foo {
+  export function fromPartial(object: DeepPartial<Foo>): Foo {
     const message = createBaseFoo();
     message.bar = object.bar ?? "";
     message.baz = object.baz ?? "";
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

@@ -28,8 +28,8 @@ function createBaseSimple(): Simple {
   };
 }
 
-export const Simple = {
-  encode(message: Simple, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Simple {
+  export function encode(message: Simple, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
@@ -55,9 +55,8 @@ export const Simple = {
       writer.uint32(58).string(v!);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Simple {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Simple {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimple();
@@ -127,9 +126,8 @@ export const Simple = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Simple {
+  }
+  export function fromJSON(object: any): Simple {
     return {
       name: isSet(object.other_name) ? String(object.other_name) : "",
       age: isSet(object.other_age) ? Number(object.other_age) : undefined,
@@ -140,9 +138,8 @@ export const Simple = {
       dollarEnd: isSet(object.dollar$) ? String(object.dollar$) : "",
       hyphenList: Array.isArray(object?.["hyphen-list"]) ? object["hyphen-list"].map((e: any) => String(e)) : [],
     };
-  },
-
-  toJSON(message: Simple): unknown {
+  }
+  export function toJSON(message: Simple): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.other_name = message.name);
     message.age !== undefined && (obj.other_age = Math.round(message.age));
@@ -157,13 +154,12 @@ export const Simple = {
       obj["hyphen-list"] = [];
     }
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Simple>, I>>(base?: I): Simple {
+  }
+  export function create<I extends Exact<DeepPartial<Simple>, I>>(base?: I): Simple {
     return Simple.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Simple>, I>>(object: I): Simple {
+  export function fromPartial<I extends Exact<DeepPartial<Simple>, I>>(object: I): Simple {
     const message = createBaseSimple();
     message.name = object.name ?? "";
     message.age = object.age ?? undefined;
@@ -174,8 +170,8 @@ export const Simple = {
     message.dollarEnd = object.dollarEnd ?? "";
     message.hyphenList = object.hyphenList?.map((e) => e) || [];
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

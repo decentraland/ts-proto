@@ -22,8 +22,8 @@ function createBaseTodo(): Todo {
   return { id: "", oid: undefined, repeatedOid: [], optionalOid: undefined, mapOfOids: {} };
 }
 
-export const Todo = {
-  encode(message: Todo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Todo {
+  export function encode(message: Todo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
     }
@@ -40,9 +40,8 @@ export const Todo = {
       Todo_MapOfOidsEntry.encode({ key: key as any, value }, writer.uint32(42).fork()).ldelim();
     });
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Todo {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Todo {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTodo();
@@ -94,9 +93,8 @@ export const Todo = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Todo {
+  }
+  export function fromJSON(object: any): Todo {
     return {
       id: isSet(object.id) ? String(object.id) : "",
       oid: isSet(object.oid) ? fromJsonObjectId(object.oid) : undefined,
@@ -109,9 +107,8 @@ export const Todo = {
         }, {})
         : {},
     };
-  },
-
-  toJSON(message: Todo): unknown {
+  }
+  export function toJSON(message: Todo): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = message.id);
     message.oid !== undefined && (obj.oid = message.oid.toString());
@@ -128,13 +125,12 @@ export const Todo = {
       });
     }
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Todo>, I>>(base?: I): Todo {
+  }
+  export function create<I extends Exact<DeepPartial<Todo>, I>>(base?: I): Todo {
     return Todo.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Todo>, I>>(object: I): Todo {
+  export function fromPartial<I extends Exact<DeepPartial<Todo>, I>>(object: I): Todo {
     const message = createBaseTodo();
     message.id = object.id ?? "";
     message.oid = (object.oid !== undefined && object.oid !== null) ? object.oid as mongodb.ObjectId : undefined;
@@ -152,15 +148,15 @@ export const Todo = {
       {},
     );
     return message;
-  },
-};
+  }
+}
 
 function createBaseTodo_MapOfOidsEntry(): Todo_MapOfOidsEntry {
   return { key: "", value: undefined };
 }
 
-export const Todo_MapOfOidsEntry = {
-  encode(message: Todo_MapOfOidsEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Todo_MapOfOidsEntry {
+  export function encode(message: Todo_MapOfOidsEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
     }
@@ -168,9 +164,8 @@ export const Todo_MapOfOidsEntry = {
       ObjectId.encode(toProtoObjectId(message.value), writer.uint32(18).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Todo_MapOfOidsEntry {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Todo_MapOfOidsEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTodo_MapOfOidsEntry();
@@ -198,35 +193,32 @@ export const Todo_MapOfOidsEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Todo_MapOfOidsEntry {
+  }
+  export function fromJSON(object: any): Todo_MapOfOidsEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
       value: isSet(object.value) ? fromJsonObjectId(object.value) : undefined,
     };
-  },
-
-  toJSON(message: Todo_MapOfOidsEntry): unknown {
+  }
+  export function toJSON(message: Todo_MapOfOidsEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value.toString());
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Todo_MapOfOidsEntry>, I>>(base?: I): Todo_MapOfOidsEntry {
+  }
+  export function create<I extends Exact<DeepPartial<Todo_MapOfOidsEntry>, I>>(base?: I): Todo_MapOfOidsEntry {
     return Todo_MapOfOidsEntry.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Todo_MapOfOidsEntry>, I>>(object: I): Todo_MapOfOidsEntry {
+  export function fromPartial<I extends Exact<DeepPartial<Todo_MapOfOidsEntry>, I>>(object: I): Todo_MapOfOidsEntry {
     const message = createBaseTodo_MapOfOidsEntry();
     message.key = object.key ?? "";
     message.value = (object.value !== undefined && object.value !== null)
       ? object.value as mongodb.ObjectId
       : undefined;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

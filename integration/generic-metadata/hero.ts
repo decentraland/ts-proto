@@ -28,15 +28,14 @@ function createBaseHeroById(): HeroById {
   return { id: 0 };
 }
 
-export const HeroById = {
-  encode(message: HeroById, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace HeroById {
+  export function encode(message: HeroById, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== 0) {
       writer.uint32(8).int32(message.id);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): HeroById {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): HeroById {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseHeroById();
@@ -57,42 +56,38 @@ export const HeroById = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): HeroById {
+  }
+  export function fromJSON(object: any): HeroById {
     return { id: isSet(object.id) ? Number(object.id) : 0 };
-  },
-
-  toJSON(message: HeroById): unknown {
+  }
+  export function toJSON(message: HeroById): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<HeroById>, I>>(base?: I): HeroById {
+  }
+  export function create<I extends Exact<DeepPartial<HeroById>, I>>(base?: I): HeroById {
     return HeroById.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<HeroById>, I>>(object: I): HeroById {
+  export function fromPartial<I extends Exact<DeepPartial<HeroById>, I>>(object: I): HeroById {
     const message = createBaseHeroById();
     message.id = object.id ?? 0;
     return message;
-  },
-};
+  }
+}
 
 function createBaseVillainById(): VillainById {
   return { id: 0 };
 }
 
-export const VillainById = {
-  encode(message: VillainById, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace VillainById {
+  export function encode(message: VillainById, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== 0) {
       writer.uint32(8).int32(message.id);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): VillainById {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): VillainById {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseVillainById();
@@ -113,35 +108,32 @@ export const VillainById = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): VillainById {
+  }
+  export function fromJSON(object: any): VillainById {
     return { id: isSet(object.id) ? Number(object.id) : 0 };
-  },
-
-  toJSON(message: VillainById): unknown {
+  }
+  export function toJSON(message: VillainById): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<VillainById>, I>>(base?: I): VillainById {
+  }
+  export function create<I extends Exact<DeepPartial<VillainById>, I>>(base?: I): VillainById {
     return VillainById.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<VillainById>, I>>(object: I): VillainById {
+  export function fromPartial<I extends Exact<DeepPartial<VillainById>, I>>(object: I): VillainById {
     const message = createBaseVillainById();
     message.id = object.id ?? 0;
     return message;
-  },
-};
+  }
+}
 
 function createBaseHero(): Hero {
   return { id: 0, name: "" };
 }
 
-export const Hero = {
-  encode(message: Hero, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Hero {
+  export function encode(message: Hero, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== 0) {
       writer.uint32(8).int32(message.id);
     }
@@ -149,9 +141,8 @@ export const Hero = {
       writer.uint32(18).string(message.name);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Hero {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Hero {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseHero();
@@ -179,37 +170,34 @@ export const Hero = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Hero {
+  }
+  export function fromJSON(object: any): Hero {
     return { id: isSet(object.id) ? Number(object.id) : 0, name: isSet(object.name) ? String(object.name) : "" };
-  },
-
-  toJSON(message: Hero): unknown {
+  }
+  export function toJSON(message: Hero): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
     message.name !== undefined && (obj.name = message.name);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Hero>, I>>(base?: I): Hero {
+  }
+  export function create<I extends Exact<DeepPartial<Hero>, I>>(base?: I): Hero {
     return Hero.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Hero>, I>>(object: I): Hero {
+  export function fromPartial<I extends Exact<DeepPartial<Hero>, I>>(object: I): Hero {
     const message = createBaseHero();
     message.id = object.id ?? 0;
     message.name = object.name ?? "";
     return message;
-  },
-};
+  }
+}
 
 function createBaseVillain(): Villain {
   return { id: 0, name: "" };
 }
 
-export const Villain = {
-  encode(message: Villain, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Villain {
+  export function encode(message: Villain, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== 0) {
       writer.uint32(8).int32(message.id);
     }
@@ -217,9 +205,8 @@ export const Villain = {
       writer.uint32(18).string(message.name);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Villain {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Villain {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseVillain();
@@ -247,30 +234,27 @@ export const Villain = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Villain {
+  }
+  export function fromJSON(object: any): Villain {
     return { id: isSet(object.id) ? Number(object.id) : 0, name: isSet(object.name) ? String(object.name) : "" };
-  },
-
-  toJSON(message: Villain): unknown {
+  }
+  export function toJSON(message: Villain): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
     message.name !== undefined && (obj.name = message.name);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Villain>, I>>(base?: I): Villain {
+  }
+  export function create<I extends Exact<DeepPartial<Villain>, I>>(base?: I): Villain {
     return Villain.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Villain>, I>>(object: I): Villain {
+  export function fromPartial<I extends Exact<DeepPartial<Villain>, I>>(object: I): Villain {
     const message = createBaseVillain();
     message.id = object.id ?? 0;
     message.name = object.name ?? "";
     return message;
-  },
-};
+  }
+}
 
 export interface HeroService {
   FindOneHero(request: HeroById, metadata?: Foo): Promise<Hero>;

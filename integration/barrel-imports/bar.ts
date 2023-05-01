@@ -10,8 +10,8 @@ function createBaseBar(): Bar {
   return { name: "", age: 0 };
 }
 
-export const Bar = {
-  encode(message: Bar, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Bar {
+  export function encode(message: Bar, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
@@ -19,9 +19,8 @@ export const Bar = {
       writer.uint32(16).int32(message.age);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Bar {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Bar {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseBar();
@@ -49,30 +48,27 @@ export const Bar = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Bar {
+  }
+  export function fromJSON(object: any): Bar {
     return { name: isSet(object.name) ? String(object.name) : "", age: isSet(object.age) ? Number(object.age) : 0 };
-  },
-
-  toJSON(message: Bar): unknown {
+  }
+  export function toJSON(message: Bar): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     message.age !== undefined && (obj.age = Math.round(message.age));
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Bar>, I>>(base?: I): Bar {
+  }
+  export function create<I extends Exact<DeepPartial<Bar>, I>>(base?: I): Bar {
     return Bar.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Bar>, I>>(object: I): Bar {
+  export function fromPartial<I extends Exact<DeepPartial<Bar>, I>>(object: I): Bar {
     const message = createBaseBar();
     message.name = object.name ?? "";
     message.age = object.age ?? 0;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

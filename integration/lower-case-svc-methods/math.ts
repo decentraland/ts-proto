@@ -22,8 +22,8 @@ function createBaseNumPair(): NumPair {
   return { num1: 0, num2: 0 };
 }
 
-export const NumPair = {
-  encode(message: NumPair, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace NumPair {
+  export function encode(message: NumPair, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.num1 !== 0) {
       writer.uint32(9).double(message.num1);
     }
@@ -31,9 +31,8 @@ export const NumPair = {
       writer.uint32(17).double(message.num2);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): NumPair {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): NumPair {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseNumPair();
@@ -61,44 +60,40 @@ export const NumPair = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): NumPair {
+  }
+  export function fromJSON(object: any): NumPair {
     return { num1: isSet(object.num1) ? Number(object.num1) : 0, num2: isSet(object.num2) ? Number(object.num2) : 0 };
-  },
-
-  toJSON(message: NumPair): unknown {
+  }
+  export function toJSON(message: NumPair): unknown {
     const obj: any = {};
     message.num1 !== undefined && (obj.num1 = message.num1);
     message.num2 !== undefined && (obj.num2 = message.num2);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<NumPair>, I>>(base?: I): NumPair {
+  }
+  export function create<I extends Exact<DeepPartial<NumPair>, I>>(base?: I): NumPair {
     return NumPair.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<NumPair>, I>>(object: I): NumPair {
+  export function fromPartial<I extends Exact<DeepPartial<NumPair>, I>>(object: I): NumPair {
     const message = createBaseNumPair();
     message.num1 = object.num1 ?? 0;
     message.num2 = object.num2 ?? 0;
     return message;
-  },
-};
+  }
+}
 
 function createBaseNumSingle(): NumSingle {
   return { num: 0 };
 }
 
-export const NumSingle = {
-  encode(message: NumSingle, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace NumSingle {
+  export function encode(message: NumSingle, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.num !== 0) {
       writer.uint32(9).double(message.num);
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): NumSingle {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): NumSingle {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseNumSingle();
@@ -119,44 +114,40 @@ export const NumSingle = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): NumSingle {
+  }
+  export function fromJSON(object: any): NumSingle {
     return { num: isSet(object.num) ? Number(object.num) : 0 };
-  },
-
-  toJSON(message: NumSingle): unknown {
+  }
+  export function toJSON(message: NumSingle): unknown {
     const obj: any = {};
     message.num !== undefined && (obj.num = message.num);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<NumSingle>, I>>(base?: I): NumSingle {
+  }
+  export function create<I extends Exact<DeepPartial<NumSingle>, I>>(base?: I): NumSingle {
     return NumSingle.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<NumSingle>, I>>(object: I): NumSingle {
+  export function fromPartial<I extends Exact<DeepPartial<NumSingle>, I>>(object: I): NumSingle {
     const message = createBaseNumSingle();
     message.num = object.num ?? 0;
     return message;
-  },
-};
+  }
+}
 
 function createBaseNumbers(): Numbers {
   return { num: [] };
 }
 
-export const Numbers = {
-  encode(message: Numbers, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Numbers {
+  export function encode(message: Numbers, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     writer.uint32(10).fork();
     for (const v of message.num) {
       writer.double(v);
     }
     writer.ldelim();
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Numbers {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Numbers {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseNumbers();
@@ -187,13 +178,11 @@ export const Numbers = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Numbers {
+  }
+  export function fromJSON(object: any): Numbers {
     return { num: Array.isArray(object?.num) ? object.num.map((e: any) => Number(e)) : [] };
-  },
-
-  toJSON(message: Numbers): unknown {
+  }
+  export function toJSON(message: Numbers): unknown {
     const obj: any = {};
     if (message.num) {
       obj.num = message.num.map((e) => e);
@@ -201,18 +190,17 @@ export const Numbers = {
       obj.num = [];
     }
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Numbers>, I>>(base?: I): Numbers {
+  }
+  export function create<I extends Exact<DeepPartial<Numbers>, I>>(base?: I): Numbers {
     return Numbers.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Numbers>, I>>(object: I): Numbers {
+  export function fromPartial<I extends Exact<DeepPartial<Numbers>, I>>(object: I): Numbers {
     const message = createBaseNumbers();
     message.num = object.num?.map((e) => e) || [];
     return message;
-  },
-};
+  }
+}
 
 export interface MathService<Context extends DataLoaders> {
   add(ctx: Context, request: NumPair): Promise<NumSingle>;

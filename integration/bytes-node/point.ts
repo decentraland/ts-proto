@@ -13,8 +13,8 @@ function createBasePoint(): Point {
   return { data: Buffer.alloc(0), dataWrapped: undefined };
 }
 
-export const Point = {
-  encode(message: Point, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Point {
+  export function encode(message: Point, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.data.length !== 0) {
       writer.uint32(10).bytes(message.data);
     }
@@ -22,9 +22,8 @@ export const Point = {
       BytesValue.encode({ value: message.dataWrapped! }, writer.uint32(18).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Point {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Point {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBasePoint();
@@ -52,34 +51,31 @@ export const Point = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Point {
+  }
+  export function fromJSON(object: any): Point {
     return {
       data: isSet(object.data) ? Buffer.from(bytesFromBase64(object.data)) : Buffer.alloc(0),
       dataWrapped: isSet(object.dataWrapped) ? new Buffer(object.dataWrapped) : undefined,
     };
-  },
-
-  toJSON(message: Point): unknown {
+  }
+  export function toJSON(message: Point): unknown {
     const obj: any = {};
     message.data !== undefined &&
       (obj.data = base64FromBytes(message.data !== undefined ? message.data : Buffer.alloc(0)));
     message.dataWrapped !== undefined && (obj.dataWrapped = message.dataWrapped);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Point>, I>>(base?: I): Point {
+  }
+  export function create<I extends Exact<DeepPartial<Point>, I>>(base?: I): Point {
     return Point.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Point>, I>>(object: I): Point {
+  export function fromPartial<I extends Exact<DeepPartial<Point>, I>>(object: I): Point {
     const message = createBasePoint();
     message.data = object.data ?? Buffer.alloc(0);
     message.dataWrapped = object.dataWrapped ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

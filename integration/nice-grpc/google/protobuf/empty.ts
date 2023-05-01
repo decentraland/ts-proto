@@ -21,12 +21,11 @@ function createBaseEmpty(): Empty {
   return {};
 }
 
-export const Empty = {
-  encode(_: Empty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Empty {
+  export function encode(_: Empty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Empty {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Empty {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseEmpty();
@@ -40,26 +39,23 @@ export const Empty = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(_: any): Empty {
+  }
+  export function fromJSON(_: any): Empty {
     return {};
-  },
-
-  toJSON(_: Empty): unknown {
+  }
+  export function toJSON(_: Empty): unknown {
     const obj: any = {};
     return obj;
-  },
-
-  create(base?: DeepPartial<Empty>): Empty {
+  }
+  export function create(base?: DeepPartial<Empty>): Empty {
     return Empty.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial(_: DeepPartial<Empty>): Empty {
+  export function fromPartial(_: DeepPartial<Empty>): Empty {
     const message = createBaseEmpty();
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

@@ -13,8 +13,8 @@ function createBaseSomething(): Something {
   return { hello: "", foo: [], _unknownFields: {} };
 }
 
-export const Something = {
-  encode(message: Something, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Something {
+  export function encode(message: Something, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.hello !== "") {
       writer.uint32(10).string(message.hello);
     }
@@ -38,9 +38,8 @@ export const Something = {
       }
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Something {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Something {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSomething();
@@ -88,5 +87,5 @@ export const Something = {
       }
     }
     return message;
-  },
-};
+  }
+}

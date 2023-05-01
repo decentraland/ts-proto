@@ -14,15 +14,14 @@ function createBaseBaz(): Baz {
   return { foo: undefined };
 }
 
-export const Baz = {
-  encode(message: Baz, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Baz {
+  export function encode(message: Baz, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.foo !== undefined) {
       FooBar.encode(message.foo, writer.uint32(10).fork()).ldelim();
     }
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Baz {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Baz {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseBaz();
@@ -43,39 +42,35 @@ export const Baz = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(object: any): Baz {
+  }
+  export function fromJSON(object: any): Baz {
     return { foo: isSet(object.foo) ? FooBar.fromJSON(object.foo) : undefined };
-  },
-
-  toJSON(message: Baz): unknown {
+  }
+  export function toJSON(message: Baz): unknown {
     const obj: any = {};
     message.foo !== undefined && (obj.foo = message.foo ? FooBar.toJSON(message.foo) : undefined);
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Baz>, I>>(base?: I): Baz {
+  }
+  export function create<I extends Exact<DeepPartial<Baz>, I>>(base?: I): Baz {
     return Baz.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Baz>, I>>(object: I): Baz {
+  export function fromPartial<I extends Exact<DeepPartial<Baz>, I>>(object: I): Baz {
     const message = createBaseBaz();
     message.foo = (object.foo !== undefined && object.foo !== null) ? FooBar.fromPartial(object.foo) : undefined;
     return message;
-  },
-};
+  }
+}
 
 function createBaseFooBar(): FooBar {
   return {};
 }
 
-export const FooBar = {
-  encode(_: FooBar, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace FooBar {
+  export function encode(_: FooBar, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): FooBar {
+  }
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): FooBar {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseFooBar();
@@ -89,26 +84,23 @@ export const FooBar = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-
-  fromJSON(_: any): FooBar {
+  }
+  export function fromJSON(_: any): FooBar {
     return {};
-  },
-
-  toJSON(_: FooBar): unknown {
+  }
+  export function toJSON(_: FooBar): unknown {
     const obj: any = {};
     return obj;
-  },
-
-  create<I extends Exact<DeepPartial<FooBar>, I>>(base?: I): FooBar {
+  }
+  export function create<I extends Exact<DeepPartial<FooBar>, I>>(base?: I): FooBar {
     return FooBar.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<FooBar>, I>>(_: I): FooBar {
+  export function fromPartial<I extends Exact<DeepPartial<FooBar>, I>>(_: I): FooBar {
     const message = createBaseFooBar();
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
