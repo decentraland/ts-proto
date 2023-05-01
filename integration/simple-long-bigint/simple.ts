@@ -95,6 +95,7 @@ export namespace Numbers {
     writer.ldelim();
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Numbers {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -225,6 +226,7 @@ export namespace Numbers {
     }
     return message;
   }
+
   export function fromJSON(object: any): Numbers {
     return {
       double: isSet(object.double) ? Number(object.double) : 0,
@@ -244,6 +246,7 @@ export namespace Numbers {
       uint64s: Array.isArray(object?.uint64s) ? object.uint64s.map((e: any) => BigInt(e)) : [],
     };
   }
+
   export function toJSON(message: Numbers): unknown {
     const obj: any = {};
     message.double !== undefined && (obj.double = message.double);
@@ -267,6 +270,7 @@ export namespace Numbers {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Numbers>, I>>(base?: I): Numbers {
     return Numbers.fromPartial(base ?? {});
   }

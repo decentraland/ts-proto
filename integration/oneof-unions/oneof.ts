@@ -122,6 +122,7 @@ export namespace PleaseChoose {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): PleaseChoose {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -228,6 +229,7 @@ export namespace PleaseChoose {
     }
     return message;
   }
+
   export function fromJSON(object: any): PleaseChoose {
     return {
       name: isSet(object.name) ? String(object.name) : "",
@@ -256,6 +258,7 @@ export namespace PleaseChoose {
       value: isSet(object?.value) ? object.value : undefined,
     };
   }
+
   export function toJSON(message: PleaseChoose): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
@@ -281,6 +284,7 @@ export namespace PleaseChoose {
     message.value !== undefined && (obj.value = message.value);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<PleaseChoose>, I>>(base?: I): PleaseChoose {
     return PleaseChoose.fromPartial(base ?? {});
   }
@@ -345,6 +349,7 @@ export namespace PleaseChoose_Submessage {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): PleaseChoose_Submessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -367,14 +372,17 @@ export namespace PleaseChoose_Submessage {
     }
     return message;
   }
+
   export function fromJSON(object: any): PleaseChoose_Submessage {
     return { name: isSet(object.name) ? String(object.name) : "" };
   }
+
   export function toJSON(message: PleaseChoose_Submessage): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<PleaseChoose_Submessage>, I>>(base?: I): PleaseChoose_Submessage {
     return PleaseChoose_Submessage.fromPartial(base ?? {});
   }
@@ -402,6 +410,7 @@ export namespace SimpleButOptional {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleButOptional {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -431,18 +440,21 @@ export namespace SimpleButOptional {
     }
     return message;
   }
+
   export function fromJSON(object: any): SimpleButOptional {
     return {
       name: isSet(object.name) ? String(object.name) : undefined,
       age: isSet(object.age) ? Number(object.age) : undefined,
     };
   }
+
   export function toJSON(message: SimpleButOptional): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     message.age !== undefined && (obj.age = Math.round(message.age));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<SimpleButOptional>, I>>(base?: I): SimpleButOptional {
     return SimpleButOptional.fromPartial(base ?? {});
   }

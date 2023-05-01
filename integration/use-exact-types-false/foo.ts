@@ -22,6 +22,7 @@ export namespace Foo {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Foo {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -51,15 +52,18 @@ export namespace Foo {
     }
     return message;
   }
+
   export function fromJSON(object: any): Foo {
     return { bar: isSet(object.bar) ? String(object.bar) : "", baz: isSet(object.baz) ? String(object.baz) : "" };
   }
+
   export function toJSON(message: Foo): unknown {
     const obj: any = {};
     message.bar !== undefined && (obj.bar = message.bar);
     message.baz !== undefined && (obj.baz = message.baz);
     return obj;
   }
+
   export function create(base?: DeepPartial<Foo>): Foo {
     return Foo.fromPartial(base ?? {});
   }

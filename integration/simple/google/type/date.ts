@@ -51,6 +51,7 @@ export namespace DateMessage {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): DateMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -87,6 +88,7 @@ export namespace DateMessage {
     }
     return message;
   }
+
   export function fromJSON(object: any): DateMessage {
     return {
       year: isSet(object.year) ? Number(object.year) : 0,
@@ -94,6 +96,7 @@ export namespace DateMessage {
       day: isSet(object.day) ? Number(object.day) : 0,
     };
   }
+
   export function toJSON(message: DateMessage): unknown {
     const obj: any = {};
     message.year !== undefined && (obj.year = Math.round(message.year));
@@ -101,6 +104,7 @@ export namespace DateMessage {
     message.day !== undefined && (obj.day = Math.round(message.day));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<DateMessage>, I>>(base?: I): DateMessage {
     return DateMessage.fromPartial(base ?? {});
   }

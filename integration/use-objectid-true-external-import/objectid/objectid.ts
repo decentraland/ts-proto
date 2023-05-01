@@ -18,6 +18,7 @@ export namespace ObjectId {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): ObjectId {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -40,14 +41,17 @@ export namespace ObjectId {
     }
     return message;
   }
+
   export function fromJSON(object: any): ObjectId {
     return { value: isSet(object.value) ? String(object.value) : "" };
   }
+
   export function toJSON(message: ObjectId): unknown {
     const obj: any = {};
     message.value !== undefined && (obj.value = message.value);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<ObjectId>, I>>(base?: I): ObjectId {
     return ObjectId.fromPartial(base ?? {});
   }

@@ -14,12 +14,14 @@ export namespace Message {
   export function fromJSON(object: any): Message {
     return { data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array() };
   }
+
   export function toJSON(message: Message): unknown {
     const obj: any = {};
     message.data !== undefined &&
       (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array()));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Message>, I>>(base?: I): Message {
     return Message.fromPartial(base ?? {});
   }

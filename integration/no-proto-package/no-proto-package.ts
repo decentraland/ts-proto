@@ -23,6 +23,7 @@ export namespace User {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): User {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -45,14 +46,17 @@ export namespace User {
     }
     return message;
   }
+
   export function fromJSON(object: any): User {
     return { name: isSet(object.name) ? String(object.name) : "" };
   }
+
   export function toJSON(message: User): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<User>, I>>(base?: I): User {
     return User.fromPartial(base ?? {});
   }
@@ -72,6 +76,7 @@ export namespace Empty {
   export function encode(_: Empty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Empty {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -87,13 +92,16 @@ export namespace Empty {
     }
     return message;
   }
+
   export function fromJSON(_: any): Empty {
     return {};
   }
+
   export function toJSON(_: Empty): unknown {
     const obj: any = {};
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Empty>, I>>(base?: I): Empty {
     return Empty.fromPartial(base ?? {});
   }

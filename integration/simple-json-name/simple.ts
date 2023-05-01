@@ -56,6 +56,7 @@ export namespace Simple {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Simple {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -127,6 +128,7 @@ export namespace Simple {
     }
     return message;
   }
+
   export function fromJSON(object: any): Simple {
     return {
       name: isSet(object.other_name) ? String(object.other_name) : "",
@@ -139,6 +141,7 @@ export namespace Simple {
       hyphenList: Array.isArray(object?.["hyphen-list"]) ? object["hyphen-list"].map((e: any) => String(e)) : [],
     };
   }
+
   export function toJSON(message: Simple): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.other_name = message.name);
@@ -155,6 +158,7 @@ export namespace Simple {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Simple>, I>>(base?: I): Simple {
     return Simple.fromPartial(base ?? {});
   }

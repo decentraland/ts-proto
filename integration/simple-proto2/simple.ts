@@ -51,6 +51,7 @@ export namespace Issue56 {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Issue56 {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -73,14 +74,17 @@ export namespace Issue56 {
     }
     return message;
   }
+
   export function fromJSON(object: any): Issue56 {
     return { test: isSet(object.test) ? enumWithoutZeroFromJSON(object.test) : 1 };
   }
+
   export function toJSON(message: Issue56): unknown {
     const obj: any = {};
     message.test !== undefined && (obj.test = enumWithoutZeroToJSON(message.test));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Issue56>, I>>(base?: I): Issue56 {
     return Issue56.fromPartial(base ?? {});
   }

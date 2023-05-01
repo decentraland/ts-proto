@@ -105,6 +105,7 @@ export namespace DoubleValue {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): DoubleValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -127,14 +128,17 @@ export namespace DoubleValue {
     }
     return message;
   }
+
   export function fromJSON(object: any): DoubleValue {
     return { value: isSet(object.value) ? Number(object.value) : 0 };
   }
+
   export function toJSON(message: DoubleValue): unknown {
     const obj: any = {};
     message.value !== undefined && (obj.value = message.value);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<DoubleValue>, I>>(base?: I): DoubleValue {
     return DoubleValue.fromPartial(base ?? {});
   }
@@ -157,6 +161,7 @@ export namespace FloatValue {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): FloatValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -179,14 +184,17 @@ export namespace FloatValue {
     }
     return message;
   }
+
   export function fromJSON(object: any): FloatValue {
     return { value: isSet(object.value) ? Number(object.value) : 0 };
   }
+
   export function toJSON(message: FloatValue): unknown {
     const obj: any = {};
     message.value !== undefined && (obj.value = message.value);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<FloatValue>, I>>(base?: I): FloatValue {
     return FloatValue.fromPartial(base ?? {});
   }
@@ -209,6 +217,7 @@ export namespace Int64Value {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Int64Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -231,14 +240,17 @@ export namespace Int64Value {
     }
     return message;
   }
+
   export function fromJSON(object: any): Int64Value {
     return { value: isSet(object.value) ? BigInt(object.value) : BigInt("0") };
   }
+
   export function toJSON(message: Int64Value): unknown {
     const obj: any = {};
     message.value !== undefined && (obj.value = message.value.toString());
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Int64Value>, I>>(base?: I): Int64Value {
     return Int64Value.fromPartial(base ?? {});
   }
@@ -261,6 +273,7 @@ export namespace UInt64Value {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): UInt64Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -283,14 +296,17 @@ export namespace UInt64Value {
     }
     return message;
   }
+
   export function fromJSON(object: any): UInt64Value {
     return { value: isSet(object.value) ? BigInt(object.value) : BigInt("0") };
   }
+
   export function toJSON(message: UInt64Value): unknown {
     const obj: any = {};
     message.value !== undefined && (obj.value = message.value.toString());
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<UInt64Value>, I>>(base?: I): UInt64Value {
     return UInt64Value.fromPartial(base ?? {});
   }
@@ -313,6 +329,7 @@ export namespace Int32Value {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Int32Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -335,14 +352,17 @@ export namespace Int32Value {
     }
     return message;
   }
+
   export function fromJSON(object: any): Int32Value {
     return { value: isSet(object.value) ? Number(object.value) : 0 };
   }
+
   export function toJSON(message: Int32Value): unknown {
     const obj: any = {};
     message.value !== undefined && (obj.value = Math.round(message.value));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Int32Value>, I>>(base?: I): Int32Value {
     return Int32Value.fromPartial(base ?? {});
   }
@@ -365,6 +385,7 @@ export namespace UInt32Value {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): UInt32Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -387,14 +408,17 @@ export namespace UInt32Value {
     }
     return message;
   }
+
   export function fromJSON(object: any): UInt32Value {
     return { value: isSet(object.value) ? Number(object.value) : 0 };
   }
+
   export function toJSON(message: UInt32Value): unknown {
     const obj: any = {};
     message.value !== undefined && (obj.value = Math.round(message.value));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<UInt32Value>, I>>(base?: I): UInt32Value {
     return UInt32Value.fromPartial(base ?? {});
   }
@@ -417,6 +441,7 @@ export namespace BoolValue {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): BoolValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -439,14 +464,17 @@ export namespace BoolValue {
     }
     return message;
   }
+
   export function fromJSON(object: any): BoolValue {
     return { value: isSet(object.value) ? Boolean(object.value) : false };
   }
+
   export function toJSON(message: BoolValue): unknown {
     const obj: any = {};
     message.value !== undefined && (obj.value = message.value);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<BoolValue>, I>>(base?: I): BoolValue {
     return BoolValue.fromPartial(base ?? {});
   }
@@ -469,6 +497,7 @@ export namespace StringValue {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): StringValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -491,14 +520,17 @@ export namespace StringValue {
     }
     return message;
   }
+
   export function fromJSON(object: any): StringValue {
     return { value: isSet(object.value) ? String(object.value) : "" };
   }
+
   export function toJSON(message: StringValue): unknown {
     const obj: any = {};
     message.value !== undefined && (obj.value = message.value);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<StringValue>, I>>(base?: I): StringValue {
     return StringValue.fromPartial(base ?? {});
   }
@@ -521,6 +553,7 @@ export namespace BytesValue {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): BytesValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -543,15 +576,18 @@ export namespace BytesValue {
     }
     return message;
   }
+
   export function fromJSON(object: any): BytesValue {
     return { value: isSet(object.value) ? bytesFromBase64(object.value) : new Uint8Array() };
   }
+
   export function toJSON(message: BytesValue): unknown {
     const obj: any = {};
     message.value !== undefined &&
       (obj.value = base64FromBytes(message.value !== undefined ? message.value : new Uint8Array()));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<BytesValue>, I>>(base?: I): BytesValue {
     return BytesValue.fromPartial(base ?? {});
   }

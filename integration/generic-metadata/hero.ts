@@ -35,6 +35,7 @@ export namespace HeroById {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): HeroById {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -57,14 +58,17 @@ export namespace HeroById {
     }
     return message;
   }
+
   export function fromJSON(object: any): HeroById {
     return { id: isSet(object.id) ? Number(object.id) : 0 };
   }
+
   export function toJSON(message: HeroById): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<HeroById>, I>>(base?: I): HeroById {
     return HeroById.fromPartial(base ?? {});
   }
@@ -87,6 +91,7 @@ export namespace VillainById {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): VillainById {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -109,14 +114,17 @@ export namespace VillainById {
     }
     return message;
   }
+
   export function fromJSON(object: any): VillainById {
     return { id: isSet(object.id) ? Number(object.id) : 0 };
   }
+
   export function toJSON(message: VillainById): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<VillainById>, I>>(base?: I): VillainById {
     return VillainById.fromPartial(base ?? {});
   }
@@ -142,6 +150,7 @@ export namespace Hero {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Hero {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -171,15 +180,18 @@ export namespace Hero {
     }
     return message;
   }
+
   export function fromJSON(object: any): Hero {
     return { id: isSet(object.id) ? Number(object.id) : 0, name: isSet(object.name) ? String(object.name) : "" };
   }
+
   export function toJSON(message: Hero): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
     message.name !== undefined && (obj.name = message.name);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Hero>, I>>(base?: I): Hero {
     return Hero.fromPartial(base ?? {});
   }
@@ -206,6 +218,7 @@ export namespace Villain {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Villain {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -235,15 +248,18 @@ export namespace Villain {
     }
     return message;
   }
+
   export function fromJSON(object: any): Villain {
     return { id: isSet(object.id) ? Number(object.id) : 0, name: isSet(object.name) ? String(object.name) : "" };
   }
+
   export function toJSON(message: Villain): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
     message.name !== undefined && (obj.name = message.name);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Villain>, I>>(base?: I): Villain {
     return Villain.fromPartial(base ?? {});
   }

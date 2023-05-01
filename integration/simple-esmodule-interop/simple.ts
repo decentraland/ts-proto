@@ -38,6 +38,7 @@ export namespace Simple {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Simple {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -67,15 +68,18 @@ export namespace Simple {
     }
     return message;
   }
+
   export function fromJSON(object: any): Simple {
     return { name: isSet(object.name) ? String(object.name) : "", age: isSet(object.age) ? Number(object.age) : 0 };
   }
+
   export function toJSON(message: Simple): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     message.age !== undefined && (obj.age = Math.round(message.age));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Simple>, I>>(base?: I): Simple {
     return Simple.fromPartial(base ?? {});
   }
@@ -145,6 +149,7 @@ export namespace Numbers {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Numbers {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -244,6 +249,7 @@ export namespace Numbers {
     }
     return message;
   }
+
   export function fromJSON(object: any): Numbers {
     return {
       double: isSet(object.double) ? Number(object.double) : 0,
@@ -260,6 +266,7 @@ export namespace Numbers {
       sfixed64: isSet(object.sfixed64) ? Number(object.sfixed64) : 0,
     };
   }
+
   export function toJSON(message: Numbers): unknown {
     const obj: any = {};
     message.double !== undefined && (obj.double = message.double);
@@ -276,6 +283,7 @@ export namespace Numbers {
     message.sfixed64 !== undefined && (obj.sfixed64 = Math.round(message.sfixed64));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Numbers>, I>>(base?: I): Numbers {
     return Numbers.fromPartial(base ?? {});
   }

@@ -27,12 +27,14 @@ function createBaseFoo(): Foo {
 
 export namespace Foo {
   export const $type = "foo.Foo";
+
   export function encode(message: Foo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.timestamp !== undefined) {
       Timestamp.encode(toTimestamp(message.timestamp), writer.uint32(10).fork()).ldelim();
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Foo {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -55,14 +57,17 @@ export namespace Foo {
     }
     return message;
   }
+
   export function fromJSON(object: any): Foo {
     return { $type: Foo.$type, timestamp: isSet(object.timestamp) ? fromJsonTimestamp(object.timestamp) : undefined };
   }
+
   export function toJSON(message: Foo): unknown {
     const obj: any = {};
     message.timestamp !== undefined && (obj.timestamp = message.timestamp.toISOString());
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Foo>, I>>(base?: I): Foo {
     return Foo.fromPartial(base ?? {});
   }
@@ -82,12 +87,14 @@ function createBaseFoo2(): Foo2 {
 
 export namespace Foo2 {
   export const $type = "foo.Foo2";
+
   export function encode(message: Foo2, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.timestamp !== undefined) {
       Timestamp.encode(toTimestamp(message.timestamp), writer.uint32(10).fork()).ldelim();
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Foo2 {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -110,14 +117,17 @@ export namespace Foo2 {
     }
     return message;
   }
+
   export function fromJSON(object: any): Foo2 {
     return { $type: Foo2.$type, timestamp: isSet(object.timestamp) ? fromJsonTimestamp(object.timestamp) : undefined };
   }
+
   export function toJSON(message: Foo2): unknown {
     const obj: any = {};
     message.timestamp !== undefined && (obj.timestamp = message.timestamp.toISOString());
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Foo2>, I>>(base?: I): Foo2 {
     return Foo2.fromPartial(base ?? {});
   }
@@ -137,12 +147,14 @@ function createBaseWithStruct(): WithStruct {
 
 export namespace WithStruct {
   export const $type = "foo.WithStruct";
+
   export function encode(message: WithStruct, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.struct !== undefined) {
       Struct.encode(Struct.wrap(message.struct), writer.uint32(10).fork()).ldelim();
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): WithStruct {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -165,14 +177,17 @@ export namespace WithStruct {
     }
     return message;
   }
+
   export function fromJSON(object: any): WithStruct {
     return { $type: WithStruct.$type, struct: isObject(object.struct) ? object.struct : undefined };
   }
+
   export function toJSON(message: WithStruct): unknown {
     const obj: any = {};
     message.struct !== undefined && (obj.struct = message.struct);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<WithStruct>, I>>(base?: I): WithStruct {
     return WithStruct.fromPartial(base ?? {});
   }

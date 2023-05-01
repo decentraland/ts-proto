@@ -18,6 +18,7 @@ export namespace SimpleMessage {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -40,14 +41,17 @@ export namespace SimpleMessage {
     }
     return message;
   }
+
   export function fromJSON(object: any): SimpleMessage {
     return { numberField: isSet(object.numberField) ? Number(object.numberField) : 0 };
   }
+
   export function toJSON(message: SimpleMessage): unknown {
     const obj: any = {};
     message.numberField !== undefined && (obj.numberField = Math.round(message.numberField));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<SimpleMessage>, I>>(base?: I): SimpleMessage {
     return SimpleMessage.fromPartial(base ?? {});
   }

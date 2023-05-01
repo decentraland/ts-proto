@@ -40,6 +40,7 @@ export namespace MapBigInt {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): MapBigInt {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -82,6 +83,7 @@ export namespace MapBigInt {
     }
     return message;
   }
+
   export function fromJSON(object: any): MapBigInt {
     return {
       map: isObject(object.map)
@@ -92,6 +94,7 @@ export namespace MapBigInt {
         : undefined,
     };
   }
+
   export function toJSON(message: MapBigInt): unknown {
     const obj: any = {};
     obj.map = {};
@@ -102,6 +105,7 @@ export namespace MapBigInt {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<MapBigInt>, I>>(base?: I): MapBigInt {
     return MapBigInt.fromPartial(base ?? {});
   }
@@ -149,6 +153,7 @@ export namespace MapBigInt_MapEntry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): MapBigInt_MapEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -192,18 +197,21 @@ export namespace MapBigInt_MapEntry {
     }
     return message;
   }
+
   export function fromJSON(object: any): MapBigInt_MapEntry {
     return {
       key: isSet(object.key) ? Long.fromValue(object.key) : Long.UZERO,
       value: isSet(object.value) ? Long.fromValue(object.value) : Long.ZERO,
     };
   }
+
   export function toJSON(message: MapBigInt_MapEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = (message.key || Long.UZERO).toString());
     message.value !== undefined && (obj.value = (message.value || Long.ZERO).toString());
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<MapBigInt_MapEntry>, I>>(base?: I): MapBigInt_MapEntry {
     return MapBigInt_MapEntry.fromPartial(base ?? {});
   }

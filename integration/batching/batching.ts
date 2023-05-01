@@ -55,6 +55,7 @@ export namespace BatchQueryRequest {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): BatchQueryRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -77,9 +78,11 @@ export namespace BatchQueryRequest {
     }
     return message;
   }
+
   export function fromJSON(object: any): BatchQueryRequest {
     return { ids: Array.isArray(object?.ids) ? object.ids.map((e: any) => String(e)) : [] };
   }
+
   export function toJSON(message: BatchQueryRequest): unknown {
     const obj: any = {};
     if (message.ids) {
@@ -89,6 +92,7 @@ export namespace BatchQueryRequest {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<BatchQueryRequest>, I>>(base?: I): BatchQueryRequest {
     return BatchQueryRequest.fromPartial(base ?? {});
   }
@@ -111,6 +115,7 @@ export namespace BatchQueryResponse {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): BatchQueryResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -133,9 +138,11 @@ export namespace BatchQueryResponse {
     }
     return message;
   }
+
   export function fromJSON(object: any): BatchQueryResponse {
     return { entities: Array.isArray(object?.entities) ? object.entities.map((e: any) => Entity.fromJSON(e)) : [] };
   }
+
   export function toJSON(message: BatchQueryResponse): unknown {
     const obj: any = {};
     if (message.entities) {
@@ -145,6 +152,7 @@ export namespace BatchQueryResponse {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<BatchQueryResponse>, I>>(base?: I): BatchQueryResponse {
     return BatchQueryResponse.fromPartial(base ?? {});
   }
@@ -167,6 +175,7 @@ export namespace BatchMapQueryRequest {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): BatchMapQueryRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -189,9 +198,11 @@ export namespace BatchMapQueryRequest {
     }
     return message;
   }
+
   export function fromJSON(object: any): BatchMapQueryRequest {
     return { ids: Array.isArray(object?.ids) ? object.ids.map((e: any) => String(e)) : [] };
   }
+
   export function toJSON(message: BatchMapQueryRequest): unknown {
     const obj: any = {};
     if (message.ids) {
@@ -201,6 +212,7 @@ export namespace BatchMapQueryRequest {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<BatchMapQueryRequest>, I>>(base?: I): BatchMapQueryRequest {
     return BatchMapQueryRequest.fromPartial(base ?? {});
   }
@@ -223,6 +235,7 @@ export namespace BatchMapQueryResponse {
     });
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): BatchMapQueryResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -248,6 +261,7 @@ export namespace BatchMapQueryResponse {
     }
     return message;
   }
+
   export function fromJSON(object: any): BatchMapQueryResponse {
     return {
       entities: isObject(object.entities)
@@ -258,6 +272,7 @@ export namespace BatchMapQueryResponse {
         : {},
     };
   }
+
   export function toJSON(message: BatchMapQueryResponse): unknown {
     const obj: any = {};
     obj.entities = {};
@@ -268,6 +283,7 @@ export namespace BatchMapQueryResponse {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<BatchMapQueryResponse>, I>>(base?: I): BatchMapQueryResponse {
     return BatchMapQueryResponse.fromPartial(base ?? {});
   }
@@ -303,6 +319,7 @@ export namespace BatchMapQueryResponse_EntitiesEntry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): BatchMapQueryResponse_EntitiesEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -332,18 +349,21 @@ export namespace BatchMapQueryResponse_EntitiesEntry {
     }
     return message;
   }
+
   export function fromJSON(object: any): BatchMapQueryResponse_EntitiesEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
       value: isSet(object.value) ? Entity.fromJSON(object.value) : undefined,
     };
   }
+
   export function toJSON(message: BatchMapQueryResponse_EntitiesEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value ? Entity.toJSON(message.value) : undefined);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<BatchMapQueryResponse_EntitiesEntry>, I>>(
     base?: I,
   ): BatchMapQueryResponse_EntitiesEntry {
@@ -373,6 +393,7 @@ export namespace GetOnlyMethodRequest {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): GetOnlyMethodRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -395,14 +416,17 @@ export namespace GetOnlyMethodRequest {
     }
     return message;
   }
+
   export function fromJSON(object: any): GetOnlyMethodRequest {
     return { id: isSet(object.id) ? String(object.id) : "" };
   }
+
   export function toJSON(message: GetOnlyMethodRequest): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = message.id);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<GetOnlyMethodRequest>, I>>(base?: I): GetOnlyMethodRequest {
     return GetOnlyMethodRequest.fromPartial(base ?? {});
   }
@@ -425,6 +449,7 @@ export namespace GetOnlyMethodResponse {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): GetOnlyMethodResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -447,14 +472,17 @@ export namespace GetOnlyMethodResponse {
     }
     return message;
   }
+
   export function fromJSON(object: any): GetOnlyMethodResponse {
     return { entity: isSet(object.entity) ? Entity.fromJSON(object.entity) : undefined };
   }
+
   export function toJSON(message: GetOnlyMethodResponse): unknown {
     const obj: any = {};
     message.entity !== undefined && (obj.entity = message.entity ? Entity.toJSON(message.entity) : undefined);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<GetOnlyMethodResponse>, I>>(base?: I): GetOnlyMethodResponse {
     return GetOnlyMethodResponse.fromPartial(base ?? {});
   }
@@ -481,6 +509,7 @@ export namespace WriteMethodRequest {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): WriteMethodRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -503,14 +532,17 @@ export namespace WriteMethodRequest {
     }
     return message;
   }
+
   export function fromJSON(object: any): WriteMethodRequest {
     return { id: isSet(object.id) ? String(object.id) : "" };
   }
+
   export function toJSON(message: WriteMethodRequest): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = message.id);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<WriteMethodRequest>, I>>(base?: I): WriteMethodRequest {
     return WriteMethodRequest.fromPartial(base ?? {});
   }
@@ -530,6 +562,7 @@ export namespace WriteMethodResponse {
   export function encode(_: WriteMethodResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): WriteMethodResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -545,13 +578,16 @@ export namespace WriteMethodResponse {
     }
     return message;
   }
+
   export function fromJSON(_: any): WriteMethodResponse {
     return {};
   }
+
   export function toJSON(_: WriteMethodResponse): unknown {
     const obj: any = {};
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<WriteMethodResponse>, I>>(base?: I): WriteMethodResponse {
     return WriteMethodResponse.fromPartial(base ?? {});
   }
@@ -576,6 +612,7 @@ export namespace Entity {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Entity {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -605,15 +642,18 @@ export namespace Entity {
     }
     return message;
   }
+
   export function fromJSON(object: any): Entity {
     return { id: isSet(object.id) ? String(object.id) : "", name: isSet(object.name) ? String(object.name) : "" };
   }
+
   export function toJSON(message: Entity): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = message.id);
     message.name !== undefined && (obj.name = message.name);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Entity>, I>>(base?: I): Entity {
     return Entity.fromPartial(base ?? {});
   }

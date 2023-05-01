@@ -219,6 +219,7 @@ export namespace FieldMask {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): FieldMask {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -241,6 +242,7 @@ export namespace FieldMask {
     }
     return message;
   }
+
   export function fromJSON(object: any): FieldMask {
     return {
       paths: typeof (object) === "string"
@@ -250,9 +252,11 @@ export namespace FieldMask {
         : [],
     };
   }
+
   export function toJSON(message: FieldMask): string {
     return message.paths.join(",");
   }
+
   export function create<I extends Exact<DeepPartial<FieldMask>, I>>(base?: I): FieldMask {
     return FieldMask.fromPartial(base ?? {});
   }
@@ -262,11 +266,13 @@ export namespace FieldMask {
     message.paths = object.paths?.map((e) => e) || [];
     return message;
   }
+
   export function wrap(paths: readonly string[]): FieldMask {
     const result = createBaseFieldMask() as any;
     result.paths = paths;
     return result;
   }
+
   export function unwrap(message: any): string[] {
     return message.paths;
   }

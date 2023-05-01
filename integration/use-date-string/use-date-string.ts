@@ -40,6 +40,7 @@ export namespace Todo {
     });
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Todo {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -93,6 +94,7 @@ export namespace Todo {
     }
     return message;
   }
+
   export function fromJSON(object: any): Todo {
     return {
       id: isSet(object.id) ? String(object.id) : "",
@@ -109,6 +111,7 @@ export namespace Todo {
         : {},
     };
   }
+
   export function toJSON(message: Todo): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = message.id);
@@ -127,6 +130,7 @@ export namespace Todo {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Todo>, I>>(base?: I): Todo {
     return Todo.fromPartial(base ?? {});
   }
@@ -164,6 +168,7 @@ export namespace Todo_MapOfTimestampsEntry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Todo_MapOfTimestampsEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -193,18 +198,21 @@ export namespace Todo_MapOfTimestampsEntry {
     }
     return message;
   }
+
   export function fromJSON(object: any): Todo_MapOfTimestampsEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
       value: isSet(object.value) ? String(object.value) : undefined,
     };
   }
+
   export function toJSON(message: Todo_MapOfTimestampsEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Todo_MapOfTimestampsEntry>, I>>(
     base?: I,
   ): Todo_MapOfTimestampsEntry {

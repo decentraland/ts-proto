@@ -81,6 +81,7 @@ export namespace Simple {
     });
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Simple {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -144,6 +145,7 @@ export namespace Simple {
     }
     return message;
   }
+
   export function fromJSON(object: any): Simple {
     return {
       name: isSet(object.name) ? String(object.name) : "",
@@ -158,6 +160,7 @@ export namespace Simple {
         : {},
     };
   }
+
   export function toJSON(message: Simple): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
@@ -176,6 +179,7 @@ export namespace Simple {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Simple>, I>>(base?: I): Simple {
     return Simple.fromPartial(base ?? {});
   }
@@ -213,6 +217,7 @@ export namespace Simple_StateMapEntry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Simple_StateMapEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -242,18 +247,21 @@ export namespace Simple_StateMapEntry {
     }
     return message;
   }
+
   export function fromJSON(object: any): Simple_StateMapEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
       value: isSet(object.value) ? stateEnumFromJSON(object.value) : 0,
     };
   }
+
   export function toJSON(message: Simple_StateMapEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = stateEnumToJSON(message.value));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Simple_StateMapEntry>, I>>(base?: I): Simple_StateMapEntry {
     return Simple_StateMapEntry.fromPartial(base ?? {});
   }

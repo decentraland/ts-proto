@@ -36,6 +36,7 @@ export namespace ValueMessage {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): ValueMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -86,6 +87,7 @@ export namespace ValueMessage {
     }
     return message;
   }
+
   export function fromJSON(object: any): ValueMessage {
     return {
       value: isSet(object?.value) ? object.value : undefined,
@@ -95,6 +97,7 @@ export namespace ValueMessage {
       structValue: isObject(object.structValue) ? object.structValue : undefined,
     };
   }
+
   export function toJSON(message: ValueMessage): unknown {
     const obj: any = {};
     message.value !== undefined && (obj.value = message.value);
@@ -112,6 +115,7 @@ export namespace ValueMessage {
     message.structValue !== undefined && (obj.structValue = message.structValue);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<ValueMessage>, I>>(base?: I): ValueMessage {
     return ValueMessage.fromPartial(base ?? {});
   }

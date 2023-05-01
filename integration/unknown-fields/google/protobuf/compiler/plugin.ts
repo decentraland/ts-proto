@@ -180,6 +180,7 @@ export namespace Version {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Version {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -269,6 +270,7 @@ export namespace CodeGeneratorRequest {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): CodeGeneratorRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -355,6 +357,7 @@ export namespace CodeGeneratorResponse {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): CodeGeneratorResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -437,6 +440,7 @@ export namespace CodeGeneratorResponse_File {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): CodeGeneratorResponse_File {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;

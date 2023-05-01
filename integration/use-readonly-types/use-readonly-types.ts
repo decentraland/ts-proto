@@ -86,6 +86,7 @@ export namespace Entity {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Entity {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -195,6 +196,7 @@ export namespace Entity {
     }
     return message;
   }
+
   export function fromJSON(object: any): Entity {
     return {
       intVal: isSet(object.intVal) ? Number(object.intVal) : 0,
@@ -216,6 +218,7 @@ export namespace Entity {
         : undefined,
     };
   }
+
   export function toJSON(message: Entity): unknown {
     const obj: any = {};
     message.intVal !== undefined && (obj.intVal = Math.round(message.intVal));
@@ -245,6 +248,7 @@ export namespace Entity {
     message.oneOfValue?.$case === "theIntValue" && (obj.theIntValue = Math.round(message.oneOfValue?.theIntValue));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Entity>, I>>(base?: I): Entity {
     return Entity.fromPartial(base ?? {});
   }
@@ -292,6 +296,7 @@ export namespace SubEntity {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): SubEntity {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -314,14 +319,17 @@ export namespace SubEntity {
     }
     return message;
   }
+
   export function fromJSON(object: any): SubEntity {
     return { subVal: isSet(object.subVal) ? Number(object.subVal) : 0 };
   }
+
   export function toJSON(message: SubEntity): unknown {
     const obj: any = {};
     message.subVal !== undefined && (obj.subVal = Math.round(message.subVal));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<SubEntity>, I>>(base?: I): SubEntity {
     return SubEntity.fromPartial(base ?? {});
   }

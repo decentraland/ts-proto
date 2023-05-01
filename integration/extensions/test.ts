@@ -84,6 +84,7 @@ export namespace Extendable {
     }
     return writer;
   }
+
   export function setExtension<T>(message: Extendable, extension: Extension<T>, value: T): void {
     const encoded = extension.encode!(value);
 
@@ -103,6 +104,7 @@ export namespace Extendable {
       message._unknownFields[extension.tag] = encoded;
     }
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Extendable {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -139,6 +141,7 @@ export namespace Extendable {
     }
     return message;
   }
+
   export function getExtension<T>(message: Extendable, extension: Extension<T>): T | undefined {
     let results: T | undefined = undefined;
 
@@ -170,14 +173,17 @@ export namespace Extendable {
 
     return results;
   }
+
   export function fromJSON(object: any): Extendable {
     return { field: isSet(object.field) ? String(object.field) : undefined };
   }
+
   export function toJSON(message: Extendable): unknown {
     const obj: any = {};
     message.field !== undefined && (obj.field = message.field);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Extendable>, I>>(base?: I): Extendable {
     return Extendable.fromPartial(base ?? {});
   }
@@ -218,6 +224,7 @@ export namespace Nested {
       return values;
     },
   };
+
   export function encode(message: Nested, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.field !== undefined && message.field !== "") {
       writer.uint32(10).string(message.field);
@@ -238,6 +245,7 @@ export namespace Nested {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Nested {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -274,14 +282,17 @@ export namespace Nested {
     }
     return message;
   }
+
   export function fromJSON(object: any): Nested {
     return { field: isSet(object.field) ? String(object.field) : undefined };
   }
+
   export function toJSON(message: Nested): unknown {
     const obj: any = {};
     message.field !== undefined && (obj.field = message.field);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Nested>, I>>(base?: I): Nested {
     return Nested.fromPartial(base ?? {});
   }
@@ -321,6 +332,7 @@ export namespace Group {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Group {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -364,18 +376,21 @@ export namespace Group {
     }
     return message;
   }
+
   export function fromJSON(object: any): Group {
     return {
       name: isSet(object.name) ? String(object.name) : undefined,
       value: isSet(object.value) ? String(object.value) : undefined,
     };
   }
+
   export function toJSON(message: Group): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     message.value !== undefined && (obj.value = message.value);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Group>, I>>(base?: I): Group {
     return Group.fromPartial(base ?? {});
   }

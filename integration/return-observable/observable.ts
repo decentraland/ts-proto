@@ -23,6 +23,7 @@ export namespace ProduceRequest {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): ProduceRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -45,14 +46,17 @@ export namespace ProduceRequest {
     }
     return message;
   }
+
   export function fromJSON(object: any): ProduceRequest {
     return { ingredients: isSet(object.ingredients) ? String(object.ingredients) : "" };
   }
+
   export function toJSON(message: ProduceRequest): unknown {
     const obj: any = {};
     message.ingredients !== undefined && (obj.ingredients = message.ingredients);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<ProduceRequest>, I>>(base?: I): ProduceRequest {
     return ProduceRequest.fromPartial(base ?? {});
   }
@@ -75,6 +79,7 @@ export namespace ProduceReply {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): ProduceReply {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -97,14 +102,17 @@ export namespace ProduceReply {
     }
     return message;
   }
+
   export function fromJSON(object: any): ProduceReply {
     return { result: isSet(object.result) ? String(object.result) : "" };
   }
+
   export function toJSON(message: ProduceReply): unknown {
     const obj: any = {};
     message.result !== undefined && (obj.result = message.result);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<ProduceReply>, I>>(base?: I): ProduceReply {
     return ProduceReply.fromPartial(base ?? {});
   }

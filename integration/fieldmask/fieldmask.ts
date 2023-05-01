@@ -19,6 +19,7 @@ export namespace FieldMaskMessage {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): FieldMaskMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -41,14 +42,17 @@ export namespace FieldMaskMessage {
     }
     return message;
   }
+
   export function fromJSON(object: any): FieldMaskMessage {
     return { fieldMask: isSet(object.fieldMask) ? FieldMask.unwrap(FieldMask.fromJSON(object.fieldMask)) : undefined };
   }
+
   export function toJSON(message: FieldMaskMessage): unknown {
     const obj: any = {};
     message.fieldMask !== undefined && (obj.fieldMask = FieldMask.toJSON(FieldMask.wrap(message.fieldMask)));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<FieldMaskMessage>, I>>(base?: I): FieldMaskMessage {
     return FieldMaskMessage.fromPartial(base ?? {});
   }

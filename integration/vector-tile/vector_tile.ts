@@ -90,6 +90,7 @@ export namespace Tile {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Tile {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -112,9 +113,11 @@ export namespace Tile {
     }
     return message;
   }
+
   export function fromJSON(object: any): Tile {
     return { layers: Array.isArray(object?.layers) ? object.layers.map((e: any) => Tile_Layer.fromJSON(e)) : [] };
   }
+
   export function toJSON(message: Tile): unknown {
     const obj: any = {};
     if (message.layers) {
@@ -124,6 +127,7 @@ export namespace Tile {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Tile>, I>>(base?: I): Tile {
     return Tile.fromPartial(base ?? {});
   }
@@ -164,6 +168,7 @@ export namespace Tile_Value {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Tile_Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -228,6 +233,7 @@ export namespace Tile_Value {
     }
     return message;
   }
+
   export function fromJSON(object: any): Tile_Value {
     return {
       stringValue: isSet(object.stringValue) ? String(object.stringValue) : "",
@@ -239,6 +245,7 @@ export namespace Tile_Value {
       boolValue: isSet(object.boolValue) ? Boolean(object.boolValue) : false,
     };
   }
+
   export function toJSON(message: Tile_Value): unknown {
     const obj: any = {};
     message.stringValue !== undefined && (obj.stringValue = message.stringValue);
@@ -250,6 +257,7 @@ export namespace Tile_Value {
     message.boolValue !== undefined && (obj.boolValue = message.boolValue);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Tile_Value>, I>>(base?: I): Tile_Value {
     return Tile_Value.fromPartial(base ?? {});
   }
@@ -291,6 +299,7 @@ export namespace Tile_Feature {
     writer.ldelim();
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Tile_Feature {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -354,6 +363,7 @@ export namespace Tile_Feature {
     }
     return message;
   }
+
   export function fromJSON(object: any): Tile_Feature {
     return {
       id: isSet(object.id) ? Number(object.id) : 0,
@@ -362,6 +372,7 @@ export namespace Tile_Feature {
       geometry: Array.isArray(object?.geometry) ? object.geometry.map((e: any) => Number(e)) : [],
     };
   }
+
   export function toJSON(message: Tile_Feature): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
@@ -378,6 +389,7 @@ export namespace Tile_Feature {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Tile_Feature>, I>>(base?: I): Tile_Feature {
     return Tile_Feature.fromPartial(base ?? {});
   }
@@ -418,6 +430,7 @@ export namespace Tile_Layer {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Tile_Layer {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -475,6 +488,7 @@ export namespace Tile_Layer {
     }
     return message;
   }
+
   export function fromJSON(object: any): Tile_Layer {
     return {
       version: isSet(object.version) ? Number(object.version) : 0,
@@ -485,6 +499,7 @@ export namespace Tile_Layer {
       extent: isSet(object.extent) ? Number(object.extent) : 0,
     };
   }
+
   export function toJSON(message: Tile_Layer): unknown {
     const obj: any = {};
     message.version !== undefined && (obj.version = Math.round(message.version));
@@ -507,6 +522,7 @@ export namespace Tile_Layer {
     message.extent !== undefined && (obj.extent = Math.round(message.extent));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Tile_Layer>, I>>(base?: I): Tile_Layer {
     return Tile_Layer.fromPartial(base ?? {});
   }

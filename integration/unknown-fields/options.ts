@@ -59,6 +59,7 @@ export namespace MyMessage {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): MyMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -136,6 +137,7 @@ export namespace RequestType {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): RequestType {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -185,6 +187,7 @@ export namespace ResponseType {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): ResponseType {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;

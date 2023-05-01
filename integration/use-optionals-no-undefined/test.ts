@@ -172,6 +172,7 @@ export namespace OptionalsTest {
     });
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): OptionalsTest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -420,6 +421,7 @@ export namespace OptionalsTest {
     }
     return message;
   }
+
   export function fromJSON(object: any): OptionalsTest {
     return {
       id: isSet(object.id) ? Number(object.id) : undefined,
@@ -453,6 +455,7 @@ export namespace OptionalsTest {
         : undefined,
     };
   }
+
   export function toJSON(message: OptionalsTest): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
@@ -515,6 +518,7 @@ export namespace OptionalsTest {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<OptionalsTest>, I>>(base?: I): OptionalsTest {
     return OptionalsTest.fromPartial(base ?? {});
   }
@@ -573,6 +577,7 @@ export namespace OptionalsTest_TranslationsEntry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): OptionalsTest_TranslationsEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -602,15 +607,18 @@ export namespace OptionalsTest_TranslationsEntry {
     }
     return message;
   }
+
   export function fromJSON(object: any): OptionalsTest_TranslationsEntry {
     return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object.value) ? String(object.value) : "" };
   }
+
   export function toJSON(message: OptionalsTest_TranslationsEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<OptionalsTest_TranslationsEntry>, I>>(
     base?: I,
   ): OptionalsTest_TranslationsEntry {
@@ -635,6 +643,7 @@ export namespace Child {
   export function encode(_: Child, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Child {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -650,13 +659,16 @@ export namespace Child {
     }
     return message;
   }
+
   export function fromJSON(_: any): Child {
     return {};
   }
+
   export function toJSON(_: Child): unknown {
     const obj: any = {};
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Child>, I>>(base?: I): Child {
     return Child.fromPartial(base ?? {});
   }

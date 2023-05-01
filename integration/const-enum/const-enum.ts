@@ -88,6 +88,7 @@ export namespace DividerData {
     });
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): DividerData {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -120,6 +121,7 @@ export namespace DividerData {
     }
     return message;
   }
+
   export function fromJSON(object: any): DividerData {
     return {
       type: isSet(object.type) ? dividerData_DividerTypeFromJSON(object.type) : DividerData_DividerType.DOUBLE,
@@ -131,6 +133,7 @@ export namespace DividerData {
         : {},
     };
   }
+
   export function toJSON(message: DividerData): unknown {
     const obj: any = {};
     message.type !== undefined && (obj.type = dividerData_DividerTypeToJSON(message.type));
@@ -142,6 +145,7 @@ export namespace DividerData {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<DividerData>, I>>(base?: I): DividerData {
     return DividerData.fromPartial(base ?? {});
   }
@@ -176,6 +180,7 @@ export namespace DividerData_TypeMapEntry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): DividerData_TypeMapEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -205,18 +210,21 @@ export namespace DividerData_TypeMapEntry {
     }
     return message;
   }
+
   export function fromJSON(object: any): DividerData_TypeMapEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
       value: isSet(object.value) ? dividerData_DividerTypeFromJSON(object.value) : DividerData_DividerType.DOUBLE,
     };
   }
+
   export function toJSON(message: DividerData_TypeMapEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = dividerData_DividerTypeToJSON(message.value));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<DividerData_TypeMapEntry>, I>>(
     base?: I,
   ): DividerData_TypeMapEntry {

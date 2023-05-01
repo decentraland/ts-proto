@@ -33,6 +33,7 @@ export namespace TPartialMessage {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): TPartialMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -55,14 +56,17 @@ export namespace TPartialMessage {
     }
     return message;
   }
+
   export function fromJSON(object: any): TPartialMessage {
     return { field: isSet(object.field) ? String(object.field) : undefined };
   }
+
   export function toJSON(message: TPartialMessage): unknown {
     const obj: any = {};
     message.field !== undefined && (obj.field = message.field);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<TPartialMessage>, I>>(base?: I): TPartialMessage {
     return TPartialMessage.fromPartial(base ?? {});
   }
@@ -111,6 +115,7 @@ export namespace TPartial {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): TPartial {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -203,6 +208,7 @@ export namespace TPartial {
     }
     return message;
   }
+
   export function fromJSON(object: any): TPartial {
     return {
       number: isSet(object.number) ? Number(object.number) : undefined,
@@ -225,6 +231,7 @@ export namespace TPartial {
         : undefined,
     };
   }
+
   export function toJSON(message: TPartial): unknown {
     const obj: any = {};
     message.number !== undefined && (obj.number = Math.round(message.number));
@@ -254,6 +261,7 @@ export namespace TPartial {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<TPartial>, I>>(base?: I): TPartial {
     return TPartial.fromPartial(base ?? {});
   }
@@ -294,6 +302,7 @@ export namespace TPartial_MapEntry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): TPartial_MapEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -323,15 +332,18 @@ export namespace TPartial_MapEntry {
     }
     return message;
   }
+
   export function fromJSON(object: any): TPartial_MapEntry {
     return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object.value) ? String(object.value) : "" };
   }
+
   export function toJSON(message: TPartial_MapEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<TPartial_MapEntry>, I>>(base?: I): TPartial_MapEntry {
     return TPartial_MapEntry.fromPartial(base ?? {});
   }

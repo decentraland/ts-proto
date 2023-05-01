@@ -94,6 +94,7 @@ export namespace Struct {
     }
     return struct;
   }
+
   export function unwrap(message: Struct): { [key: string]: any } {
     const object: { [key: string]: any } = {};
     if (message.fields) {
@@ -129,6 +130,7 @@ export namespace Value {
     }
     return result;
   }
+
   export function unwrap(message: any): string | number | boolean | Object | null | Array<any> | undefined {
     if (message?.hasOwnProperty("stringValue") && message.stringValue !== undefined) {
       return message.stringValue;
@@ -157,6 +159,7 @@ export namespace ListValue {
     result.values = (array ?? []).map(Value.wrap);
     return result;
   }
+
   export function unwrap(message: ListValue): Array<any> {
     if (message?.hasOwnProperty("values") && Array.isArray(message.values)) {
       return message.values.map(Value.unwrap);

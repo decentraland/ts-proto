@@ -25,6 +25,7 @@ export namespace Empty {
   export function encode(_: Empty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Empty {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -40,13 +41,16 @@ export namespace Empty {
     }
     return message;
   }
+
   export function fromJSON(_: any): Empty {
     return {};
   }
+
   export function toJSON(_: Empty): unknown {
     const obj: any = {};
     return obj;
   }
+
   export function create(base?: DeepPartial<Empty>): Empty {
     return Empty.fromPartial(base ?? {});
   }

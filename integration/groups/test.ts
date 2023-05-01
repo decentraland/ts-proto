@@ -82,6 +82,7 @@ export namespace GroupsOptionalTest {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): GroupsOptionalTest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -132,6 +133,7 @@ export namespace GroupsOptionalTest {
     }
     return message;
   }
+
   export function fromJSON(object: any): GroupsOptionalTest {
     return {
       int1: isSet(object.int1) ? Number(object.int1) : undefined,
@@ -139,6 +141,7 @@ export namespace GroupsOptionalTest {
       int3: isSet(object.int3) ? Number(object.int3) : undefined,
     };
   }
+
   export function toJSON(message: GroupsOptionalTest): unknown {
     const obj: any = {};
     message.int1 !== undefined && (obj.int1 = Math.round(message.int1));
@@ -147,6 +150,7 @@ export namespace GroupsOptionalTest {
     message.int3 !== undefined && (obj.int3 = Math.round(message.int3));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<GroupsOptionalTest>, I>>(base?: I): GroupsOptionalTest {
     return GroupsOptionalTest.fromPartial(base ?? {});
   }
@@ -190,6 +194,7 @@ export namespace GroupsOptionalTest_Group {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): GroupsOptionalTest_Group {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -233,18 +238,21 @@ export namespace GroupsOptionalTest_Group {
     }
     return message;
   }
+
   export function fromJSON(object: any): GroupsOptionalTest_Group {
     return {
       key: isSet(object.key) ? String(object.key) : undefined,
       value: isSet(object.value) ? String(object.value) : undefined,
     };
   }
+
   export function toJSON(message: GroupsOptionalTest_Group): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<GroupsOptionalTest_Group>, I>>(
     base?: I,
   ): GroupsOptionalTest_Group {
@@ -302,6 +310,7 @@ export namespace GroupsRepeatedTest {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): GroupsRepeatedTest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -387,6 +396,7 @@ export namespace GroupsRepeatedTest {
     }
     return message;
   }
+
   export function fromJSON(object: any): GroupsRepeatedTest {
     return {
       int1: Array.isArray(object?.int1) ? object.int1.map((e: any) => Number(e)) : undefined,
@@ -396,6 +406,7 @@ export namespace GroupsRepeatedTest {
       int3: Array.isArray(object?.int3) ? object.int3.map((e: any) => Number(e)) : undefined,
     };
   }
+
   export function toJSON(message: GroupsRepeatedTest): unknown {
     const obj: any = {};
     if (message.int1) {
@@ -415,6 +426,7 @@ export namespace GroupsRepeatedTest {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<GroupsRepeatedTest>, I>>(base?: I): GroupsRepeatedTest {
     return GroupsRepeatedTest.fromPartial(base ?? {});
   }
@@ -460,6 +472,7 @@ export namespace GroupsRepeatedTest_Group {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): GroupsRepeatedTest_Group {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -509,12 +522,14 @@ export namespace GroupsRepeatedTest_Group {
     }
     return message;
   }
+
   export function fromJSON(object: any): GroupsRepeatedTest_Group {
     return {
       key: Array.isArray(object?.key) ? object.key.map((e: any) => String(e)) : undefined,
       value: Array.isArray(object?.value) ? object.value.map((e: any) => String(e)) : undefined,
     };
   }
+
   export function toJSON(message: GroupsRepeatedTest_Group): unknown {
     const obj: any = {};
     if (message.key) {
@@ -529,6 +544,7 @@ export namespace GroupsRepeatedTest_Group {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<GroupsRepeatedTest_Group>, I>>(
     base?: I,
   ): GroupsRepeatedTest_Group {
@@ -586,6 +602,7 @@ export namespace GroupsNestedTest {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): GroupsNestedTest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -671,6 +688,7 @@ export namespace GroupsNestedTest {
     }
     return message;
   }
+
   export function fromJSON(object: any): GroupsNestedTest {
     return {
       int1: Array.isArray(object?.int1) ? object.int1.map((e: any) => Number(e)) : undefined,
@@ -680,6 +698,7 @@ export namespace GroupsNestedTest {
       int3: Array.isArray(object?.int3) ? object.int3.map((e: any) => Number(e)) : undefined,
     };
   }
+
   export function toJSON(message: GroupsNestedTest): unknown {
     const obj: any = {};
     if (message.int1) {
@@ -699,6 +718,7 @@ export namespace GroupsNestedTest {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<GroupsNestedTest>, I>>(base?: I): GroupsNestedTest {
     return GroupsNestedTest.fromPartial(base ?? {});
   }
@@ -739,6 +759,7 @@ export namespace GroupsNestedTest_Group {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): GroupsNestedTest_Group {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -778,6 +799,7 @@ export namespace GroupsNestedTest_Group {
     }
     return message;
   }
+
   export function fromJSON(object: any): GroupsNestedTest_Group {
     return {
       nested: Array.isArray(object?.nested)
@@ -785,6 +807,7 @@ export namespace GroupsNestedTest_Group {
         : undefined,
     };
   }
+
   export function toJSON(message: GroupsNestedTest_Group): unknown {
     const obj: any = {};
     if (message.nested) {
@@ -794,6 +817,7 @@ export namespace GroupsNestedTest_Group {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<GroupsNestedTest_Group>, I>>(base?: I): GroupsNestedTest_Group {
     return GroupsNestedTest_Group.fromPartial(base ?? {});
   }
@@ -834,6 +858,7 @@ export namespace GroupsNestedTest_Group_Nested {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): GroupsNestedTest_Group_Nested {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -873,6 +898,7 @@ export namespace GroupsNestedTest_Group_Nested {
     }
     return message;
   }
+
   export function fromJSON(object: any): GroupsNestedTest_Group_Nested {
     return {
       nested2: Array.isArray(object?.nested2)
@@ -880,6 +906,7 @@ export namespace GroupsNestedTest_Group_Nested {
         : undefined,
     };
   }
+
   export function toJSON(message: GroupsNestedTest_Group_Nested): unknown {
     const obj: any = {};
     if (message.nested2) {
@@ -889,6 +916,7 @@ export namespace GroupsNestedTest_Group_Nested {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<GroupsNestedTest_Group_Nested>, I>>(
     base?: I,
   ): GroupsNestedTest_Group_Nested {
@@ -932,6 +960,7 @@ export namespace GroupsNestedTest_Group_Nested_Nested2 {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): GroupsNestedTest_Group_Nested_Nested2 {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -968,14 +997,17 @@ export namespace GroupsNestedTest_Group_Nested_Nested2 {
     }
     return message;
   }
+
   export function fromJSON(object: any): GroupsNestedTest_Group_Nested_Nested2 {
     return { string1: isSet(object.string1) ? String(object.string1) : undefined };
   }
+
   export function toJSON(message: GroupsNestedTest_Group_Nested_Nested2): unknown {
     const obj: any = {};
     message.string1 !== undefined && (obj.string1 = message.string1);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<GroupsNestedTest_Group_Nested_Nested2>, I>>(
     base?: I,
   ): GroupsNestedTest_Group_Nested_Nested2 {

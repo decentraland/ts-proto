@@ -23,6 +23,7 @@ export namespace Point {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Point {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -52,12 +53,14 @@ export namespace Point {
     }
     return message;
   }
+
   export function fromJSON(object: any): Point {
     return {
       data: isSet(object.data) ? Buffer.from(bytesFromBase64(object.data)) : Buffer.alloc(0),
       dataWrapped: isSet(object.dataWrapped) ? new Buffer(object.dataWrapped) : undefined,
     };
   }
+
   export function toJSON(message: Point): unknown {
     const obj: any = {};
     message.data !== undefined &&
@@ -65,6 +68,7 @@ export namespace Point {
     message.dataWrapped !== undefined && (obj.dataWrapped = message.dataWrapped);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Point>, I>>(base?: I): Point {
     return Point.fromPartial(base ?? {});
   }

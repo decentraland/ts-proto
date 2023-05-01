@@ -19,6 +19,7 @@ export namespace StructMessage {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): StructMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -41,14 +42,17 @@ export namespace StructMessage {
     }
     return message;
   }
+
   export function fromJSON(object: any): StructMessage {
     return { value: isObject(object.value) ? object.value : undefined };
   }
+
   export function toJSON(message: StructMessage): unknown {
     const obj: any = {};
     message.value !== undefined && (obj.value = message.value);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<StructMessage>, I>>(base?: I): StructMessage {
     return StructMessage.fromPartial(base ?? {});
   }

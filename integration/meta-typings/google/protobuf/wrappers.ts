@@ -106,6 +106,7 @@ export namespace DoubleValue {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): DoubleValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -141,6 +142,7 @@ export namespace FloatValue {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): FloatValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -176,6 +178,7 @@ export namespace Int64Value {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Int64Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -211,6 +214,7 @@ export namespace UInt64Value {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): UInt64Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -246,6 +250,7 @@ export namespace Int32Value {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Int32Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -281,6 +286,7 @@ export namespace UInt32Value {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): UInt32Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -316,6 +322,7 @@ export namespace BoolValue {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): BoolValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -351,6 +358,7 @@ export namespace StringValue {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): StringValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -386,6 +394,7 @@ export namespace BytesValue {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): BytesValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;

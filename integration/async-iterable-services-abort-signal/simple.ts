@@ -22,6 +22,7 @@ if ( message.body !== "") {
         }
 return writer;
 }
+
 export function decode(
       input: _m0.Reader | Uint8Array,
       length?: number,
@@ -47,6 +48,7 @@ reader.skipType(tag & 7);
 }
 return message;
 }
+
 // encodeTransform encodes a source of message objects.
     // Transform<EchoMsg, Uint8Array>
     export function async *encodeTransform(
@@ -62,6 +64,7 @@ return message;
         }
       }
     }
+
 // decodeTransform decodes a source of encoded messages.
     // Transform<Uint8Array, EchoMsg>
     export function async *decodeTransform(
@@ -77,6 +80,7 @@ return message;
         }
       }
     }
+
 export function fromJSON(object: any): EchoMsg {
       return {
 body: isSet(object.body)
@@ -84,11 +88,13 @@ body: isSet(object.body)
           : "",
 };
 }
+
 export function toJSON(message: EchoMsg): unknown {
       const obj: any = {};
 message.body !== undefined && (obj.body = message.body);
 return obj;
 }
+
 export function create<I extends Exact<DeepPartial<EchoMsg>, I>>(base?: I): EchoMsg {
 return EchoMsg.fromPartial(base ?? {})
 }

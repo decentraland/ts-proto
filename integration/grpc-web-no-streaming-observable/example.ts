@@ -85,6 +85,7 @@ export namespace DashFlash {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): DashFlash {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -114,18 +115,21 @@ export namespace DashFlash {
     }
     return message;
   }
+
   export function fromJSON(object: any): DashFlash {
     return {
       msg: isSet(object.msg) ? String(object.msg) : "",
       type: isSet(object.type) ? dashFlash_TypeFromJSON(object.type) : 0,
     };
   }
+
   export function toJSON(message: DashFlash): unknown {
     const obj: any = {};
     message.msg !== undefined && (obj.msg = message.msg);
     message.type !== undefined && (obj.type = dashFlash_TypeToJSON(message.type));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<DashFlash>, I>>(base?: I): DashFlash {
     return DashFlash.fromPartial(base ?? {});
   }
@@ -155,6 +159,7 @@ export namespace DashUserSettingsState {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): DashUserSettingsState {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -191,6 +196,7 @@ export namespace DashUserSettingsState {
     }
     return message;
   }
+
   export function fromJSON(object: any): DashUserSettingsState {
     return {
       email: isSet(object.email) ? String(object.email) : "",
@@ -198,6 +204,7 @@ export namespace DashUserSettingsState {
       flashes: Array.isArray(object?.flashes) ? object.flashes.map((e: any) => DashFlash.fromJSON(e)) : [],
     };
   }
+
   export function toJSON(message: DashUserSettingsState): unknown {
     const obj: any = {};
     message.email !== undefined && (obj.email = message.email);
@@ -210,6 +217,7 @@ export namespace DashUserSettingsState {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<DashUserSettingsState>, I>>(base?: I): DashUserSettingsState {
     return DashUserSettingsState.fromPartial(base ?? {});
   }
@@ -241,6 +249,7 @@ export namespace DashUserSettingsState_URLs {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): DashUserSettingsState_URLs {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -270,18 +279,21 @@ export namespace DashUserSettingsState_URLs {
     }
     return message;
   }
+
   export function fromJSON(object: any): DashUserSettingsState_URLs {
     return {
       connectGoogle: isSet(object.connectGoogle) ? String(object.connectGoogle) : "",
       connectGithub: isSet(object.connectGithub) ? String(object.connectGithub) : "",
     };
   }
+
   export function toJSON(message: DashUserSettingsState_URLs): unknown {
     const obj: any = {};
     message.connectGoogle !== undefined && (obj.connectGoogle = message.connectGoogle);
     message.connectGithub !== undefined && (obj.connectGithub = message.connectGithub);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<DashUserSettingsState_URLs>, I>>(
     base?: I,
   ): DashUserSettingsState_URLs {
@@ -306,6 +318,7 @@ export namespace Empty {
   export function encode(_: Empty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Empty {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -321,13 +334,16 @@ export namespace Empty {
     }
     return message;
   }
+
   export function fromJSON(_: any): Empty {
     return {};
   }
+
   export function toJSON(_: Empty): unknown {
     const obj: any = {};
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Empty>, I>>(base?: I): Empty {
     return Empty.fromPartial(base ?? {});
   }

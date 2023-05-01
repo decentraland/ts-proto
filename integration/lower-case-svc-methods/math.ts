@@ -32,6 +32,7 @@ export namespace NumPair {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): NumPair {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -61,15 +62,18 @@ export namespace NumPair {
     }
     return message;
   }
+
   export function fromJSON(object: any): NumPair {
     return { num1: isSet(object.num1) ? Number(object.num1) : 0, num2: isSet(object.num2) ? Number(object.num2) : 0 };
   }
+
   export function toJSON(message: NumPair): unknown {
     const obj: any = {};
     message.num1 !== undefined && (obj.num1 = message.num1);
     message.num2 !== undefined && (obj.num2 = message.num2);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<NumPair>, I>>(base?: I): NumPair {
     return NumPair.fromPartial(base ?? {});
   }
@@ -93,6 +97,7 @@ export namespace NumSingle {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): NumSingle {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -115,14 +120,17 @@ export namespace NumSingle {
     }
     return message;
   }
+
   export function fromJSON(object: any): NumSingle {
     return { num: isSet(object.num) ? Number(object.num) : 0 };
   }
+
   export function toJSON(message: NumSingle): unknown {
     const obj: any = {};
     message.num !== undefined && (obj.num = message.num);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<NumSingle>, I>>(base?: I): NumSingle {
     return NumSingle.fromPartial(base ?? {});
   }
@@ -147,6 +155,7 @@ export namespace Numbers {
     writer.ldelim();
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Numbers {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -179,9 +188,11 @@ export namespace Numbers {
     }
     return message;
   }
+
   export function fromJSON(object: any): Numbers {
     return { num: Array.isArray(object?.num) ? object.num.map((e: any) => Number(e)) : [] };
   }
+
   export function toJSON(message: Numbers): unknown {
     const obj: any = {};
     if (message.num) {
@@ -191,6 +202,7 @@ export namespace Numbers {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Numbers>, I>>(base?: I): Numbers {
     return Numbers.fromPartial(base ?? {});
   }

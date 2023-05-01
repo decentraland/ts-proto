@@ -16,12 +16,14 @@ function createBaseBar(): Bar {
 
 export namespace Bar {
   export const $type = "foo.bar.Bar";
+
   export function encode(message: Bar, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.foo !== undefined) {
       Foo.encode(message.foo, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Bar {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -44,14 +46,17 @@ export namespace Bar {
     }
     return message;
   }
+
   export function fromJSON(object: any): Bar {
     return { $type: Bar.$type, foo: isSet(object.foo) ? Foo.fromJSON(object.foo) : undefined };
   }
+
   export function toJSON(message: Bar): unknown {
     const obj: any = {};
     message.foo !== undefined && (obj.foo = message.foo ? Foo.toJSON(message.foo) : undefined);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Bar>, I>>(base?: I): Bar {
     return Bar.fromPartial(base ?? {});
   }

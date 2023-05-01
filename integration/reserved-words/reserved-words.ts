@@ -14,6 +14,7 @@ export namespace Record {
   export function encode(_: Record, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Record {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -29,13 +30,16 @@ export namespace Record {
     }
     return message;
   }
+
   export function fromJSON(_: any): Record {
     return {};
   }
+
   export function toJSON(_: Record): unknown {
     const obj: any = {};
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Record>, I>>(base?: I): Record {
     return Record.fromPartial(base ?? {});
   }

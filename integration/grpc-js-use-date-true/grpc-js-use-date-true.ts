@@ -31,6 +31,7 @@ export namespace TimestampMessage {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): TimestampMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -53,14 +54,17 @@ export namespace TimestampMessage {
     }
     return message;
   }
+
   export function fromJSON(object: any): TimestampMessage {
     return { timestamp: isSet(object.timestamp) ? fromJsonTimestamp(object.timestamp) : undefined };
   }
+
   export function toJSON(message: TimestampMessage): unknown {
     const obj: any = {};
     message.timestamp !== undefined && (obj.timestamp = message.timestamp.toISOString());
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<TimestampMessage>, I>>(base?: I): TimestampMessage {
     return TimestampMessage.fromPartial(base ?? {});
   }

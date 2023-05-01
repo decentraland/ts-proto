@@ -24,6 +24,7 @@ export namespace SimpleStruct {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleStruct {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -46,14 +47,17 @@ export namespace SimpleStruct {
     }
     return message;
   }
+
   export function fromJSON(object: any): SimpleStruct {
     return { simple_struct: isObject(object.simple_struct) ? object.simple_struct : undefined };
   }
+
   export function toJSON(message: SimpleStruct): unknown {
     const obj: any = {};
     message.simple_struct !== undefined && (obj.simple_struct = message.simple_struct);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<SimpleStruct>, I>>(base?: I): SimpleStruct {
     return SimpleStruct.fromPartial(base ?? {});
   }

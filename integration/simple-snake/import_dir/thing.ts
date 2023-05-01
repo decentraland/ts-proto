@@ -19,6 +19,7 @@ export namespace ImportedThing {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): ImportedThing {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -41,14 +42,17 @@ export namespace ImportedThing {
     }
     return message;
   }
+
   export function fromJSON(object: any): ImportedThing {
     return { created_at: isSet(object.created_at) ? fromJsonTimestamp(object.created_at) : undefined };
   }
+
   export function toJSON(message: ImportedThing): unknown {
     const obj: any = {};
     message.created_at !== undefined && (obj.created_at = message.created_at.toISOString());
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<ImportedThing>, I>>(base?: I): ImportedThing {
     return ImportedThing.fromPartial(base ?? {});
   }

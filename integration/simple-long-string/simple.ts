@@ -88,6 +88,7 @@ export namespace Numbers {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Numbers {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -201,6 +202,7 @@ export namespace Numbers {
     }
     return message;
   }
+
   export function fromJSON(object: any): Numbers {
     return {
       double: isSet(object.double) ? Number(object.double) : 0,
@@ -219,6 +221,7 @@ export namespace Numbers {
       timestamp: isSet(object.timestamp) ? fromJsonTimestamp(object.timestamp) : undefined,
     };
   }
+
   export function toJSON(message: Numbers): unknown {
     const obj: any = {};
     message.double !== undefined && (obj.double = message.double);
@@ -237,6 +240,7 @@ export namespace Numbers {
     message.timestamp !== undefined && (obj.timestamp = message.timestamp.toISOString());
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Numbers>, I>>(base?: I): Numbers {
     return Numbers.fromPartial(base ?? {});
   }

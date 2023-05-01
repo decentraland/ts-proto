@@ -19,6 +19,7 @@ export namespace Metadata {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Metadata {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -41,14 +42,17 @@ export namespace Metadata {
     }
     return message;
   }
+
   export function fromJSON(object: any): Metadata {
     return { lastEdited: isSet(object.lastEdited) ? fromJsonTimestamp(object.lastEdited) : undefined };
   }
+
   export function toJSON(message: Metadata): unknown {
     const obj: any = {};
     message.lastEdited !== undefined && (obj.lastEdited = fromTimestamp(message.lastEdited).toISOString());
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Metadata>, I>>(base?: I): Metadata {
     return Metadata.fromPartial(base ?? {});
   }

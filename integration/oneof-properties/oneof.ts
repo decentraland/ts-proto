@@ -129,6 +129,7 @@ export namespace PleaseChoose {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): PleaseChoose {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -221,6 +222,7 @@ export namespace PleaseChoose {
     }
     return message;
   }
+
   export function fromJSON(object: any): PleaseChoose {
     return {
       name: isSet(object.name) ? String(object.name) : "",
@@ -236,6 +238,7 @@ export namespace PleaseChoose {
       thirdOption: isSet(object.thirdOption) ? String(object.thirdOption) : undefined,
     };
   }
+
   export function toJSON(message: PleaseChoose): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
@@ -254,6 +257,7 @@ export namespace PleaseChoose {
     message.thirdOption !== undefined && (obj.thirdOption = message.thirdOption);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<PleaseChoose>, I>>(base?: I): PleaseChoose {
     return PleaseChoose.fromPartial(base ?? {});
   }
@@ -288,6 +292,7 @@ export namespace PleaseChoose_Submessage {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): PleaseChoose_Submessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -310,14 +315,17 @@ export namespace PleaseChoose_Submessage {
     }
     return message;
   }
+
   export function fromJSON(object: any): PleaseChoose_Submessage {
     return { name: isSet(object.name) ? String(object.name) : "" };
   }
+
   export function toJSON(message: PleaseChoose_Submessage): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<PleaseChoose_Submessage>, I>>(base?: I): PleaseChoose_Submessage {
     return PleaseChoose_Submessage.fromPartial(base ?? {});
   }

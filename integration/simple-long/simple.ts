@@ -79,6 +79,7 @@ export namespace SimpleWithWrappers {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithWrappers {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -136,6 +137,7 @@ export namespace SimpleWithWrappers {
     }
     return message;
   }
+
   export function fromJSON(object: any): SimpleWithWrappers {
     return {
       name: isSet(object.name) ? String(object.name) : undefined,
@@ -146,6 +148,7 @@ export namespace SimpleWithWrappers {
       snacks: Array.isArray(object?.snacks) ? object.snacks.map((e: any) => String(e)) : [],
     };
   }
+
   export function toJSON(message: SimpleWithWrappers): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
@@ -164,6 +167,7 @@ export namespace SimpleWithWrappers {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<SimpleWithWrappers>, I>>(base?: I): SimpleWithWrappers {
     return SimpleWithWrappers.fromPartial(base ?? {});
   }
@@ -199,6 +203,7 @@ export namespace SimpleWithMap {
     });
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -244,6 +249,7 @@ export namespace SimpleWithMap {
     }
     return message;
   }
+
   export function fromJSON(object: any): SimpleWithMap {
     return {
       nameLookup: isObject(object.nameLookup)
@@ -266,6 +272,7 @@ export namespace SimpleWithMap {
         : {},
     };
   }
+
   export function toJSON(message: SimpleWithMap): unknown {
     const obj: any = {};
     obj.nameLookup = {};
@@ -288,6 +295,7 @@ export namespace SimpleWithMap {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<SimpleWithMap>, I>>(base?: I): SimpleWithMap {
     return SimpleWithMap.fromPartial(base ?? {});
   }
@@ -339,6 +347,7 @@ export namespace SimpleWithMap_NameLookupEntry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap_NameLookupEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -368,15 +377,18 @@ export namespace SimpleWithMap_NameLookupEntry {
     }
     return message;
   }
+
   export function fromJSON(object: any): SimpleWithMap_NameLookupEntry {
     return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object.value) ? String(object.value) : "" };
   }
+
   export function toJSON(message: SimpleWithMap_NameLookupEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<SimpleWithMap_NameLookupEntry>, I>>(
     base?: I,
   ): SimpleWithMap_NameLookupEntry {
@@ -407,6 +419,7 @@ export namespace SimpleWithMap_IntLookupEntry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap_IntLookupEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -436,15 +449,18 @@ export namespace SimpleWithMap_IntLookupEntry {
     }
     return message;
   }
+
   export function fromJSON(object: any): SimpleWithMap_IntLookupEntry {
     return { key: isSet(object.key) ? Number(object.key) : 0, value: isSet(object.value) ? Number(object.value) : 0 };
   }
+
   export function toJSON(message: SimpleWithMap_IntLookupEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = Math.round(message.key));
     message.value !== undefined && (obj.value = Math.round(message.value));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<SimpleWithMap_IntLookupEntry>, I>>(
     base?: I,
   ): SimpleWithMap_IntLookupEntry {
@@ -475,6 +491,7 @@ export namespace SimpleWithMap_LongLookupEntry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleWithMap_LongLookupEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -504,18 +521,21 @@ export namespace SimpleWithMap_LongLookupEntry {
     }
     return message;
   }
+
   export function fromJSON(object: any): SimpleWithMap_LongLookupEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
       value: isSet(object.value) ? Long.fromValue(object.value) : Long.ZERO,
     };
   }
+
   export function toJSON(message: SimpleWithMap_LongLookupEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = (message.value || Long.ZERO).toString());
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<SimpleWithMap_LongLookupEntry>, I>>(
     base?: I,
   ): SimpleWithMap_LongLookupEntry {
@@ -595,6 +615,7 @@ export namespace Numbers {
     writer.ldelim();
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Numbers {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -711,6 +732,7 @@ export namespace Numbers {
     }
     return message;
   }
+
   export function fromJSON(object: any): Numbers {
     return {
       double: isSet(object.double) ? Number(object.double) : 0,
@@ -728,6 +750,7 @@ export namespace Numbers {
       manyUint64: Array.isArray(object?.manyUint64) ? object.manyUint64.map((e: any) => Long.fromValue(e)) : [],
     };
   }
+
   export function toJSON(message: Numbers): unknown {
     const obj: any = {};
     message.double !== undefined && (obj.double = message.double);
@@ -749,6 +772,7 @@ export namespace Numbers {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Numbers>, I>>(base?: I): Numbers {
     return Numbers.fromPartial(base ?? {});
   }

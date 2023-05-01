@@ -55,6 +55,7 @@ export namespace Entity {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Entity {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -77,14 +78,17 @@ export namespace Entity {
     }
     return message;
   }
+
   export function fromJSON(object: any): Entity {
     return { id: isSet(object.id) ? Number(object.id) : 0 };
   }
+
   export function toJSON(message: Entity): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Entity>, I>>(base?: I): Entity {
     return Entity.fromPartial(base ?? {});
   }
@@ -129,6 +133,7 @@ export namespace Maps {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Maps {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -201,6 +206,7 @@ export namespace Maps {
     }
     return message;
   }
+
   export function fromJSON(object: any): Maps {
     return {
       strToEntity: isObject(object.strToEntity)
@@ -236,6 +242,7 @@ export namespace Maps {
       struct: isObject(object.struct) ? object.struct : undefined,
     };
   }
+
   export function toJSON(message: Maps): unknown {
     const obj: any = {};
     obj.strToEntity = {};
@@ -271,6 +278,7 @@ export namespace Maps {
     message.struct !== undefined && (obj.struct = message.struct);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Maps>, I>>(base?: I): Maps {
     return Maps.fromPartial(base ?? {});
   }
@@ -341,6 +349,7 @@ export namespace Maps_StrToEntityEntry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Maps_StrToEntityEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -370,18 +379,21 @@ export namespace Maps_StrToEntityEntry {
     }
     return message;
   }
+
   export function fromJSON(object: any): Maps_StrToEntityEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
       value: isSet(object.value) ? Entity.fromJSON(object.value) : undefined,
     };
   }
+
   export function toJSON(message: Maps_StrToEntityEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value ? Entity.toJSON(message.value) : undefined);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Maps_StrToEntityEntry>, I>>(base?: I): Maps_StrToEntityEntry {
     return Maps_StrToEntityEntry.fromPartial(base ?? {});
   }
@@ -412,6 +424,7 @@ export namespace Maps_Int32ToInt32Entry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Maps_Int32ToInt32Entry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -441,15 +454,18 @@ export namespace Maps_Int32ToInt32Entry {
     }
     return message;
   }
+
   export function fromJSON(object: any): Maps_Int32ToInt32Entry {
     return { key: isSet(object.key) ? Number(object.key) : 0, value: isSet(object.value) ? Number(object.value) : 0 };
   }
+
   export function toJSON(message: Maps_Int32ToInt32Entry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = Math.round(message.key));
     message.value !== undefined && (obj.value = Math.round(message.value));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Maps_Int32ToInt32Entry>, I>>(base?: I): Maps_Int32ToInt32Entry {
     return Maps_Int32ToInt32Entry.fromPartial(base ?? {});
   }
@@ -478,6 +494,7 @@ export namespace Maps_StringToBytesEntry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Maps_StringToBytesEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -507,12 +524,14 @@ export namespace Maps_StringToBytesEntry {
     }
     return message;
   }
+
   export function fromJSON(object: any): Maps_StringToBytesEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
       value: isSet(object.value) ? bytesFromBase64(object.value) : new Uint8Array(),
     };
   }
+
   export function toJSON(message: Maps_StringToBytesEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
@@ -520,6 +539,7 @@ export namespace Maps_StringToBytesEntry {
       (obj.value = base64FromBytes(message.value !== undefined ? message.value : new Uint8Array()));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Maps_StringToBytesEntry>, I>>(base?: I): Maps_StringToBytesEntry {
     return Maps_StringToBytesEntry.fromPartial(base ?? {});
   }
@@ -548,6 +568,7 @@ export namespace Maps_Int64ToInt64Entry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Maps_Int64ToInt64Entry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -577,15 +598,18 @@ export namespace Maps_Int64ToInt64Entry {
     }
     return message;
   }
+
   export function fromJSON(object: any): Maps_Int64ToInt64Entry {
     return { key: isSet(object.key) ? Number(object.key) : 0, value: isSet(object.value) ? Number(object.value) : 0 };
   }
+
   export function toJSON(message: Maps_Int64ToInt64Entry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = Math.round(message.key));
     message.value !== undefined && (obj.value = Math.round(message.value));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Maps_Int64ToInt64Entry>, I>>(base?: I): Maps_Int64ToInt64Entry {
     return Maps_Int64ToInt64Entry.fromPartial(base ?? {});
   }
@@ -614,6 +638,7 @@ export namespace Maps_MapOfTimestampsEntry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Maps_MapOfTimestampsEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -643,18 +668,21 @@ export namespace Maps_MapOfTimestampsEntry {
     }
     return message;
   }
+
   export function fromJSON(object: any): Maps_MapOfTimestampsEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
       value: isSet(object.value) ? fromJsonTimestamp(object.value) : undefined,
     };
   }
+
   export function toJSON(message: Maps_MapOfTimestampsEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value.toISOString());
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Maps_MapOfTimestampsEntry>, I>>(
     base?: I,
   ): Maps_MapOfTimestampsEntry {

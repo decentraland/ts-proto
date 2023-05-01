@@ -56,6 +56,7 @@ export namespace Simple {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Simple {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -106,6 +107,7 @@ export namespace Simple {
     }
     return message;
   }
+
   export function fromJSON(object: any): Simple {
     return {
       name: isSet(object.name) ? String(object.name) : "",
@@ -115,6 +117,7 @@ export namespace Simple {
       testNotDeprecated: isSet(object.testNotDeprecated) ? String(object.testNotDeprecated) : "",
     };
   }
+
   export function toJSON(message: Simple): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
@@ -124,6 +127,7 @@ export namespace Simple {
     message.testNotDeprecated !== undefined && (obj.testNotDeprecated = message.testNotDeprecated);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Simple>, I>>(base?: I): Simple {
     return Simple.fromPartial(base ?? {});
   }
@@ -150,6 +154,7 @@ export namespace Child {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Child {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -172,14 +177,17 @@ export namespace Child {
     }
     return message;
   }
+
   export function fromJSON(object: any): Child {
     return { name: isSet(object.name) ? String(object.name) : "" };
   }
+
   export function toJSON(message: Child): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Child>, I>>(base?: I): Child {
     return Child.fromPartial(base ?? {});
   }

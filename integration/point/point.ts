@@ -27,6 +27,7 @@ export namespace Point {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Point {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -56,15 +57,18 @@ export namespace Point {
     }
     return message;
   }
+
   export function fromJSON(object: any): Point {
     return { lat: isSet(object.lat) ? Number(object.lat) : 0, lng: isSet(object.lng) ? Number(object.lng) : 0 };
   }
+
   export function toJSON(message: Point): unknown {
     const obj: any = {};
     message.lat !== undefined && (obj.lat = message.lat);
     message.lng !== undefined && (obj.lng = message.lng);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Point>, I>>(base?: I): Point {
     return Point.fromPartial(base ?? {});
   }
@@ -91,6 +95,7 @@ export namespace Area {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Area {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -120,18 +125,21 @@ export namespace Area {
     }
     return message;
   }
+
   export function fromJSON(object: any): Area {
     return {
       nw: isSet(object.nw) ? Point.fromJSON(object.nw) : undefined,
       se: isSet(object.se) ? Point.fromJSON(object.se) : undefined,
     };
   }
+
   export function toJSON(message: Area): unknown {
     const obj: any = {};
     message.nw !== undefined && (obj.nw = message.nw ? Point.toJSON(message.nw) : undefined);
     message.se !== undefined && (obj.se = message.se ? Point.toJSON(message.se) : undefined);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Area>, I>>(base?: I): Area {
     return Area.fromPartial(base ?? {});
   }

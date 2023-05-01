@@ -28,6 +28,7 @@ export namespace Parent {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Parent {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -64,6 +65,7 @@ export namespace Parent {
     }
     return message;
   }
+
   export function fromJSON(object: any): Parent {
     return {
       child: isSet(object.child) ? Child.fromJSON(object.child) : undefined,
@@ -71,6 +73,7 @@ export namespace Parent {
       createdAt: isSet(object.createdAt) ? fromJsonTimestamp(object.createdAt) : undefined,
     };
   }
+
   export function toJSON(message: Parent): unknown {
     const obj: any = {};
     message.child !== undefined && (obj.child = message.child ? Child.toJSON(message.child) : undefined);
@@ -78,6 +81,7 @@ export namespace Parent {
     message.createdAt !== undefined && (obj.createdAt = message.createdAt.toISOString());
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Parent>, I>>(base?: I): Parent {
     return Parent.fromPartial(base ?? {});
   }

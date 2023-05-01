@@ -119,6 +119,7 @@ function createBaseTimestamp(): Timestamp {
 
 export namespace Timestamp {
   export const $type = "google.protobuf.Timestamp";
+
   export function encode(message: Timestamp, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.seconds !== 0) {
       writer.uint32(8).int64(message.seconds);
@@ -128,6 +129,7 @@ export namespace Timestamp {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Timestamp {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -157,6 +159,7 @@ export namespace Timestamp {
     }
     return message;
   }
+
   export function fromJSON(object: any): Timestamp {
     return {
       $type: Timestamp.$type,
@@ -164,12 +167,14 @@ export namespace Timestamp {
       nanos: isSet(object.nanos) ? Number(object.nanos) : 0,
     };
   }
+
   export function toJSON(message: Timestamp): unknown {
     const obj: any = {};
     message.seconds !== undefined && (obj.seconds = Math.round(message.seconds));
     message.nanos !== undefined && (obj.nanos = Math.round(message.nanos));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Timestamp>, I>>(base?: I): Timestamp {
     return Timestamp.fromPartial(base ?? {});
   }

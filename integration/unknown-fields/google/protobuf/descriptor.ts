@@ -912,6 +912,7 @@ export namespace FileDescriptorSet {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): FileDescriptorSet {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1022,6 +1023,7 @@ export namespace FileDescriptorProto {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): FileDescriptorProto {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1217,6 +1219,7 @@ export namespace DescriptorProto {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): DescriptorProto {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1348,6 +1351,7 @@ export namespace DescriptorProto_ExtensionRange {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): DescriptorProto_ExtensionRange {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1424,6 +1428,7 @@ export namespace DescriptorProto_ReservedRange {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): DescriptorProto_ReservedRange {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1490,6 +1495,7 @@ export namespace ExtensionRangeOptions {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): ExtensionRangeOptions {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1592,6 +1598,7 @@ export namespace FieldDescriptorProto {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): FieldDescriptorProto {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1724,6 +1731,7 @@ export namespace OneofDescriptorProto {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): OneofDescriptorProto {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1802,6 +1810,7 @@ export namespace EnumDescriptorProto {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): EnumDescriptorProto {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1895,6 +1904,7 @@ export namespace EnumDescriptorProto_EnumReservedRange {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): EnumDescriptorProto_EnumReservedRange {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1967,6 +1977,7 @@ export namespace EnumValueDescriptorProto {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): EnumValueDescriptorProto {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -2046,6 +2057,7 @@ export namespace ServiceDescriptorProto {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): ServiceDescriptorProto {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -2142,6 +2154,7 @@ export namespace MethodDescriptorProto {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): MethodDescriptorProto {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -2319,6 +2332,7 @@ export namespace FileOptions {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): FileOptions {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -2537,6 +2551,7 @@ export namespace MessageOptions {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): MessageOptions {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -2651,6 +2666,7 @@ export namespace FieldOptions {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): FieldOptions {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -2752,6 +2768,7 @@ export namespace OneofOptions {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): OneofOptions {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -2817,6 +2834,7 @@ export namespace EnumOptions {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): EnumOptions {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -2893,6 +2911,7 @@ export namespace EnumValueOptions {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): EnumValueOptions {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -2962,6 +2981,7 @@ export namespace ServiceOptions {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): ServiceOptions {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -3034,6 +3054,7 @@ export namespace MethodOptions {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): MethodOptions {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -3134,6 +3155,7 @@ export namespace UninterpretedOption {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): UninterpretedOption {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -3238,6 +3260,7 @@ export namespace UninterpretedOption_NamePart {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): UninterpretedOption_NamePart {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -3304,6 +3327,7 @@ export namespace SourceCodeInfo {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): SourceCodeInfo {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -3386,6 +3410,7 @@ export namespace SourceCodeInfo_Location {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): SourceCodeInfo_Location {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -3493,6 +3518,7 @@ export namespace GeneratedCodeInfo {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): GeneratedCodeInfo {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -3563,6 +3589,7 @@ export namespace GeneratedCodeInfo_Annotation {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): GeneratedCodeInfo_Annotation {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;

@@ -98,6 +98,7 @@ export namespace Struct {
     });
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Struct {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -123,6 +124,7 @@ export namespace Struct {
     }
     return message;
   }
+
   export function fromJSON(object: any): Struct {
     return {
       fields: isObject(object.fields)
@@ -133,6 +135,7 @@ export namespace Struct {
         : {},
     };
   }
+
   export function toJSON(message: Struct): unknown {
     const obj: any = {};
     obj.fields = {};
@@ -143,6 +146,7 @@ export namespace Struct {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Struct>, I>>(base?: I): Struct {
     return Struct.fromPartial(base ?? {});
   }
@@ -160,6 +164,7 @@ export namespace Struct {
     );
     return message;
   }
+
   export function wrap(object: { [key: string]: any } | undefined): Struct {
     const struct = createBaseStruct();
     if (object !== undefined) {
@@ -169,6 +174,7 @@ export namespace Struct {
     }
     return struct;
   }
+
   export function unwrap(message: Struct): { [key: string]: any } {
     const object: { [key: string]: any } = {};
     if (message.fields) {
@@ -194,6 +200,7 @@ export namespace Struct_FieldsEntry {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Struct_FieldsEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -223,15 +230,18 @@ export namespace Struct_FieldsEntry {
     }
     return message;
   }
+
   export function fromJSON(object: any): Struct_FieldsEntry {
     return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object?.value) ? object.value : undefined };
   }
+
   export function toJSON(message: Struct_FieldsEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Struct_FieldsEntry>, I>>(base?: I): Struct_FieldsEntry {
     return Struct_FieldsEntry.fromPartial(base ?? {});
   }
@@ -272,6 +282,7 @@ export namespace Value {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -329,6 +340,7 @@ export namespace Value {
     }
     return message;
   }
+
   export function fromJSON(object: any): Value {
     return {
       kind: isSet(object.nullValue)
@@ -346,6 +358,7 @@ export namespace Value {
         : undefined,
     };
   }
+
   export function toJSON(message: Value): unknown {
     const obj: any = {};
     message.kind?.$case === "nullValue" &&
@@ -357,6 +370,7 @@ export namespace Value {
     message.kind?.$case === "listValue" && (obj.listValue = message.kind?.listValue);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Value>, I>>(base?: I): Value {
     return Value.fromPartial(base ?? {});
   }
@@ -395,6 +409,7 @@ export namespace Value {
     }
     return message;
   }
+
   export function wrap(value: any): Value {
     const result = createBaseValue() as any;
     if (value === null) {
@@ -414,6 +429,7 @@ export namespace Value {
     }
     return result;
   }
+
   export function unwrap(message: Value): string | number | boolean | Object | null | Array<any> | undefined {
     if (message.kind?.$case === "nullValue") {
       return null;
@@ -444,6 +460,7 @@ export namespace ListValue {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): ListValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -466,9 +483,11 @@ export namespace ListValue {
     }
     return message;
   }
+
   export function fromJSON(object: any): ListValue {
     return { values: Array.isArray(object?.values) ? [...object.values] : [] };
   }
+
   export function toJSON(message: ListValue): unknown {
     const obj: any = {};
     if (message.values) {
@@ -478,6 +497,7 @@ export namespace ListValue {
     }
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<ListValue>, I>>(base?: I): ListValue {
     return ListValue.fromPartial(base ?? {});
   }
@@ -487,11 +507,13 @@ export namespace ListValue {
     message.values = object.values?.map((e) => e) || [];
     return message;
   }
+
   export function wrap(array: ReadonlyArray<any> | undefined): ListValue {
     const result = createBaseListValue() as any;
     result.values = array ?? [];
     return result;
   }
+
   export function unwrap(message: any): Array<any> {
     if (message?.hasOwnProperty("values") && Array.isArray(message.values)) {
       return message.values;

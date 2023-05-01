@@ -83,6 +83,7 @@ export namespace Simple {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Simple {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -112,12 +113,14 @@ export namespace Simple {
     }
     return message;
   }
+
   export function fromJSON(object: any): Simple {
     return {
       name: isSet(object.name) ? String(object.name) : "",
       otherSimple: isSet(object.otherSimple) ? Simple3.fromJSON(object.otherSimple) : undefined,
     };
   }
+
   export function toJSON(message: Simple): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
@@ -125,6 +128,7 @@ export namespace Simple {
       (obj.otherSimple = message.otherSimple ? Simple3.toJSON(message.otherSimple) : undefined);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Simple>, I>>(base?: I): Simple {
     return Simple.fromPartial(base ?? {});
   }
@@ -153,6 +157,7 @@ export namespace SimpleEnums {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleEnums {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -182,18 +187,21 @@ export namespace SimpleEnums {
     }
     return message;
   }
+
   export function fromJSON(object: any): SimpleEnums {
     return {
       localEnum: isSet(object.localEnum) ? simpleEnumFromJSON(object.localEnum) : 0,
       importEnum: isSet(object.importEnum) ? simpleEnumFromJSON4(object.importEnum) : 0,
     };
   }
+
   export function toJSON(message: SimpleEnums): unknown {
     const obj: any = {};
     message.localEnum !== undefined && (obj.localEnum = simpleEnumToJSON(message.localEnum));
     message.importEnum !== undefined && (obj.importEnum = simpleEnumToJSON5(message.importEnum));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<SimpleEnums>, I>>(base?: I): SimpleEnums {
     return SimpleEnums.fromPartial(base ?? {});
   }
@@ -217,6 +225,7 @@ export namespace FooServiceCreateRequest {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): FooServiceCreateRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -239,14 +248,17 @@ export namespace FooServiceCreateRequest {
     }
     return message;
   }
+
   export function fromJSON(object: any): FooServiceCreateRequest {
     return { kind: isSet(object.kind) ? fooServiceFromJSON(object.kind) : 0 };
   }
+
   export function toJSON(message: FooServiceCreateRequest): unknown {
     const obj: any = {};
     message.kind !== undefined && (obj.kind = fooServiceToJSON(message.kind));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<FooServiceCreateRequest>, I>>(base?: I): FooServiceCreateRequest {
     return FooServiceCreateRequest.fromPartial(base ?? {});
   }
@@ -271,6 +283,7 @@ export namespace FooServiceCreateResponse {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): FooServiceCreateResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -293,14 +306,17 @@ export namespace FooServiceCreateResponse {
     }
     return message;
   }
+
   export function fromJSON(object: any): FooServiceCreateResponse {
     return { kind: isSet(object.kind) ? fooServiceFromJSON(object.kind) : 0 };
   }
+
   export function toJSON(message: FooServiceCreateResponse): unknown {
     const obj: any = {};
     message.kind !== undefined && (obj.kind = fooServiceToJSON(message.kind));
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<FooServiceCreateResponse>, I>>(
     base?: I,
   ): FooServiceCreateResponse {

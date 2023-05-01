@@ -21,6 +21,7 @@ export namespace Baz {
     }
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): Baz {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -43,14 +44,17 @@ export namespace Baz {
     }
     return message;
   }
+
   export function fromJSON(object: any): Baz {
     return { foo: isSet(object.foo) ? FooBar.fromJSON(object.foo) : undefined };
   }
+
   export function toJSON(message: Baz): unknown {
     const obj: any = {};
     message.foo !== undefined && (obj.foo = message.foo ? FooBar.toJSON(message.foo) : undefined);
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<Baz>, I>>(base?: I): Baz {
     return Baz.fromPartial(base ?? {});
   }
@@ -70,6 +74,7 @@ export namespace FooBar {
   export function encode(_: FooBar, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   }
+
   export function decode(input: _m0.Reader | Uint8Array, length?: number): FooBar {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -85,13 +90,16 @@ export namespace FooBar {
     }
     return message;
   }
+
   export function fromJSON(_: any): FooBar {
     return {};
   }
+
   export function toJSON(_: FooBar): unknown {
     const obj: any = {};
     return obj;
   }
+
   export function create<I extends Exact<DeepPartial<FooBar>, I>>(base?: I): FooBar {
     return FooBar.fromPartial(base ?? {});
   }
