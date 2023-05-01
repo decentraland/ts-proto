@@ -275,7 +275,7 @@ export function wrap(paths:  string[]): FieldMask {
       result.paths = paths;
       return result;
     }
-unwrap(message: FieldMask): string[] {
+export function unwrap(message: FieldMask): string[] {
       return message.paths;
     }
             };

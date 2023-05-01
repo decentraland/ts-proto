@@ -140,7 +140,9 @@ export function generateUnwrapDeep(ctx: Context, fullProtoTypeName: string, fiel
   }
 
   if (isListValueTypeName(fullProtoTypeName)) {
-    chunks.push(code`export function unwrap(message: ${ctx.options.useReadonlyTypes ? "any" : "ListValue"}): Array<any> {
+    chunks.push(code`export function unwrap(message: ${
+      ctx.options.useReadonlyTypes ? "any" : "ListValue"
+    }): Array<any> {
       if (message?.hasOwnProperty('values') && Array.isArray(message.values)) {
         return message.values.map(Value.unwrap);
       } else {
@@ -294,7 +296,7 @@ export function generateUnwrapShallow(ctx: Context, fullProtoTypeName: string, f
         }
       }`);
     } else {
-      chunks.push(code`unwrap(message: any): string | number | boolean | Object | null | Array<any> | undefined {
+      chunks.push(code`export function unwrap(message: any): string | number | boolean | Object | null | Array<any> | undefined {
         if (message.${fieldNames.stringValue} !== undefined) {
           return message.${fieldNames.stringValue};
         } else if (message?.${fieldNames.numberValue} !== undefined) {
@@ -314,7 +316,9 @@ export function generateUnwrapShallow(ctx: Context, fullProtoTypeName: string, f
   }
 
   if (isListValueTypeName(fullProtoTypeName)) {
-    chunks.push(code`export function unwrap(message: ${ctx.options.useReadonlyTypes ? "any" : "ListValue"}): Array<any> {
+    chunks.push(code`export function unwrap(message: ${
+      ctx.options.useReadonlyTypes ? "any" : "ListValue"
+    }): Array<any> {
       if (message?.hasOwnProperty('values') && Array.isArray(message.values)) {
         return message.values;
       } else {
@@ -324,7 +328,7 @@ export function generateUnwrapShallow(ctx: Context, fullProtoTypeName: string, f
   }
 
   if (isFieldMaskTypeName(fullProtoTypeName)) {
-    chunks.push(code`unwrap(message: ${ctx.options.useReadonlyTypes ? "any" : "FieldMask"}): string[] {
+    chunks.push(code`export function unwrap(message: ${ctx.options.useReadonlyTypes ? "any" : "FieldMask"}): string[] {
       return message.paths;
     }`);
   }
