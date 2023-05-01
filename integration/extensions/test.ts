@@ -194,8 +194,7 @@ function createBaseNested(): Nested {
 }
 
 export namespace Nested {
-  message:
-  <Extension<Nested[]>> {
+  export const message: Extension<Nested[]> = {
     number: 4,
     tag: 34,
     repeated: true,

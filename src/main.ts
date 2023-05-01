@@ -200,7 +200,7 @@ export function generateFile(ctx: Context, fileDesc: FileDescriptorProto): [stri
           for (const extension of message.extension) {
             const { name, type, extensionInfo } = generateExtension(ctx, message, extension);
 
-            staticMembers.push(code`${name}: <${ctx.utils.Extension}<${type}>> ${extensionInfo}`);
+            staticMembers.push(code`export const ${name}: ${ctx.utils.Extension}<${type}> = ${extensionInfo}`);
           }
         }
 
@@ -1916,7 +1916,7 @@ function generateFromJson(ctx: Context, fullName: string, fullTypeName: string, 
 function generateCanonicalToJson(fullName: string, fullProtobufTypeName: string): Code | undefined {
   if (isFieldMaskTypeName(fullProtobufTypeName)) {
     return code`
-    toJSON(message: ${fullName}): string {
+    export function toJSON(message: ${fullName}): string {
       return message.paths.join(',');
     }
   `;
