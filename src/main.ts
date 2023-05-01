@@ -193,7 +193,7 @@ export function generateFile(ctx: Context, fileDesc: FileDescriptorProto): [stri
         const staticMembers: Code[] = [];
 
         if (options.outputTypeRegistry) {
-          staticMembers.push(code`$type: '${fullTypeName}' as const`);
+          staticMembers.push(code`export const $type = '${fullTypeName}'`);
         }
 
         if (options.outputExtensions) {
@@ -254,8 +254,8 @@ export function generateFile(ctx: Context, fileDesc: FileDescriptorProto): [stri
 
         if (staticMembers.length > 0) {
           chunks.push(code`
-            export const ${def(fullName)} = {
-              ${joinCode(staticMembers, { on: ",\n\n" })}
+            export namespace ${def(fullName)} {
+              ${joinCode(staticMembers, { on: "\n" })}
             };
           `);
         }
@@ -1052,7 +1052,7 @@ function generateDecode(ctx: Context, fullName: string, messageDesc: DescriptorP
 
   // create the basic function declaration
   chunks.push(code`
-    decode(
+    export function decode(
       input: ${Reader} | Uint8Array,
       length?: number,
     ): ${fullName} {
@@ -1275,7 +1275,7 @@ function generateEncode(ctx: Context, fullName: string, messageDesc: DescriptorP
 
   // create the basic function declaration
   chunks.push(code`
-    encode(
+    export function encode(
       ${messageDesc.field.length > 0 || options.unknownFields ? "message" : "_"}: ${fullName},
       writer: ${Writer} = ${Writer}.create(),
     ): ${Writer} {
@@ -1445,7 +1445,7 @@ function generateEncode(ctx: Context, fullName: string, messageDesc: DescriptorP
 
 function generateSetExtension(ctx: Context, fullName: string) {
   return code`
-    setExtension <T> (message: ${fullName}, extension: ${ctx.utils.Extension}<T>, value: T): void {
+    export function setExtension <T> (message: ${fullName}, extension: ${ctx.utils.Extension}<T>, value: T): void {
       const encoded = extension.encode!(value);
 
       if (message._unknownFields !== undefined) {
@@ -1469,7 +1469,7 @@ function generateSetExtension(ctx: Context, fullName: string) {
 
 function generateGetExtension(ctx: Context, fullName: string) {
   return code`
-    getExtension <T> (message: ${fullName}, extension: ${ctx.utils.Extension}<T>): T | undefined {
+    export function getExtension <T> (message: ${fullName}, extension: ${ctx.utils.Extension}<T>): T | undefined {
       let results: T | undefined = undefined;
 
       if (message._unknownFields === undefined) {
@@ -1692,7 +1692,7 @@ function generateFromJson(ctx: Context, fullName: string, fullTypeName: string, 
 
   // create the basic function declaration
   chunks.push(code`
-    fromJSON(${messageDesc.field.length > 0 ? "object" : "_"}: any): ${fullName} {
+    export function fromJSON(${messageDesc.field.length > 0 ? "object" : "_"}: any): ${fullName} {
       return {
   `);
 
@@ -1941,7 +1941,7 @@ function generateToJson(
 
   // create the basic function declaration
   chunks.push(code`
-    toJSON(${messageDesc.field.length > 0 ? "message" : "_"}: ${fullName}): unknown {
+    export function toJSON(${messageDesc.field.length > 0 ? "message" : "_"}: ${fullName}): unknown {
       const obj: any = {};
   `);
 
@@ -2075,11 +2075,11 @@ function generateFromPartial(ctx: Context, fullName: string, messageDesc: Descri
   // create the create function definition
   if (ctx.options.useExactTypes) {
     chunks.push(code`
-      create<I extends ${utils.Exact}<${utils.DeepPartial}<${fullName}>, I>>(base?: I): ${fullName} {
+      export function create<I extends ${utils.Exact}<${utils.DeepPartial}<${fullName}>, I>>(base?: I): ${fullName} {
     `);
   } else {
     chunks.push(code`
-      create(base?: ${utils.DeepPartial}<${fullName}>): ${fullName} {
+      export function create(base?: ${utils.DeepPartial}<${fullName}>): ${fullName} {
     `);
   }
 
