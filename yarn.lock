@@ -527,7 +527,7 @@ __metadata:
     typescript: ^4.9.4
     uglify-js: ^3.16.1
   bin:
-    protoc-gen-ts_proto: ./protoc-gen-ts_proto
+    protoc-gen-dcl_ts_proto: ./protoc-gen-dcl_ts_proto
   languageName: unknown
   linkType: soft
 

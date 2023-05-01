@@ -4,7 +4,7 @@
 # uses to understand the incoming protoc codegen request objects.
 
 protoc \
-  --plugin=./node_modules/ts-proto/protoc-gen-ts_proto \
+  --plugin=./node_modules/ts-proto/protoc-gen-dcl_ts_proto \
   --ts_proto_out=. \
   --ts_proto_opt=useExactTypes=false,initializeFieldsAsUndefined=false,exportCommonSymbols=false,unknownFields=true,usePrototypeForDefaults=true,outputExtensions=true \
   ./google/protobuf/descriptor.proto \

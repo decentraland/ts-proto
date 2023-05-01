@@ -19,6 +19,6 @@ FROM node:17-alpine
 WORKDIR /ts-proto
 COPY --from=build /ts-proto/build build
 COPY --from=build /ts-proto/node_modules node_modules
-COPY protoc-gen-ts_proto .
+COPY protoc-gen-dcl_ts_proto .
 
-ENTRYPOINT ["./protoc-gen-ts_proto"]
+ENTRYPOINT ["./protoc-gen-dcl_ts_proto"]

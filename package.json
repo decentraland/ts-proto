@@ -5,7 +5,7 @@
   "main": "build/plugin.js",
   "repository": "github:decentraland/ts-proto",
   "bin": {
-    "protoc-gen-ts_proto": "./protoc-gen-ts_proto"
+    "protoc-gen-dcl_ts_proto": "./protoc-gen-dcl_ts_proto"
   },
   "scripts": {
     "build": "yarn tsc",

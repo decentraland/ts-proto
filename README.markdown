@@ -76,9 +76,9 @@ It will also generate client implementations of `PingService`; currently [Twirp]
 # QuickStart
 
 - `npm install ts-proto`
-- `protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=. ./simple.proto`
-  - (Note that the output parameter name, `ts_proto_out`, is named based on the suffix of the plugin's name, i.e. "ts_proto" suffix in the `--plugin=./node_modules/.bin/protoc-gen-ts_proto` parameter becomes the `_out` prefix, per `protoc`'s CLI conventions.)
-  - On Windows, use `protoc --plugin=protoc-gen-ts_proto=.\node_modules\.bin\protoc-gen-ts_proto.cmd --ts_proto_out=. ./simple.proto` (see [#93](https://github.com/stephenh/ts-proto/issues/93))
+- `protoc --plugin=./node_modules/.bin/protoc-gen-dcl_ts_proto --ts_proto_out=. ./simple.proto`
+  - (Note that the output parameter name, `ts_proto_out`, is named based on the suffix of the plugin's name, i.e. "ts_proto" suffix in the `--plugin=./node_modules/.bin/protoc-gen-dcl_ts_proto` parameter becomes the `_out` prefix, per `protoc`'s CLI conventions.)
+  - On Windows, use `protoc --plugin=protoc-gen-dcl_ts_proto=.\node_modules\.bin\protoc-gen-dcl_ts_proto.cmd --ts_proto_out=. ./simple.proto` (see [#93](https://github.com/stephenh/ts-proto/issues/93))
   - Ensure you're using a modern `protoc`, i.e. the original `protoc` `3.0.0` doesn't support the `_opt` flag
 
 This will generate `*.ts` source files for the given `*.proto` types.
@@ -95,7 +95,7 @@ plugins:
   - name: ts
     out: ../gen/ts
     strategy: all
-    path: ../node_modules/ts-proto/protoc-gen-ts_proto
+    path: ../node_modules/ts-proto/protoc-gen-dcl_ts_proto
 ```
 
 To prevent `buf push` from reading irrelevent `.proto` files, configure `buf.yaml` like so:
@@ -257,7 +257,7 @@ But the net effect is that ts-proto can provide SQL-/ORM-style N+1 prevention fo
 - Invoke `protoc` with a `plugin` parameter like:
 
 ```bash
-protoc --plugin=node_modules/ts-proto/protoc-gen-ts_proto ./batching.proto -I.
+protoc --plugin=node_modules/ts-proto/protoc-gen-dcl_ts_proto ./batching.proto -I.
 ```
 
 `ts-proto` can also be invoked with [Gradle](https://gradle.org) using the [protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin):
@@ -433,7 +433,7 @@ Generated code will be placed in the Gradle build directory.
 - With `--ts_proto_opt=useAsyncIterable=true`, the generated services will use `AsyncIterable` instead of `Observable`.
 
 - With `--ts_proto_opt=emitImportedFiles=false`, ts-proto will not emit `google/protobuf/*` files unless you explicit add files to `protoc` like this
-  `protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto my_message.proto google/protobuf/duration.proto`
+  `protoc --plugin=./node_modules/.bin/protoc-gen-dcl_ts_proto my_message.proto google/protobuf/duration.proto`
 
 - With `--ts_proto_opt=fileSuffix=<SUFFIX>`, ts-proto will emit generated files using the specified suffix. A `helloworld.proto` file with `fileSuffix=.pb` would be generated as `helloworld.pb.ts`. This is common behavior in other protoc plugins and provides a way to quickly glob all the generated files.
 
@@ -630,7 +630,7 @@ Usage:
 . aliases.sh
 
 # Run protoc as usual. The ts-proto directory is available in /ts-proto.
-protoc --plugin=/ts-proto/protoc-gen-ts_proto --ts_proto_out=./output -I=./protos ./protoc/*.proto
+protoc --plugin=/ts-proto/protoc-gen-dcl_ts_proto --ts_proto_out=./output -I=./protos ./protoc/*.proto
 
 # Or use the ts-protoc alias which specifies the plugin path for you.
 ts-protoc --ts_proto_out=./output -I=./protos ./protoc/*.proto
