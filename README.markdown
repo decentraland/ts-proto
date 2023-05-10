@@ -1,6 +1,9 @@
 [![npm](https://img.shields.io/npm/v/ts-proto)](https://www.npmjs.com/package/ts-proto)
 [![build](https://github.com/stephenh/ts-proto/workflows/Build/badge.svg)](https://github.com/stephenh/ts-proto/actions)
 
+# @dcl/ts-proto
+This is a fork of https://github.com/stephenh/ts-proto. Here we use `namespace` exports instead of export object with properties for messages.
+
 # ts-proto
 
 > `ts-proto` transforms your `.proto` files into strongly-typed, idiomatic TypeScript files!
