@@ -26,15 +26,15 @@ function createBaseTPartialMessage(): TPartialMessage {
   return {};
 }
 
-export const TPartialMessage = {
-  encode(message: TPartialMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace TPartialMessage {
+  export function encode(message: TPartialMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.field !== undefined && message.field !== "") {
       writer.uint32(10).string(message.field);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): TPartialMessage {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): TPartialMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTPartialMessage();
@@ -55,35 +55,35 @@ export const TPartialMessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): TPartialMessage {
+  export function fromJSON(object: any): TPartialMessage {
     return { field: isSet(object.field) ? String(object.field) : undefined };
-  },
+  }
 
-  toJSON(message: TPartialMessage): unknown {
+  export function toJSON(message: TPartialMessage): unknown {
     const obj: any = {};
     message.field !== undefined && (obj.field = message.field);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<TPartialMessage>, I>>(base?: I): TPartialMessage {
+  export function create<I extends Exact<DeepPartial<TPartialMessage>, I>>(base?: I): TPartialMessage {
     return TPartialMessage.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<TPartialMessage>, I>>(object: I): TPartialMessage {
+  export function fromPartial<I extends Exact<DeepPartial<TPartialMessage>, I>>(object: I): TPartialMessage {
     const message = createBaseTPartialMessage();
     message.field = object.field ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 function createBaseTPartial(): TPartial {
   return {};
 }
 
-export const TPartial = {
-  encode(message: TPartial, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace TPartial {
+  export function encode(message: TPartial, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.number !== undefined && message.number !== 0) {
       writer.uint32(8).int32(message.number);
     }
@@ -114,9 +114,9 @@ export const TPartial = {
       writer.ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): TPartial {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): TPartial {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTPartial();
@@ -207,9 +207,9 @@ export const TPartial = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): TPartial {
+  export function fromJSON(object: any): TPartial {
     return {
       number: isSet(object.number) ? Number(object.number) : undefined,
       string: isSet(object.string) ? String(object.string) : undefined,
@@ -230,9 +230,9 @@ export const TPartial = {
         ? object.repeatedNumber.map((e: any) => Number(e))
         : undefined,
     };
-  },
+  }
 
-  toJSON(message: TPartial): unknown {
+  export function toJSON(message: TPartial): unknown {
     const obj: any = {};
     message.number !== undefined && (obj.number = Math.round(message.number));
     message.string !== undefined && (obj.string = message.string);
@@ -260,13 +260,13 @@ export const TPartial = {
       obj.repeatedNumber = [];
     }
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<TPartial>, I>>(base?: I): TPartial {
+  export function create<I extends Exact<DeepPartial<TPartial>, I>>(base?: I): TPartial {
     return TPartial.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<TPartial>, I>>(object: I): TPartial {
+  export function fromPartial<I extends Exact<DeepPartial<TPartial>, I>>(object: I): TPartial {
     const message = createBaseTPartial();
     message.number = object.number ?? undefined;
     message.string = object.string ?? undefined;
@@ -285,15 +285,15 @@ export const TPartial = {
     message.repeatedString = object.repeatedString?.map((e) => e) || undefined;
     message.repeatedNumber = object.repeatedNumber?.map((e) => e) || undefined;
     return message;
-  },
-};
+  }
+}
 
 function createBaseTPartial_MapEntry(): TPartial_MapEntry {
   return { key: "", value: "" };
 }
 
-export const TPartial_MapEntry = {
-  encode(message: TPartial_MapEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace TPartial_MapEntry {
+  export function encode(message: TPartial_MapEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
     }
@@ -301,9 +301,9 @@ export const TPartial_MapEntry = {
       writer.uint32(18).string(message.value);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): TPartial_MapEntry {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): TPartial_MapEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTPartial_MapEntry();
@@ -331,30 +331,30 @@ export const TPartial_MapEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): TPartial_MapEntry {
+  export function fromJSON(object: any): TPartial_MapEntry {
     return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object.value) ? String(object.value) : "" };
-  },
+  }
 
-  toJSON(message: TPartial_MapEntry): unknown {
+  export function toJSON(message: TPartial_MapEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<TPartial_MapEntry>, I>>(base?: I): TPartial_MapEntry {
+  export function create<I extends Exact<DeepPartial<TPartial_MapEntry>, I>>(base?: I): TPartial_MapEntry {
     return TPartial_MapEntry.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<TPartial_MapEntry>, I>>(object: I): TPartial_MapEntry {
+  export function fromPartial<I extends Exact<DeepPartial<TPartial_MapEntry>, I>>(object: I): TPartial_MapEntry {
     const message = createBaseTPartial_MapEntry();
     message.key = object.key ?? "";
     message.value = object.value ?? "";
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

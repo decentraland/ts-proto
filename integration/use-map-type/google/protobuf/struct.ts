@@ -104,17 +104,17 @@ function createBaseStruct(): Struct {
   return { fields: new Map() };
 }
 
-export const Struct = {
-  encode(message: Struct, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Struct {
+  export function encode(message: Struct, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     (message.fields).forEach((value, key) => {
       if (value !== undefined) {
         Struct_FieldsEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).ldelim();
       }
     });
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Struct {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Struct {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseStruct();
@@ -138,9 +138,9 @@ export const Struct = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Struct {
+  export function fromJSON(object: any): Struct {
     return {
       fields: isObject(object.fields)
         ? Object.entries(object.fields).reduce<Map<string, any | undefined>>((acc, [key, value]) => {
@@ -149,9 +149,9 @@ export const Struct = {
         }, new Map())
         : new Map(),
     };
-  },
+  }
 
-  toJSON(message: Struct): unknown {
+  export function toJSON(message: Struct): unknown {
     const obj: any = {};
     obj.fields = {};
     if (message.fields) {
@@ -160,13 +160,13 @@ export const Struct = {
       });
     }
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Struct>, I>>(base?: I): Struct {
+  export function create<I extends Exact<DeepPartial<Struct>, I>>(base?: I): Struct {
     return Struct.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Struct>, I>>(object: I): Struct {
+  export function fromPartial<I extends Exact<DeepPartial<Struct>, I>>(object: I): Struct {
     const message = createBaseStruct();
     message.fields = (() => {
       const m = new Map();
@@ -178,9 +178,9 @@ export const Struct = {
       return m;
     })();
     return message;
-  },
+  }
 
-  wrap(object: { [key: string]: any } | undefined): Struct {
+  export function wrap(object: { [key: string]: any } | undefined): Struct {
     const struct = createBaseStruct();
     if (object !== undefined) {
       Object.keys(object).forEach((key) => {
@@ -188,23 +188,23 @@ export const Struct = {
       });
     }
     return struct;
-  },
+  }
 
-  unwrap(message: Struct): { [key: string]: any } {
+  export function unwrap(message: Struct): { [key: string]: any } {
     const object: { [key: string]: any } = {};
     [...message.fields.keys()].forEach((key) => {
       object[key] = message.fields.get(key);
     });
     return object;
-  },
-};
+  }
+}
 
 function createBaseStruct_FieldsEntry(): Struct_FieldsEntry {
   return { key: "", value: undefined };
 }
 
-export const Struct_FieldsEntry = {
-  encode(message: Struct_FieldsEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Struct_FieldsEntry {
+  export function encode(message: Struct_FieldsEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
     }
@@ -212,9 +212,9 @@ export const Struct_FieldsEntry = {
       Value.encode(Value.wrap(message.value), writer.uint32(18).fork()).ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Struct_FieldsEntry {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Struct_FieldsEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseStruct_FieldsEntry();
@@ -242,30 +242,30 @@ export const Struct_FieldsEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Struct_FieldsEntry {
+  export function fromJSON(object: any): Struct_FieldsEntry {
     return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object?.value) ? object.value : undefined };
-  },
+  }
 
-  toJSON(message: Struct_FieldsEntry): unknown {
+  export function toJSON(message: Struct_FieldsEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Struct_FieldsEntry>, I>>(base?: I): Struct_FieldsEntry {
+  export function create<I extends Exact<DeepPartial<Struct_FieldsEntry>, I>>(base?: I): Struct_FieldsEntry {
     return Struct_FieldsEntry.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Struct_FieldsEntry>, I>>(object: I): Struct_FieldsEntry {
+  export function fromPartial<I extends Exact<DeepPartial<Struct_FieldsEntry>, I>>(object: I): Struct_FieldsEntry {
     const message = createBaseStruct_FieldsEntry();
     message.key = object.key ?? "";
     message.value = object.value ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 function createBaseValue(): Value {
   return {
@@ -278,8 +278,8 @@ function createBaseValue(): Value {
   };
 }
 
-export const Value = {
-  encode(message: Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Value {
+  export function encode(message: Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.nullValue !== undefined) {
       writer.uint32(8).int32(message.nullValue);
     }
@@ -299,9 +299,9 @@ export const Value = {
       ListValue.encode(ListValue.wrap(message.listValue), writer.uint32(50).fork()).ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Value {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Value {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseValue();
@@ -357,9 +357,9 @@ export const Value = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Value {
+  export function fromJSON(object: any): Value {
     return {
       nullValue: isSet(object.nullValue) ? nullValueFromJSON(object.nullValue) : undefined,
       numberValue: isSet(object.numberValue) ? Number(object.numberValue) : undefined,
@@ -368,9 +368,9 @@ export const Value = {
       structValue: isObject(object.structValue) ? object.structValue : undefined,
       listValue: Array.isArray(object.listValue) ? [...object.listValue] : undefined,
     };
-  },
+  }
 
-  toJSON(message: Value): unknown {
+  export function toJSON(message: Value): unknown {
     const obj: any = {};
     message.nullValue !== undefined &&
       (obj.nullValue = message.nullValue !== undefined ? nullValueToJSON(message.nullValue) : undefined);
@@ -380,13 +380,13 @@ export const Value = {
     message.structValue !== undefined && (obj.structValue = message.structValue);
     message.listValue !== undefined && (obj.listValue = message.listValue);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Value>, I>>(base?: I): Value {
+  export function create<I extends Exact<DeepPartial<Value>, I>>(base?: I): Value {
     return Value.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Value>, I>>(object: I): Value {
+  export function fromPartial<I extends Exact<DeepPartial<Value>, I>>(object: I): Value {
     const message = createBaseValue();
     message.nullValue = object.nullValue ?? undefined;
     message.numberValue = object.numberValue ?? undefined;
@@ -395,9 +395,9 @@ export const Value = {
     message.structValue = object.structValue ?? undefined;
     message.listValue = object.listValue ?? undefined;
     return message;
-  },
+  }
 
-  wrap(value: any): Value {
+  export function wrap(value: any): Value {
     const result = createBaseValue();
     if (value === null) {
       result.nullValue = NullValue.NULL_VALUE;
@@ -415,9 +415,9 @@ export const Value = {
       throw new Error("Unsupported any value type: " + typeof value);
     }
     return result;
-  },
+  }
 
-  unwrap(message: any): string | number | boolean | Object | null | Array<any> | undefined {
+  export function unwrap(message: any): string | number | boolean | Object | null | Array<any> | undefined {
     if (message.stringValue !== undefined) {
       return message.stringValue;
     } else if (message?.numberValue !== undefined) {
@@ -432,22 +432,22 @@ export const Value = {
       return null;
     }
     return undefined;
-  },
-};
+  }
+}
 
 function createBaseListValue(): ListValue {
   return { values: [] };
 }
 
-export const ListValue = {
-  encode(message: ListValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace ListValue {
+  export function encode(message: ListValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.values) {
       Value.encode(Value.wrap(v!), writer.uint32(10).fork()).ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ListValue {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): ListValue {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseListValue();
@@ -468,13 +468,13 @@ export const ListValue = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): ListValue {
+  export function fromJSON(object: any): ListValue {
     return { values: Array.isArray(object?.values) ? [...object.values] : [] };
-  },
+  }
 
-  toJSON(message: ListValue): unknown {
+  export function toJSON(message: ListValue): unknown {
     const obj: any = {};
     if (message.values) {
       obj.values = message.values.map((e) => e);
@@ -482,32 +482,32 @@ export const ListValue = {
       obj.values = [];
     }
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<ListValue>, I>>(base?: I): ListValue {
+  export function create<I extends Exact<DeepPartial<ListValue>, I>>(base?: I): ListValue {
     return ListValue.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<ListValue>, I>>(object: I): ListValue {
+  export function fromPartial<I extends Exact<DeepPartial<ListValue>, I>>(object: I): ListValue {
     const message = createBaseListValue();
     message.values = object.values?.map((e) => e) || [];
     return message;
-  },
+  }
 
-  wrap(array: Array<any> | undefined): ListValue {
+  export function wrap(array: Array<any> | undefined): ListValue {
     const result = createBaseListValue();
     result.values = array ?? [];
     return result;
-  },
+  }
 
-  unwrap(message: ListValue): Array<any> {
+  export function unwrap(message: ListValue): Array<any> {
     if (message?.hasOwnProperty("values") && Array.isArray(message.values)) {
       return message.values;
     } else {
       return message as any;
     }
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

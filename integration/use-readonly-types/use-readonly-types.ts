@@ -42,8 +42,8 @@ function createBaseEntity(): Entity {
   };
 }
 
-export const Entity = {
-  encode(message: Entity, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Entity {
+  export function encode(message: Entity, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.intVal !== 0) {
       writer.uint32(8).int32(message.intVal);
     }
@@ -85,9 +85,9 @@ export const Entity = {
         break;
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Entity {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Entity {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseEntity() as any;
@@ -195,9 +195,9 @@ export const Entity = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Entity {
+  export function fromJSON(object: any): Entity {
     return {
       intVal: isSet(object.intVal) ? Number(object.intVal) : 0,
       stringVal: isSet(object.stringVal) ? String(object.stringVal) : "",
@@ -217,9 +217,9 @@ export const Entity = {
         ? { $case: "theIntValue", theIntValue: Number(object.theIntValue) }
         : undefined,
     };
-  },
+  }
 
-  toJSON(message: Entity): unknown {
+  export function toJSON(message: Entity): unknown {
     const obj: any = {};
     message.intVal !== undefined && (obj.intVal = Math.round(message.intVal));
     message.stringVal !== undefined && (obj.stringVal = message.stringVal);
@@ -247,13 +247,13 @@ export const Entity = {
     message.oneOfValue?.$case === "theStringValue" && (obj.theStringValue = message.oneOfValue?.theStringValue);
     message.oneOfValue?.$case === "theIntValue" && (obj.theIntValue = Math.round(message.oneOfValue?.theIntValue));
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Entity>, I>>(base?: I): Entity {
+  export function create<I extends Exact<DeepPartial<Entity>, I>>(base?: I): Entity {
     return Entity.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Entity>, I>>(object: I): Entity {
+  export function fromPartial<I extends Exact<DeepPartial<Entity>, I>>(object: I): Entity {
     const message = createBaseEntity() as any;
     message.intVal = object.intVal ?? 0;
     message.stringVal = object.stringVal ?? "";
@@ -282,22 +282,22 @@ export const Entity = {
       message.oneOfValue = { $case: "theIntValue", theIntValue: object.oneOfValue.theIntValue };
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseSubEntity(): SubEntity {
   return { subVal: 0 };
 }
 
-export const SubEntity = {
-  encode(message: SubEntity, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SubEntity {
+  export function encode(message: SubEntity, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.subVal !== 0) {
       writer.uint32(8).int32(message.subVal);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): SubEntity {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SubEntity {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSubEntity() as any;
@@ -318,28 +318,28 @@ export const SubEntity = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): SubEntity {
+  export function fromJSON(object: any): SubEntity {
     return { subVal: isSet(object.subVal) ? Number(object.subVal) : 0 };
-  },
+  }
 
-  toJSON(message: SubEntity): unknown {
+  export function toJSON(message: SubEntity): unknown {
     const obj: any = {};
     message.subVal !== undefined && (obj.subVal = Math.round(message.subVal));
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<SubEntity>, I>>(base?: I): SubEntity {
+  export function create<I extends Exact<DeepPartial<SubEntity>, I>>(base?: I): SubEntity {
     return SubEntity.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<SubEntity>, I>>(object: I): SubEntity {
+  export function fromPartial<I extends Exact<DeepPartial<SubEntity>, I>>(object: I): SubEntity {
     const message = createBaseSubEntity() as any;
     message.subVal = object.subVal ?? 0;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

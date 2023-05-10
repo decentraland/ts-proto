@@ -211,7 +211,7 @@ __metadata:
     ts-poet: ^6.4.1
     ts-proto-descriptors: 1.8.0
   bin:
-    protoc-gen-ts_proto: protoc-gen-ts_proto
+    protoc-gen-dcl_ts_proto: protoc-gen-dcl_ts_proto
   checksum: cd14c650175ef97a042a6f50eb73dff38a6c4acec025ac6278156b822db61d34c83603958d33e2f6bd1cc967aa004a12ee7ff5300d8b04a02d6049d1505ed044
   languageName: node
   linkType: hard

@@ -150,8 +150,8 @@ function createBaseVersion(): Version {
   return { major: 0, minor: 0, patch: 0, suffix: "", _unknownFields: {} };
 }
 
-export const Version = {
-  encode(message: Version, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Version {
+  export function encode(message: Version, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.major !== 0) {
       writer.uint32(8).int32(message.major);
     }
@@ -179,9 +179,9 @@ export const Version = {
       }
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Version {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Version {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseVersion();
@@ -233,15 +233,15 @@ export const Version = {
       }
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseCodeGeneratorRequest(): CodeGeneratorRequest {
   return { fileToGenerate: [], parameter: "", protoFile: [], compilerVersion: undefined, _unknownFields: {} };
 }
 
-export const CodeGeneratorRequest = {
-  encode(message: CodeGeneratorRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace CodeGeneratorRequest {
+  export function encode(message: CodeGeneratorRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.fileToGenerate) {
       writer.uint32(10).string(v!);
     }
@@ -269,9 +269,9 @@ export const CodeGeneratorRequest = {
       }
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): CodeGeneratorRequest {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): CodeGeneratorRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseCodeGeneratorRequest();
@@ -323,15 +323,15 @@ export const CodeGeneratorRequest = {
       }
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseCodeGeneratorResponse(): CodeGeneratorResponse {
   return { error: "", supportedFeatures: 0, file: [], _unknownFields: {} };
 }
 
-export const CodeGeneratorResponse = {
-  encode(message: CodeGeneratorResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace CodeGeneratorResponse {
+  export function encode(message: CodeGeneratorResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.error !== "") {
       writer.uint32(10).string(message.error);
     }
@@ -356,9 +356,9 @@ export const CodeGeneratorResponse = {
       }
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): CodeGeneratorResponse {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): CodeGeneratorResponse {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseCodeGeneratorResponse();
@@ -403,15 +403,15 @@ export const CodeGeneratorResponse = {
       }
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseCodeGeneratorResponse_File(): CodeGeneratorResponse_File {
   return { name: "", insertionPoint: "", content: "", generatedCodeInfo: undefined, _unknownFields: {} };
 }
 
-export const CodeGeneratorResponse_File = {
-  encode(message: CodeGeneratorResponse_File, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace CodeGeneratorResponse_File {
+  export function encode(message: CodeGeneratorResponse_File, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
@@ -439,9 +439,9 @@ export const CodeGeneratorResponse_File = {
       }
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): CodeGeneratorResponse_File {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): CodeGeneratorResponse_File {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseCodeGeneratorResponse_File();
@@ -493,8 +493,8 @@ export const CodeGeneratorResponse_File = {
       }
     }
     return message;
-  },
-};
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

@@ -39,8 +39,8 @@ function createBaseDateMessage(): DateMessage {
   return { year: 0, month: 0, day: 0 };
 }
 
-export const DateMessage = {
-  encode(message: DateMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace DateMessage {
+  export function encode(message: DateMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.year !== 0) {
       writer.uint32(8).int32(message.year);
     }
@@ -51,9 +51,9 @@ export const DateMessage = {
       writer.uint32(24).int32(message.day);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): DateMessage {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): DateMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseDateMessage();
@@ -88,8 +88,8 @@ export const DateMessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 type ProtoMetaMessageOptions = {
   options?: { [key: string]: any };

@@ -11,8 +11,8 @@ function createBaseFoo(): Foo {
   return { name: "", bar: undefined };
 }
 
-export const Foo = {
-  encode(message: Foo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Foo {
+  export function encode(message: Foo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
@@ -20,9 +20,9 @@ export const Foo = {
       Bar.encode(message.bar, writer.uint32(18).fork()).ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Foo {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Foo {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseFoo();
@@ -50,33 +50,33 @@ export const Foo = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Foo {
+  export function fromJSON(object: any): Foo {
     return {
       name: isSet(object.name) ? String(object.name) : "",
       bar: isSet(object.bar) ? Bar.fromJSON(object.bar) : undefined,
     };
-  },
+  }
 
-  toJSON(message: Foo): unknown {
+  export function toJSON(message: Foo): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     message.bar !== undefined && (obj.bar = message.bar ? Bar.toJSON(message.bar) : undefined);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Foo>, I>>(base?: I): Foo {
+  export function create<I extends Exact<DeepPartial<Foo>, I>>(base?: I): Foo {
     return Foo.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Foo>, I>>(object: I): Foo {
+  export function fromPartial<I extends Exact<DeepPartial<Foo>, I>>(object: I): Foo {
     const message = createBaseFoo();
     message.name = object.name ?? "";
     message.bar = (object.bar !== undefined && object.bar !== null) ? Bar.fromPartial(object.bar) : undefined;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

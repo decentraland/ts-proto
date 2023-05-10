@@ -22,8 +22,8 @@ function createBaseTodo(): Todo {
   return { id: "", timestamp: undefined, repeatedTimestamp: [], optionalTimestamp: undefined, mapOfTimestamps: {} };
 }
 
-export const Todo = {
-  encode(message: Todo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Todo {
+  export function encode(message: Todo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
     }
@@ -40,9 +40,9 @@ export const Todo = {
       Todo_MapOfTimestampsEntry.encode({ key: key as any, value }, writer.uint32(42).fork()).ldelim();
     });
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Todo {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Todo {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTodo();
@@ -94,9 +94,9 @@ export const Todo = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Todo {
+  export function fromJSON(object: any): Todo {
     return {
       id: isSet(object.id) ? String(object.id) : "",
       timestamp: isSet(object.timestamp) ? fromJsonTimestamp(object.timestamp) : undefined,
@@ -111,9 +111,9 @@ export const Todo = {
         }, {})
         : {},
     };
-  },
+  }
 
-  toJSON(message: Todo): unknown {
+  export function toJSON(message: Todo): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = message.id);
     message.timestamp !== undefined && (obj.timestamp = message.timestamp.toISOString());
@@ -130,13 +130,13 @@ export const Todo = {
       });
     }
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Todo>, I>>(base?: I): Todo {
+  export function create<I extends Exact<DeepPartial<Todo>, I>>(base?: I): Todo {
     return Todo.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Todo>, I>>(object: I): Todo {
+  export function fromPartial<I extends Exact<DeepPartial<Todo>, I>>(object: I): Todo {
     const message = createBaseTodo();
     message.id = object.id ?? "";
     message.timestamp = object.timestamp ?? undefined;
@@ -152,15 +152,15 @@ export const Todo = {
       {},
     );
     return message;
-  },
-};
+  }
+}
 
 function createBaseTodo_MapOfTimestampsEntry(): Todo_MapOfTimestampsEntry {
   return { key: "", value: undefined };
 }
 
-export const Todo_MapOfTimestampsEntry = {
-  encode(message: Todo_MapOfTimestampsEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Todo_MapOfTimestampsEntry {
+  export function encode(message: Todo_MapOfTimestampsEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
     }
@@ -168,9 +168,9 @@ export const Todo_MapOfTimestampsEntry = {
       Timestamp.encode(toTimestamp(message.value), writer.uint32(18).fork()).ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Todo_MapOfTimestampsEntry {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Todo_MapOfTimestampsEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTodo_MapOfTimestampsEntry();
@@ -198,33 +198,37 @@ export const Todo_MapOfTimestampsEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Todo_MapOfTimestampsEntry {
+  export function fromJSON(object: any): Todo_MapOfTimestampsEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
       value: isSet(object.value) ? fromJsonTimestamp(object.value) : undefined,
     };
-  },
+  }
 
-  toJSON(message: Todo_MapOfTimestampsEntry): unknown {
+  export function toJSON(message: Todo_MapOfTimestampsEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value.toISOString());
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Todo_MapOfTimestampsEntry>, I>>(base?: I): Todo_MapOfTimestampsEntry {
+  export function create<I extends Exact<DeepPartial<Todo_MapOfTimestampsEntry>, I>>(
+    base?: I,
+  ): Todo_MapOfTimestampsEntry {
     return Todo_MapOfTimestampsEntry.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Todo_MapOfTimestampsEntry>, I>>(object: I): Todo_MapOfTimestampsEntry {
+  export function fromPartial<I extends Exact<DeepPartial<Todo_MapOfTimestampsEntry>, I>>(
+    object: I,
+  ): Todo_MapOfTimestampsEntry {
     const message = createBaseTodo_MapOfTimestampsEntry();
     message.key = object.key ?? "";
     message.value = object.value ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 export interface Clock {
   Now(request: Empty): Promise<Timestamp>;

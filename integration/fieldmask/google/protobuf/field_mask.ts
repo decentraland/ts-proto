@@ -212,15 +212,15 @@ function createBaseFieldMask(): FieldMask {
   return { paths: [] };
 }
 
-export const FieldMask = {
-  encode(message: FieldMask, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace FieldMask {
+  export function encode(message: FieldMask, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     for (const v of message.paths) {
       writer.uint32(10).string(v!);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): FieldMask {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): FieldMask {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseFieldMask();
@@ -241,9 +241,9 @@ export const FieldMask = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): FieldMask {
+  export function fromJSON(object: any): FieldMask {
     return {
       paths: typeof (object) === "string"
         ? object.split(",").filter(Boolean)
@@ -251,32 +251,32 @@ export const FieldMask = {
         ? object.paths.map(String)
         : [],
     };
-  },
+  }
 
-  toJSON(message: FieldMask): string {
+  export function toJSON(message: FieldMask): string {
     return message.paths.join(",");
-  },
+  }
 
-  create<I extends Exact<DeepPartial<FieldMask>, I>>(base?: I): FieldMask {
+  export function create<I extends Exact<DeepPartial<FieldMask>, I>>(base?: I): FieldMask {
     return FieldMask.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<FieldMask>, I>>(object: I): FieldMask {
+  export function fromPartial<I extends Exact<DeepPartial<FieldMask>, I>>(object: I): FieldMask {
     const message = createBaseFieldMask();
     message.paths = object.paths?.map((e) => e) || [];
     return message;
-  },
+  }
 
-  wrap(paths: string[]): FieldMask {
+  export function wrap(paths: string[]): FieldMask {
     const result = createBaseFieldMask();
     result.paths = paths;
     return result;
-  },
+  }
 
-  unwrap(message: FieldMask): string[] {
+  export function unwrap(message: FieldMask): string[] {
     return message.paths;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

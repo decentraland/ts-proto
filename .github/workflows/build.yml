@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -44,10 +44,8 @@ jobs:
         env:
           CI: true
 
-  release:
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+  build:
     runs-on: ubuntu-latest
-    needs: [build]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -61,37 +59,56 @@ jobs:
         run: yarn install
       - name: Build
         run: yarn build
-      - name: Release
-        id: release
-        run: yarn semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.ADMIN_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-    outputs:
-      release_version: ${{ steps.release.outputs.release_version }}
-
-  push_to_buf_registry:
-    if: ${{ needs.release.outputs.release_version != '' }}
-    name: Push Docker image to Buf Registry
-    runs-on: ubuntu-latest
-    environment: npm
-    needs: [release]
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v3
-
-      - name: Log in to Buf Plugin Registry
-        uses: docker/login-action@v2
+        
+      - name: publish @dcl/ts-proto package
+        uses: menduz/oddish-action@master
+        id: publish_decentraland_ts_proto
         with:
-          registry: plugins.buf.build
-          username: ${{ secrets.BUF_USERNAME }}
-          password: ${{ secrets.BUF_PASSWORD }}
+          registry-url: 'https://registry.npmjs.org'
+          access: public
+          ## use action runId instead of current date to generate snapshot numbers
+          deterministic-snapshot: true
+          ## sign the deployment
+          provenance: true
+          ## publish every package to s3
+          s3-bucket: ${{ secrets.SDK_TEAM_S3_BUCKET }}
+          s3-bucket-key-prefix: '@dcl/ts-proto/branch/${{ github.head_ref || github.ref }}'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.SDK_TEAM_AWS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
+    outputs:
+      decentraland_ts_proto_s3_bucket_key: ${{ steps.publish_decentraland_ts_proto.outputs.s3-bucket-key }}
 
-      - name: Build Plugin image
-        run: docker build
-          --file ts-proto.Dockerfile
-          --tag plugins.buf.build/${{ secrets.BUF_USERNAME }}/ts-proto:v${{ needs.release.outputs.release_version }}-0
-          "."
-
-      - name: Push to Buf Registry
-        run: docker push plugins.buf.build/${{ secrets.BUF_USERNAME }}/ts-proto:v${{ needs.release.outputs.release_version }}-0
+  notify_deployment:
+    needs: [build]
+    if: ${{ github.event.pull_request.number }}
+    runs-on: ubuntu-latest
+    name: Deployment Notification
+    steps:
+      - uses: actions/github-script@v6
+        id: get-cloudflare-url
+        env:
+          BRANCH: ${{ github.head_ref || github.ref }}
+        with:
+          script: return `${process.env.BRANCH.replaceAll('/', '-').substr(0, 28)}.${context.repo.repo}.pages.dev`
+          result-encoding: string
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Test this pull request
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            # Test this pull request
+            - The `@dcl/ts-proto` package can be tested and installed by:
+               ```bash
+               npm install "${{ secrets.SDK_TEAM_S3_BASE_URL }}/${{ needs.build.outputs.decentraland_ts_proto_s3_bucket_key }}"
+               ```
+          edit-mode: replace

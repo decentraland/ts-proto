@@ -44,15 +44,15 @@ function createBaseIssue56(): Issue56 {
   return { test: 1 };
 }
 
-export const Issue56 = {
-  encode(message: Issue56, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Issue56 {
+  export function encode(message: Issue56, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.test !== 1) {
       writer.uint32(8).int32(message.test);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Issue56 {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Issue56 {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseIssue56();
@@ -73,28 +73,28 @@ export const Issue56 = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Issue56 {
+  export function fromJSON(object: any): Issue56 {
     return { test: isSet(object.test) ? enumWithoutZeroFromJSON(object.test) : 1 };
-  },
+  }
 
-  toJSON(message: Issue56): unknown {
+  export function toJSON(message: Issue56): unknown {
     const obj: any = {};
     message.test !== undefined && (obj.test = enumWithoutZeroToJSON(message.test));
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Issue56>, I>>(base?: I): Issue56 {
+  export function create<I extends Exact<DeepPartial<Issue56>, I>>(base?: I): Issue56 {
     return Issue56.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Issue56>, I>>(object: I): Issue56 {
+  export function fromPartial<I extends Exact<DeepPartial<Issue56>, I>>(object: I): Issue56 {
     const message = createBaseIssue56();
     message.test = object.test ?? 1;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

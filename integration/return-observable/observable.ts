@@ -16,15 +16,15 @@ function createBaseProduceRequest(): ProduceRequest {
   return { ingredients: "" };
 }
 
-export const ProduceRequest = {
-  encode(message: ProduceRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace ProduceRequest {
+  export function encode(message: ProduceRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.ingredients !== "") {
       writer.uint32(10).string(message.ingredients);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ProduceRequest {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): ProduceRequest {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseProduceRequest();
@@ -45,42 +45,42 @@ export const ProduceRequest = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): ProduceRequest {
+  export function fromJSON(object: any): ProduceRequest {
     return { ingredients: isSet(object.ingredients) ? String(object.ingredients) : "" };
-  },
+  }
 
-  toJSON(message: ProduceRequest): unknown {
+  export function toJSON(message: ProduceRequest): unknown {
     const obj: any = {};
     message.ingredients !== undefined && (obj.ingredients = message.ingredients);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<ProduceRequest>, I>>(base?: I): ProduceRequest {
+  export function create<I extends Exact<DeepPartial<ProduceRequest>, I>>(base?: I): ProduceRequest {
     return ProduceRequest.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<ProduceRequest>, I>>(object: I): ProduceRequest {
+  export function fromPartial<I extends Exact<DeepPartial<ProduceRequest>, I>>(object: I): ProduceRequest {
     const message = createBaseProduceRequest();
     message.ingredients = object.ingredients ?? "";
     return message;
-  },
-};
+  }
+}
 
 function createBaseProduceReply(): ProduceReply {
   return { result: "" };
 }
 
-export const ProduceReply = {
-  encode(message: ProduceReply, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace ProduceReply {
+  export function encode(message: ProduceReply, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.result !== "") {
       writer.uint32(10).string(message.result);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ProduceReply {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): ProduceReply {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseProduceReply();
@@ -101,28 +101,28 @@ export const ProduceReply = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): ProduceReply {
+  export function fromJSON(object: any): ProduceReply {
     return { result: isSet(object.result) ? String(object.result) : "" };
-  },
+  }
 
-  toJSON(message: ProduceReply): unknown {
+  export function toJSON(message: ProduceReply): unknown {
     const obj: any = {};
     message.result !== undefined && (obj.result = message.result);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<ProduceReply>, I>>(base?: I): ProduceReply {
+  export function create<I extends Exact<DeepPartial<ProduceReply>, I>>(base?: I): ProduceReply {
     return ProduceReply.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<ProduceReply>, I>>(object: I): ProduceReply {
+  export function fromPartial<I extends Exact<DeepPartial<ProduceReply>, I>>(object: I): ProduceReply {
     const message = createBaseProduceReply();
     message.result = object.result ?? "";
     return message;
-  },
-};
+  }
+}
 
 export interface Factory {
   Produce(request: ProduceRequest): Observable<ProduceReply>;

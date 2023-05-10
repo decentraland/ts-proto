@@ -92,8 +92,8 @@ function createBasePleaseChoose(): PleaseChoose {
   };
 }
 
-export const PleaseChoose = {
-  encode(message: PleaseChoose, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace PleaseChoose {
+  export function encode(message: PleaseChoose, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
@@ -128,9 +128,9 @@ export const PleaseChoose = {
       writer.uint32(74).string(message.thirdOption);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): PleaseChoose {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): PleaseChoose {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBasePleaseChoose();
@@ -221,9 +221,9 @@ export const PleaseChoose = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): PleaseChoose {
+  export function fromJSON(object: any): PleaseChoose {
     return {
       name: isSet(object.name) ? String(object.name) : "",
       aNumber: isSet(object.aNumber) ? Number(object.aNumber) : undefined,
@@ -237,9 +237,9 @@ export const PleaseChoose = {
       or: isSet(object.or) ? String(object.or) : undefined,
       thirdOption: isSet(object.thirdOption) ? String(object.thirdOption) : undefined,
     };
-  },
+  }
 
-  toJSON(message: PleaseChoose): unknown {
+  export function toJSON(message: PleaseChoose): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     message.aNumber !== undefined && (obj.aNumber = message.aNumber);
@@ -256,13 +256,13 @@ export const PleaseChoose = {
     message.or !== undefined && (obj.or = message.or);
     message.thirdOption !== undefined && (obj.thirdOption = message.thirdOption);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<PleaseChoose>, I>>(base?: I): PleaseChoose {
+  export function create<I extends Exact<DeepPartial<PleaseChoose>, I>>(base?: I): PleaseChoose {
     return PleaseChoose.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<PleaseChoose>, I>>(object: I): PleaseChoose {
+  export function fromPartial<I extends Exact<DeepPartial<PleaseChoose>, I>>(object: I): PleaseChoose {
     const message = createBasePleaseChoose();
     message.name = object.name ?? "";
     message.aNumber = object.aNumber ?? undefined;
@@ -278,22 +278,22 @@ export const PleaseChoose = {
     message.or = object.or ?? undefined;
     message.thirdOption = object.thirdOption ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 function createBasePleaseChoose_Submessage(): PleaseChoose_Submessage {
   return { name: "" };
 }
 
-export const PleaseChoose_Submessage = {
-  encode(message: PleaseChoose_Submessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace PleaseChoose_Submessage {
+  export function encode(message: PleaseChoose_Submessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): PleaseChoose_Submessage {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): PleaseChoose_Submessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBasePleaseChoose_Submessage();
@@ -314,28 +314,30 @@ export const PleaseChoose_Submessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): PleaseChoose_Submessage {
+  export function fromJSON(object: any): PleaseChoose_Submessage {
     return { name: isSet(object.name) ? String(object.name) : "" };
-  },
+  }
 
-  toJSON(message: PleaseChoose_Submessage): unknown {
+  export function toJSON(message: PleaseChoose_Submessage): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<PleaseChoose_Submessage>, I>>(base?: I): PleaseChoose_Submessage {
+  export function create<I extends Exact<DeepPartial<PleaseChoose_Submessage>, I>>(base?: I): PleaseChoose_Submessage {
     return PleaseChoose_Submessage.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<PleaseChoose_Submessage>, I>>(object: I): PleaseChoose_Submessage {
+  export function fromPartial<I extends Exact<DeepPartial<PleaseChoose_Submessage>, I>>(
+    object: I,
+  ): PleaseChoose_Submessage {
     const message = createBasePleaseChoose_Submessage();
     message.name = object.name ?? "";
     return message;
-  },
-};
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

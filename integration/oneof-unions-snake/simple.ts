@@ -17,15 +17,15 @@ function createBaseSimpleStruct(): SimpleStruct {
   return { simple_struct: undefined };
 }
 
-export const SimpleStruct = {
-  encode(message: SimpleStruct, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleStruct {
+  export function encode(message: SimpleStruct, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.simple_struct !== undefined) {
       Struct.encode(Struct.wrap(message.simple_struct), writer.uint32(10).fork()).ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleStruct {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleStruct {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleStruct();
@@ -46,28 +46,28 @@ export const SimpleStruct = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): SimpleStruct {
+  export function fromJSON(object: any): SimpleStruct {
     return { simple_struct: isObject(object.simple_struct) ? object.simple_struct : undefined };
-  },
+  }
 
-  toJSON(message: SimpleStruct): unknown {
+  export function toJSON(message: SimpleStruct): unknown {
     const obj: any = {};
     message.simple_struct !== undefined && (obj.simple_struct = message.simple_struct);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<SimpleStruct>, I>>(base?: I): SimpleStruct {
+  export function create<I extends Exact<DeepPartial<SimpleStruct>, I>>(base?: I): SimpleStruct {
     return SimpleStruct.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<SimpleStruct>, I>>(object: I): SimpleStruct {
+  export function fromPartial<I extends Exact<DeepPartial<SimpleStruct>, I>>(object: I): SimpleStruct {
     const message = createBaseSimpleStruct();
     message.simple_struct = object.simple_struct ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

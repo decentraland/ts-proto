@@ -15,8 +15,8 @@ function createBaseParent(): Parent {
   return { child: undefined, childEnum: 0, createdAt: undefined };
 }
 
-export const Parent = {
-  encode(message: Parent, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Parent {
+  export function encode(message: Parent, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.child !== undefined) {
       Child.encode(message.child, writer.uint32(10).fork()).ldelim();
     }
@@ -27,9 +27,9 @@ export const Parent = {
       Timestamp.encode(toTimestamp(message.createdAt), writer.uint32(26).fork()).ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Parent {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Parent {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseParent();
@@ -64,36 +64,36 @@ export const Parent = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Parent {
+  export function fromJSON(object: any): Parent {
     return {
       child: isSet(object.child) ? Child.fromJSON(object.child) : undefined,
       childEnum: isSet(object.childEnum) ? childEnumFromJSON(object.childEnum) : 0,
       createdAt: isSet(object.createdAt) ? fromJsonTimestamp(object.createdAt) : undefined,
     };
-  },
+  }
 
-  toJSON(message: Parent): unknown {
+  export function toJSON(message: Parent): unknown {
     const obj: any = {};
     message.child !== undefined && (obj.child = message.child ? Child.toJSON(message.child) : undefined);
     message.childEnum !== undefined && (obj.childEnum = childEnumToJSON(message.childEnum));
     message.createdAt !== undefined && (obj.createdAt = message.createdAt.toISOString());
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Parent>, I>>(base?: I): Parent {
+  export function create<I extends Exact<DeepPartial<Parent>, I>>(base?: I): Parent {
     return Parent.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Parent>, I>>(object: I): Parent {
+  export function fromPartial<I extends Exact<DeepPartial<Parent>, I>>(object: I): Parent {
     const message = createBaseParent();
     message.child = (object.child !== undefined && object.child !== null) ? Child.fromPartial(object.child) : undefined;
     message.childEnum = object.childEnum ?? 0;
     message.createdAt = object.createdAt ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

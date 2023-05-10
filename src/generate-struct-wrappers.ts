@@ -34,7 +34,7 @@ export function generateWrapDeep(ctx: Context, fullProtoTypeName: string, fieldN
     if (ctx.options.useMapType) {
       setStatement = "struct.fields.set(key, Value.wrap(object[key]));";
     }
-    chunks.push(code`wrap(object: {[key: string]: any} | undefined): Struct {
+    chunks.push(code`export function wrap(object: {[key: string]: any} | undefined): Struct {
       const struct = createBaseStruct();
       if (object !== undefined) {
         Object.keys(object).forEach(key => {
@@ -47,7 +47,7 @@ export function generateWrapDeep(ctx: Context, fullProtoTypeName: string, fieldN
 
   if (isAnyValueTypeName(fullProtoTypeName)) {
     // Turn ts-proto representation --> proto representation
-    chunks.push(code`wrap(value: any): Value {
+    chunks.push(code`export function wrap(value: any): Value {
       const result = {} as any;
       if (value === null) {
         result.${fieldNames.nullValue} = NullValue.NULL_VALUE;
@@ -70,7 +70,7 @@ export function generateWrapDeep(ctx: Context, fullProtoTypeName: string, fieldN
 
   if (isListValueTypeName(fullProtoTypeName)) {
     const maybeReadyOnly = ctx.options.useReadonlyTypes ? "Readonly" : "";
-    chunks.push(code`wrap(array: ${maybeReadyOnly}Array<any> | undefined): ListValue {
+    chunks.push(code`export function wrap(array: ${maybeReadyOnly}Array<any> | undefined): ListValue {
       const result = createBaseListValue()${maybeAsAny(ctx.options)};
       result.values = (array ?? []).map(Value.wrap);
       return result;
@@ -78,7 +78,7 @@ export function generateWrapDeep(ctx: Context, fullProtoTypeName: string, fieldN
   }
 
   if (isFieldMaskTypeName(fullProtoTypeName)) {
-    chunks.push(code`wrap(paths: ${maybeReadonly(ctx.options)} string[]): FieldMask {
+    chunks.push(code`export function wrap(paths: ${maybeReadonly(ctx.options)} string[]): FieldMask {
       const result = createBaseFieldMask()${maybeAsAny(ctx.options)};
       result.paths = paths;
       return result;
@@ -97,7 +97,7 @@ export function generateUnwrapDeep(ctx: Context, fullProtoTypeName: string, fiel
   const chunks: Code[] = [];
   if (isStructTypeName(fullProtoTypeName)) {
     if (ctx.options.useMapType) {
-      chunks.push(code`unwrap(message: Struct): {[key: string]: any} {
+      chunks.push(code`export function unwrap(message: Struct): {[key: string]: any} {
         const object: { [key: string]: any } = {};
         [...message.fields.keys()].forEach((key) => {
           object[key] = Value.unwrap(message.fields.get(key));
@@ -105,7 +105,7 @@ export function generateUnwrapDeep(ctx: Context, fullProtoTypeName: string, fiel
         return object;
       }`);
     } else {
-      chunks.push(code`unwrap(message: Struct): {[key: string]: any} {
+      chunks.push(code`export function unwrap(message: Struct): {[key: string]: any} {
         const object: { [key: string]: any } = {};
         if (message.fields) {
           Object.keys(message.fields).forEach(key => {
@@ -121,7 +121,7 @@ export function generateUnwrapDeep(ctx: Context, fullProtoTypeName: string, fiel
     // We check hasOwnProperty because the incoming `message` has been serde-ing
     // by the NestJS/protobufjs runtime, and so has a base class with default values
     // that throw off the simpler checks we do in generateUnwrapShallow
-    chunks.push(code`unwrap(message: any): string | number | boolean | Object | null | Array<any> | undefined {
+    chunks.push(code`export function unwrap(message: any): string | number | boolean | Object | null | Array<any> | undefined {
       if (message?.hasOwnProperty('${fieldNames.stringValue}') && message.${fieldNames.stringValue} !== undefined) {
         return message.${fieldNames.stringValue};
       } else if (message?.hasOwnProperty('${fieldNames.numberValue}') && message?.${fieldNames.numberValue} !== undefined) {
@@ -140,7 +140,9 @@ export function generateUnwrapDeep(ctx: Context, fullProtoTypeName: string, fiel
   }
 
   if (isListValueTypeName(fullProtoTypeName)) {
-    chunks.push(code`unwrap(message: ${ctx.options.useReadonlyTypes ? "any" : "ListValue"}): Array<any> {
+    chunks.push(code`export function unwrap(message: ${
+      ctx.options.useReadonlyTypes ? "any" : "ListValue"
+    }): Array<any> {
       if (message?.hasOwnProperty('values') && Array.isArray(message.values)) {
         return message.values.map(Value.unwrap);
       } else {
@@ -150,7 +152,7 @@ export function generateUnwrapDeep(ctx: Context, fullProtoTypeName: string, fiel
   }
 
   if (isFieldMaskTypeName(fullProtoTypeName)) {
-    chunks.push(code`unwrap(message: ${ctx.options.useReadonlyTypes ? "any" : "FieldMask"}): string[] {
+    chunks.push(code`export function unwrap(message: ${ctx.options.useReadonlyTypes ? "any" : "FieldMask"}): string[] {
       return message.paths;
     }`);
   }
@@ -170,7 +172,7 @@ export function generateWrapShallow(ctx: Context, fullProtoTypeName: string, fie
     if (ctx.options.useMapType) {
       setStatement = "struct.fields.set(key, object[key]);";
     }
-    chunks.push(code`wrap(object: {[key: string]: any} | undefined): Struct {
+    chunks.push(code`export function wrap(object: {[key: string]: any} | undefined): Struct {
       const struct = createBaseStruct();
       if (object !== undefined) {
         Object.keys(object).forEach(key => {
@@ -183,7 +185,7 @@ export function generateWrapShallow(ctx: Context, fullProtoTypeName: string, fie
 
   if (isAnyValueTypeName(fullProtoTypeName)) {
     if (ctx.options.oneof === OneofOption.UNIONS) {
-      chunks.push(code`wrap(value: any): Value {
+      chunks.push(code`export function wrap(value: any): Value {
         const result = createBaseValue()${maybeAsAny(ctx.options)};
         if (value === null) {
           result.kind = {$case: '${fieldNames.nullValue}', ${fieldNames.nullValue}: NullValue.NULL_VALUE};
@@ -203,7 +205,7 @@ export function generateWrapShallow(ctx: Context, fullProtoTypeName: string, fie
         return result;
     }`);
     } else {
-      chunks.push(code`wrap(value: any): Value {
+      chunks.push(code`export function wrap(value: any): Value {
         const result = createBaseValue()${maybeAsAny(ctx.options)};
         if (value === null) {
           result.${fieldNames.nullValue} = NullValue.NULL_VALUE;
@@ -227,7 +229,7 @@ export function generateWrapShallow(ctx: Context, fullProtoTypeName: string, fie
 
   if (isListValueTypeName(fullProtoTypeName)) {
     const maybeReadyOnly = ctx.options.useReadonlyTypes ? "Readonly" : "";
-    chunks.push(code`wrap(array: ${maybeReadyOnly}Array<any> | undefined): ListValue {
+    chunks.push(code`export function wrap(array: ${maybeReadyOnly}Array<any> | undefined): ListValue {
       const result = createBaseListValue()${maybeAsAny(ctx.options)};
       result.values = array ?? [];
       return result;
@@ -235,7 +237,7 @@ export function generateWrapShallow(ctx: Context, fullProtoTypeName: string, fie
   }
 
   if (isFieldMaskTypeName(fullProtoTypeName)) {
-    chunks.push(code`wrap(paths: ${maybeReadonly(ctx.options)} string[]): FieldMask {
+    chunks.push(code`export function wrap(paths: ${maybeReadonly(ctx.options)} string[]): FieldMask {
       const result = createBaseFieldMask()${maybeAsAny(ctx.options)};
       result.paths = paths;
       return result;
@@ -254,7 +256,7 @@ export function generateUnwrapShallow(ctx: Context, fullProtoTypeName: string, f
   const chunks: Code[] = [];
   if (isStructTypeName(fullProtoTypeName)) {
     if (ctx.options.useMapType) {
-      chunks.push(code`unwrap(message: Struct): {[key: string]: any} {
+      chunks.push(code`export function unwrap(message: Struct): {[key: string]: any} {
         const object: { [key: string]: any } = {};
         [...message.fields.keys()].forEach((key) => {
           object[key] = message.fields.get(key);
@@ -262,7 +264,7 @@ export function generateUnwrapShallow(ctx: Context, fullProtoTypeName: string, f
         return object;
       }`);
     } else {
-      chunks.push(code`unwrap(message: Struct): {[key: string]: any} {
+      chunks.push(code`export function unwrap(message: Struct): {[key: string]: any} {
         const object: { [key: string]: any } = {};
         if (message.fields) {
           Object.keys(message.fields).forEach(key => {
@@ -276,7 +278,7 @@ export function generateUnwrapShallow(ctx: Context, fullProtoTypeName: string, f
 
   if (isAnyValueTypeName(fullProtoTypeName)) {
     if (ctx.options.oneof === OneofOption.UNIONS) {
-      chunks.push(code`unwrap(message: Value): string | number | boolean | Object | null | Array<any> | undefined {
+      chunks.push(code`export function unwrap(message: Value): string | number | boolean | Object | null | Array<any> | undefined {
         if (message.kind?.$case === '${fieldNames.nullValue}') {
           return null;
         } else if (message.kind?.$case === '${fieldNames.numberValue}') {
@@ -294,7 +296,7 @@ export function generateUnwrapShallow(ctx: Context, fullProtoTypeName: string, f
         }
       }`);
     } else {
-      chunks.push(code`unwrap(message: any): string | number | boolean | Object | null | Array<any> | undefined {
+      chunks.push(code`export function unwrap(message: any): string | number | boolean | Object | null | Array<any> | undefined {
         if (message.${fieldNames.stringValue} !== undefined) {
           return message.${fieldNames.stringValue};
         } else if (message?.${fieldNames.numberValue} !== undefined) {
@@ -314,7 +316,9 @@ export function generateUnwrapShallow(ctx: Context, fullProtoTypeName: string, f
   }
 
   if (isListValueTypeName(fullProtoTypeName)) {
-    chunks.push(code`unwrap(message: ${ctx.options.useReadonlyTypes ? "any" : "ListValue"}): Array<any> {
+    chunks.push(code`export function unwrap(message: ${
+      ctx.options.useReadonlyTypes ? "any" : "ListValue"
+    }): Array<any> {
       if (message?.hasOwnProperty('values') && Array.isArray(message.values)) {
         return message.values;
       } else {
@@ -324,7 +328,7 @@ export function generateUnwrapShallow(ctx: Context, fullProtoTypeName: string, f
   }
 
   if (isFieldMaskTypeName(fullProtoTypeName)) {
-    chunks.push(code`unwrap(message: ${ctx.options.useReadonlyTypes ? "any" : "FieldMask"}): string[] {
+    chunks.push(code`export function unwrap(message: ${ctx.options.useReadonlyTypes ? "any" : "FieldMask"}): string[] {
       return message.paths;
     }`);
   }

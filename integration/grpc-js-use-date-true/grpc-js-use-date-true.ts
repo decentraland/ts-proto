@@ -24,15 +24,15 @@ function createBaseTimestampMessage(): TimestampMessage {
   return { timestamp: undefined };
 }
 
-export const TimestampMessage = {
-  encode(message: TimestampMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace TimestampMessage {
+  export function encode(message: TimestampMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.timestamp !== undefined) {
       Timestamp.encode(toTimestamp(message.timestamp), writer.uint32(10).fork()).ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): TimestampMessage {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): TimestampMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTimestampMessage();
@@ -53,28 +53,28 @@ export const TimestampMessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): TimestampMessage {
+  export function fromJSON(object: any): TimestampMessage {
     return { timestamp: isSet(object.timestamp) ? fromJsonTimestamp(object.timestamp) : undefined };
-  },
+  }
 
-  toJSON(message: TimestampMessage): unknown {
+  export function toJSON(message: TimestampMessage): unknown {
     const obj: any = {};
     message.timestamp !== undefined && (obj.timestamp = message.timestamp.toISOString());
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<TimestampMessage>, I>>(base?: I): TimestampMessage {
+  export function create<I extends Exact<DeepPartial<TimestampMessage>, I>>(base?: I): TimestampMessage {
     return TimestampMessage.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<TimestampMessage>, I>>(object: I): TimestampMessage {
+  export function fromPartial<I extends Exact<DeepPartial<TimestampMessage>, I>>(object: I): TimestampMessage {
     const message = createBaseTimestampMessage();
     message.timestamp = object.timestamp ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 export type TestService = typeof TestService;
 export const TestService = {

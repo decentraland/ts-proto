@@ -74,8 +74,8 @@ function createBaseSimple(): Simple {
   return { name: "", state: StateEnum.UNKNOWN, states: [], nullValue: NullValue.NULL_VALUE, stateMap: {} };
 }
 
-export const Simple = {
-  encode(message: Simple, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Simple {
+  export function encode(message: Simple, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
@@ -94,9 +94,9 @@ export const Simple = {
       Simple_StateMapEntry.encode({ key: key as any, value }, writer.uint32(58).fork()).ldelim();
     });
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Simple {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Simple {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimple();
@@ -158,9 +158,9 @@ export const Simple = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Simple {
+  export function fromJSON(object: any): Simple {
     return {
       name: isSet(object.name) ? String(object.name) : "",
       state: isSet(object.state) ? stateEnumFromJSON(object.state) : StateEnum.UNKNOWN,
@@ -173,9 +173,9 @@ export const Simple = {
         }, {})
         : {},
     };
-  },
+  }
 
-  toJSON(message: Simple): unknown {
+  export function toJSON(message: Simple): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     message.state !== undefined && (obj.state = stateEnumToJSON(message.state));
@@ -192,13 +192,13 @@ export const Simple = {
       });
     }
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Simple>, I>>(base?: I): Simple {
+  export function create<I extends Exact<DeepPartial<Simple>, I>>(base?: I): Simple {
     return Simple.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Simple>, I>>(object: I): Simple {
+  export function fromPartial<I extends Exact<DeepPartial<Simple>, I>>(object: I): Simple {
     const message = createBaseSimple();
     message.name = object.name ?? "";
     message.state = object.state ?? StateEnum.UNKNOWN;
@@ -214,15 +214,15 @@ export const Simple = {
       {},
     );
     return message;
-  },
-};
+  }
+}
 
 function createBaseSimple_StateMapEntry(): Simple_StateMapEntry {
   return { key: "", value: StateEnum.UNKNOWN };
 }
 
-export const Simple_StateMapEntry = {
-  encode(message: Simple_StateMapEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Simple_StateMapEntry {
+  export function encode(message: Simple_StateMapEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
     }
@@ -230,9 +230,9 @@ export const Simple_StateMapEntry = {
       writer.uint32(16).int32(stateEnumToNumber(message.value));
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Simple_StateMapEntry {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Simple_StateMapEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimple_StateMapEntry();
@@ -260,33 +260,33 @@ export const Simple_StateMapEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Simple_StateMapEntry {
+  export function fromJSON(object: any): Simple_StateMapEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
       value: isSet(object.value) ? stateEnumFromJSON(object.value) : StateEnum.UNKNOWN,
     };
-  },
+  }
 
-  toJSON(message: Simple_StateMapEntry): unknown {
+  export function toJSON(message: Simple_StateMapEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = stateEnumToJSON(message.value));
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Simple_StateMapEntry>, I>>(base?: I): Simple_StateMapEntry {
+  export function create<I extends Exact<DeepPartial<Simple_StateMapEntry>, I>>(base?: I): Simple_StateMapEntry {
     return Simple_StateMapEntry.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Simple_StateMapEntry>, I>>(object: I): Simple_StateMapEntry {
+  export function fromPartial<I extends Exact<DeepPartial<Simple_StateMapEntry>, I>>(object: I): Simple_StateMapEntry {
     const message = createBaseSimple_StateMapEntry();
     message.key = object.key ?? "";
     message.value = object.value ?? StateEnum.UNKNOWN;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

@@ -10,12 +10,12 @@ function createBaseRecord(): Record {
   return {};
 }
 
-export const Record = {
-  encode(_: Record, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Record {
+  export function encode(_: Record, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Record {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Record {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseRecord();
@@ -29,26 +29,26 @@ export const Record = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(_: any): Record {
+  export function fromJSON(_: any): Record {
     return {};
-  },
+  }
 
-  toJSON(_: Record): unknown {
+  export function toJSON(_: Record): unknown {
     const obj: any = {};
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Record>, I>>(base?: I): Record {
+  export function create<I extends Exact<DeepPartial<Record>, I>>(base?: I): Record {
     return Record.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Record>, I>>(_: I): Record {
+  export function fromPartial<I extends Exact<DeepPartial<Record>, I>>(_: I): Record {
     const message = createBaseRecord();
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

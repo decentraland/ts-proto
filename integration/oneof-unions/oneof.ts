@@ -75,8 +75,8 @@ function createBasePleaseChoose(): PleaseChoose {
   return { name: "", choice: undefined, age: 0, eitherOr: undefined, signature: new Uint8Array(), value: undefined };
 }
 
-export const PleaseChoose = {
-  encode(message: PleaseChoose, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace PleaseChoose {
+  export function encode(message: PleaseChoose, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
@@ -121,9 +121,9 @@ export const PleaseChoose = {
       Value.encode(Value.wrap(message.value), writer.uint32(106).fork()).ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): PleaseChoose {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): PleaseChoose {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBasePleaseChoose();
@@ -228,9 +228,9 @@ export const PleaseChoose = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): PleaseChoose {
+  export function fromJSON(object: any): PleaseChoose {
     return {
       name: isSet(object.name) ? String(object.name) : "",
       choice: isSet(object.aNumber)
@@ -257,9 +257,9 @@ export const PleaseChoose = {
       signature: isSet(object.signature) ? bytesFromBase64(object.signature) : new Uint8Array(),
       value: isSet(object?.value) ? object.value : undefined,
     };
-  },
+  }
 
-  toJSON(message: PleaseChoose): unknown {
+  export function toJSON(message: PleaseChoose): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     message.choice?.$case === "aNumber" && (obj.aNumber = message.choice?.aNumber);
@@ -267,12 +267,14 @@ export const PleaseChoose = {
     message.choice?.$case === "aMessage" &&
       (obj.aMessage = message.choice?.aMessage ? PleaseChoose_Submessage.toJSON(message.choice?.aMessage) : undefined);
     message.choice?.$case === "aBool" && (obj.aBool = message.choice?.aBool);
-    message.choice?.$case === "bunchaBytes" && (obj.bunchaBytes = message.choice?.bunchaBytes !== undefined
-      ? base64FromBytes(message.choice?.bunchaBytes)
-      : undefined);
-    message.choice?.$case === "anEnum" && (obj.anEnum = message.choice?.anEnum !== undefined
-      ? pleaseChoose_StateEnumToJSON(message.choice?.anEnum)
-      : undefined);
+    message.choice?.$case === "bunchaBytes" &&
+      (obj.bunchaBytes = message.choice?.bunchaBytes !== undefined
+        ? base64FromBytes(message.choice?.bunchaBytes)
+        : undefined);
+    message.choice?.$case === "anEnum" &&
+      (obj.anEnum = message.choice?.anEnum !== undefined
+        ? pleaseChoose_StateEnumToJSON(message.choice?.anEnum)
+        : undefined);
     message.age !== undefined && (obj.age = Math.round(message.age));
     message.eitherOr?.$case === "either" && (obj.either = message.eitherOr?.either);
     message.eitherOr?.$case === "or" && (obj.or = message.eitherOr?.or);
@@ -281,13 +283,13 @@ export const PleaseChoose = {
       (obj.signature = base64FromBytes(message.signature !== undefined ? message.signature : new Uint8Array()));
     message.value !== undefined && (obj.value = message.value);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<PleaseChoose>, I>>(base?: I): PleaseChoose {
+  export function create<I extends Exact<DeepPartial<PleaseChoose>, I>>(base?: I): PleaseChoose {
     return PleaseChoose.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<PleaseChoose>, I>>(object: I): PleaseChoose {
+  export function fromPartial<I extends Exact<DeepPartial<PleaseChoose>, I>>(object: I): PleaseChoose {
     const message = createBasePleaseChoose();
     message.name = object.name ?? "";
     if (object.choice?.$case === "aNumber" && object.choice?.aNumber !== undefined && object.choice?.aNumber !== null) {
@@ -333,22 +335,22 @@ export const PleaseChoose = {
     message.signature = object.signature ?? new Uint8Array();
     message.value = object.value ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 function createBasePleaseChoose_Submessage(): PleaseChoose_Submessage {
   return { name: "" };
 }
 
-export const PleaseChoose_Submessage = {
-  encode(message: PleaseChoose_Submessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace PleaseChoose_Submessage {
+  export function encode(message: PleaseChoose_Submessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): PleaseChoose_Submessage {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): PleaseChoose_Submessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBasePleaseChoose_Submessage();
@@ -369,35 +371,37 @@ export const PleaseChoose_Submessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): PleaseChoose_Submessage {
+  export function fromJSON(object: any): PleaseChoose_Submessage {
     return { name: isSet(object.name) ? String(object.name) : "" };
-  },
+  }
 
-  toJSON(message: PleaseChoose_Submessage): unknown {
+  export function toJSON(message: PleaseChoose_Submessage): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<PleaseChoose_Submessage>, I>>(base?: I): PleaseChoose_Submessage {
+  export function create<I extends Exact<DeepPartial<PleaseChoose_Submessage>, I>>(base?: I): PleaseChoose_Submessage {
     return PleaseChoose_Submessage.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<PleaseChoose_Submessage>, I>>(object: I): PleaseChoose_Submessage {
+  export function fromPartial<I extends Exact<DeepPartial<PleaseChoose_Submessage>, I>>(
+    object: I,
+  ): PleaseChoose_Submessage {
     const message = createBasePleaseChoose_Submessage();
     message.name = object.name ?? "";
     return message;
-  },
-};
+  }
+}
 
 function createBaseSimpleButOptional(): SimpleButOptional {
   return { name: undefined, age: undefined };
 }
 
-export const SimpleButOptional = {
-  encode(message: SimpleButOptional, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace SimpleButOptional {
+  export function encode(message: SimpleButOptional, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.name !== undefined) {
       writer.uint32(10).string(message.name);
     }
@@ -405,9 +409,9 @@ export const SimpleButOptional = {
       writer.uint32(16).int32(message.age);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): SimpleButOptional {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): SimpleButOptional {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSimpleButOptional();
@@ -435,33 +439,33 @@ export const SimpleButOptional = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): SimpleButOptional {
+  export function fromJSON(object: any): SimpleButOptional {
     return {
       name: isSet(object.name) ? String(object.name) : undefined,
       age: isSet(object.age) ? Number(object.age) : undefined,
     };
-  },
+  }
 
-  toJSON(message: SimpleButOptional): unknown {
+  export function toJSON(message: SimpleButOptional): unknown {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     message.age !== undefined && (obj.age = Math.round(message.age));
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<SimpleButOptional>, I>>(base?: I): SimpleButOptional {
+  export function create<I extends Exact<DeepPartial<SimpleButOptional>, I>>(base?: I): SimpleButOptional {
     return SimpleButOptional.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<SimpleButOptional>, I>>(object: I): SimpleButOptional {
+  export function fromPartial<I extends Exact<DeepPartial<SimpleButOptional>, I>>(object: I): SimpleButOptional {
     const message = createBaseSimpleButOptional();
     message.name = object.name ?? undefined;
     message.age = object.age ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

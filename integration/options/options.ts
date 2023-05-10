@@ -29,8 +29,8 @@ function createBaseMyMessage(): MyMessage {
   return { foo: undefined, foo2: undefined, bar: undefined, quux: undefined };
 }
 
-export const MyMessage = {
-  encode(message: MyMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace MyMessage {
+  export function encode(message: MyMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.foo !== undefined) {
       writer.uint32(8).int32(message.foo);
     }
@@ -44,9 +44,9 @@ export const MyMessage = {
       writer.uint32(34).string(message.quux);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): MyMessage {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): MyMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMyMessage();
@@ -88,19 +88,19 @@ export const MyMessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseRequestType(): RequestType {
   return {};
 }
 
-export const RequestType = {
-  encode(_: RequestType, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace RequestType {
+  export function encode(_: RequestType, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): RequestType {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): RequestType {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseRequestType();
@@ -114,19 +114,19 @@ export const RequestType = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 function createBaseResponseType(): ResponseType {
   return {};
 }
 
-export const ResponseType = {
-  encode(_: ResponseType, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace ResponseType {
+  export function encode(_: ResponseType, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ResponseType {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): ResponseType {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseResponseType();
@@ -140,8 +140,8 @@ export const ResponseType = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 export interface MyService {
   MyMethod(request: RequestType): Promise<ResponseType>;

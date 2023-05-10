@@ -74,15 +74,15 @@ function createBaseDividerData(): DividerData {
   return { type: DividerData_DividerType.DOUBLE };
 }
 
-export const DividerData = {
-  encode(message: DividerData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace DividerData {
+  export function encode(message: DividerData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.type !== DividerData_DividerType.DOUBLE) {
       writer.uint32(8).int32(dividerData_DividerTypeToNumber(message.type));
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): DividerData {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): DividerData {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseDividerData();
@@ -103,28 +103,28 @@ export const DividerData = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): DividerData {
+  export function fromJSON(object: any): DividerData {
     return { type: isSet(object.type) ? dividerData_DividerTypeFromJSON(object.type) : DividerData_DividerType.DOUBLE };
-  },
+  }
 
-  toJSON(message: DividerData): unknown {
+  export function toJSON(message: DividerData): unknown {
     const obj: any = {};
     message.type !== undefined && (obj.type = dividerData_DividerTypeToJSON(message.type));
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<DividerData>, I>>(base?: I): DividerData {
+  export function create<I extends Exact<DeepPartial<DividerData>, I>>(base?: I): DividerData {
     return DividerData.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<DividerData>, I>>(object: I): DividerData {
+  export function fromPartial<I extends Exact<DeepPartial<DividerData>, I>>(object: I): DividerData {
     const message = createBaseDividerData();
     message.type = object.type ?? DividerData_DividerType.DOUBLE;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

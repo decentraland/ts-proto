@@ -14,17 +14,17 @@ function createBaseBar(): Bar {
   return { $type: "foo.bar.Bar", foo: undefined };
 }
 
-export const Bar = {
-  $type: "foo.bar.Bar" as const,
+export namespace Bar {
+  export const $type = "foo.bar.Bar";
 
-  encode(message: Bar, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  export function encode(message: Bar, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.foo !== undefined) {
       Foo.encode(message.foo, writer.uint32(10).fork()).ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Bar {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Bar {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseBar();
@@ -45,28 +45,28 @@ export const Bar = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Bar {
+  export function fromJSON(object: any): Bar {
     return { $type: Bar.$type, foo: isSet(object.foo) ? Foo.fromJSON(object.foo) : undefined };
-  },
+  }
 
-  toJSON(message: Bar): unknown {
+  export function toJSON(message: Bar): unknown {
     const obj: any = {};
     message.foo !== undefined && (obj.foo = message.foo ? Foo.toJSON(message.foo) : undefined);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Bar>, I>>(base?: I): Bar {
+  export function create<I extends Exact<DeepPartial<Bar>, I>>(base?: I): Bar {
     return Bar.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Bar>, I>>(object: I): Bar {
+  export function fromPartial<I extends Exact<DeepPartial<Bar>, I>>(object: I): Bar {
     const message = createBaseBar();
     message.foo = (object.foo !== undefined && object.foo !== null) ? Foo.fromPartial(object.foo) : undefined;
     return message;
-  },
-};
+  }
+}
 
 messageTypeRegistry.set(Bar.$type, Bar);
 

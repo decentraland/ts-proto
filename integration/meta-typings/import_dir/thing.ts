@@ -13,15 +13,15 @@ function createBaseImportedThing(): ImportedThing {
   return { createdAt: undefined };
 }
 
-export const ImportedThing = {
-  encode(message: ImportedThing, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace ImportedThing {
+  export function encode(message: ImportedThing, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.createdAt !== undefined) {
       Timestamp.encode(toTimestamp(message.createdAt), writer.uint32(10).fork()).ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ImportedThing {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): ImportedThing {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseImportedThing();
@@ -42,8 +42,8 @@ export const ImportedThing = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 type ProtoMetaMessageOptions = {
   options?: { [key: string]: any };

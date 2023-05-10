@@ -48,15 +48,15 @@ function createBaseEntity(): Entity {
   return { id: 0 };
 }
 
-export const Entity = {
-  encode(message: Entity, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Entity {
+  export function encode(message: Entity, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.id !== 0) {
       writer.uint32(8).int32(message.id);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Entity {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Entity {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseEntity();
@@ -77,28 +77,28 @@ export const Entity = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Entity {
+  export function fromJSON(object: any): Entity {
     return { id: isSet(object.id) ? Number(object.id) : 0 };
-  },
+  }
 
-  toJSON(message: Entity): unknown {
+  export function toJSON(message: Entity): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Entity>, I>>(base?: I): Entity {
+  export function create<I extends Exact<DeepPartial<Entity>, I>>(base?: I): Entity {
     return Entity.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Entity>, I>>(object: I): Entity {
+  export function fromPartial<I extends Exact<DeepPartial<Entity>, I>>(object: I): Entity {
     const message = createBaseEntity();
     message.id = object.id ?? 0;
     return message;
-  },
-};
+  }
+}
 
 function createBaseMaps(): Maps {
   return {
@@ -111,8 +111,8 @@ function createBaseMaps(): Maps {
   };
 }
 
-export const Maps = {
-  encode(message: Maps, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Maps {
+  export function encode(message: Maps, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     (message.strToEntity).forEach((value, key) => {
       Maps_StrToEntityEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).ldelim();
     });
@@ -132,9 +132,9 @@ export const Maps = {
       Struct.encode(Struct.wrap(message.struct), writer.uint32(50).fork()).ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Maps {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Maps {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMaps();
@@ -205,9 +205,9 @@ export const Maps = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Maps {
+  export function fromJSON(object: any): Maps {
     return {
       strToEntity: isObject(object.strToEntity)
         ? Object.entries(object.strToEntity).reduce<Map<string, Entity>>((acc, [key, value]) => {
@@ -241,9 +241,9 @@ export const Maps = {
         : new Map(),
       struct: isObject(object.struct) ? object.struct : undefined,
     };
-  },
+  }
 
-  toJSON(message: Maps): unknown {
+  export function toJSON(message: Maps): unknown {
     const obj: any = {};
     obj.strToEntity = {};
     if (message.strToEntity) {
@@ -277,13 +277,13 @@ export const Maps = {
     }
     message.struct !== undefined && (obj.struct = message.struct);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Maps>, I>>(base?: I): Maps {
+  export function create<I extends Exact<DeepPartial<Maps>, I>>(base?: I): Maps {
     return Maps.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Maps>, I>>(object: I): Maps {
+  export function fromPartial<I extends Exact<DeepPartial<Maps>, I>>(object: I): Maps {
     const message = createBaseMaps();
     message.strToEntity = (() => {
       const m = new Map();
@@ -332,15 +332,15 @@ export const Maps = {
     })();
     message.struct = object.struct ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 function createBaseMaps_StrToEntityEntry(): Maps_StrToEntityEntry {
   return { key: "", value: undefined };
 }
 
-export const Maps_StrToEntityEntry = {
-  encode(message: Maps_StrToEntityEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Maps_StrToEntityEntry {
+  export function encode(message: Maps_StrToEntityEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
     }
@@ -348,9 +348,9 @@ export const Maps_StrToEntityEntry = {
       Entity.encode(message.value, writer.uint32(18).fork()).ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Maps_StrToEntityEntry {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Maps_StrToEntityEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMaps_StrToEntityEntry();
@@ -378,42 +378,44 @@ export const Maps_StrToEntityEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Maps_StrToEntityEntry {
+  export function fromJSON(object: any): Maps_StrToEntityEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
       value: isSet(object.value) ? Entity.fromJSON(object.value) : undefined,
     };
-  },
+  }
 
-  toJSON(message: Maps_StrToEntityEntry): unknown {
+  export function toJSON(message: Maps_StrToEntityEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value ? Entity.toJSON(message.value) : undefined);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Maps_StrToEntityEntry>, I>>(base?: I): Maps_StrToEntityEntry {
+  export function create<I extends Exact<DeepPartial<Maps_StrToEntityEntry>, I>>(base?: I): Maps_StrToEntityEntry {
     return Maps_StrToEntityEntry.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Maps_StrToEntityEntry>, I>>(object: I): Maps_StrToEntityEntry {
+  export function fromPartial<I extends Exact<DeepPartial<Maps_StrToEntityEntry>, I>>(
+    object: I,
+  ): Maps_StrToEntityEntry {
     const message = createBaseMaps_StrToEntityEntry();
     message.key = object.key ?? "";
     message.value = (object.value !== undefined && object.value !== null)
       ? Entity.fromPartial(object.value)
       : undefined;
     return message;
-  },
-};
+  }
+}
 
 function createBaseMaps_Int32ToInt32Entry(): Maps_Int32ToInt32Entry {
   return { key: 0, value: 0 };
 }
 
-export const Maps_Int32ToInt32Entry = {
-  encode(message: Maps_Int32ToInt32Entry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Maps_Int32ToInt32Entry {
+  export function encode(message: Maps_Int32ToInt32Entry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== 0) {
       writer.uint32(8).int32(message.key);
     }
@@ -421,9 +423,9 @@ export const Maps_Int32ToInt32Entry = {
       writer.uint32(16).int32(message.value);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Maps_Int32ToInt32Entry {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Maps_Int32ToInt32Entry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMaps_Int32ToInt32Entry();
@@ -451,37 +453,39 @@ export const Maps_Int32ToInt32Entry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Maps_Int32ToInt32Entry {
+  export function fromJSON(object: any): Maps_Int32ToInt32Entry {
     return { key: isSet(object.key) ? Number(object.key) : 0, value: isSet(object.value) ? Number(object.value) : 0 };
-  },
+  }
 
-  toJSON(message: Maps_Int32ToInt32Entry): unknown {
+  export function toJSON(message: Maps_Int32ToInt32Entry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = Math.round(message.key));
     message.value !== undefined && (obj.value = Math.round(message.value));
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Maps_Int32ToInt32Entry>, I>>(base?: I): Maps_Int32ToInt32Entry {
+  export function create<I extends Exact<DeepPartial<Maps_Int32ToInt32Entry>, I>>(base?: I): Maps_Int32ToInt32Entry {
     return Maps_Int32ToInt32Entry.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Maps_Int32ToInt32Entry>, I>>(object: I): Maps_Int32ToInt32Entry {
+  export function fromPartial<I extends Exact<DeepPartial<Maps_Int32ToInt32Entry>, I>>(
+    object: I,
+  ): Maps_Int32ToInt32Entry {
     const message = createBaseMaps_Int32ToInt32Entry();
     message.key = object.key ?? 0;
     message.value = object.value ?? 0;
     return message;
-  },
-};
+  }
+}
 
 function createBaseMaps_StringToBytesEntry(): Maps_StringToBytesEntry {
   return { key: "", value: new Uint8Array() };
 }
 
-export const Maps_StringToBytesEntry = {
-  encode(message: Maps_StringToBytesEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Maps_StringToBytesEntry {
+  export function encode(message: Maps_StringToBytesEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
     }
@@ -489,9 +493,9 @@ export const Maps_StringToBytesEntry = {
       writer.uint32(18).bytes(message.value);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Maps_StringToBytesEntry {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Maps_StringToBytesEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMaps_StringToBytesEntry();
@@ -519,41 +523,43 @@ export const Maps_StringToBytesEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Maps_StringToBytesEntry {
+  export function fromJSON(object: any): Maps_StringToBytesEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
       value: isSet(object.value) ? bytesFromBase64(object.value) : new Uint8Array(),
     };
-  },
+  }
 
-  toJSON(message: Maps_StringToBytesEntry): unknown {
+  export function toJSON(message: Maps_StringToBytesEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined &&
       (obj.value = base64FromBytes(message.value !== undefined ? message.value : new Uint8Array()));
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Maps_StringToBytesEntry>, I>>(base?: I): Maps_StringToBytesEntry {
+  export function create<I extends Exact<DeepPartial<Maps_StringToBytesEntry>, I>>(base?: I): Maps_StringToBytesEntry {
     return Maps_StringToBytesEntry.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Maps_StringToBytesEntry>, I>>(object: I): Maps_StringToBytesEntry {
+  export function fromPartial<I extends Exact<DeepPartial<Maps_StringToBytesEntry>, I>>(
+    object: I,
+  ): Maps_StringToBytesEntry {
     const message = createBaseMaps_StringToBytesEntry();
     message.key = object.key ?? "";
     message.value = object.value ?? new Uint8Array();
     return message;
-  },
-};
+  }
+}
 
 function createBaseMaps_Int64ToInt64Entry(): Maps_Int64ToInt64Entry {
   return { key: 0, value: 0 };
 }
 
-export const Maps_Int64ToInt64Entry = {
-  encode(message: Maps_Int64ToInt64Entry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Maps_Int64ToInt64Entry {
+  export function encode(message: Maps_Int64ToInt64Entry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== 0) {
       writer.uint32(8).int64(message.key);
     }
@@ -561,9 +567,9 @@ export const Maps_Int64ToInt64Entry = {
       writer.uint32(16).int64(message.value);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Maps_Int64ToInt64Entry {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Maps_Int64ToInt64Entry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMaps_Int64ToInt64Entry();
@@ -591,37 +597,39 @@ export const Maps_Int64ToInt64Entry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Maps_Int64ToInt64Entry {
+  export function fromJSON(object: any): Maps_Int64ToInt64Entry {
     return { key: isSet(object.key) ? Number(object.key) : 0, value: isSet(object.value) ? Number(object.value) : 0 };
-  },
+  }
 
-  toJSON(message: Maps_Int64ToInt64Entry): unknown {
+  export function toJSON(message: Maps_Int64ToInt64Entry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = Math.round(message.key));
     message.value !== undefined && (obj.value = Math.round(message.value));
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Maps_Int64ToInt64Entry>, I>>(base?: I): Maps_Int64ToInt64Entry {
+  export function create<I extends Exact<DeepPartial<Maps_Int64ToInt64Entry>, I>>(base?: I): Maps_Int64ToInt64Entry {
     return Maps_Int64ToInt64Entry.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Maps_Int64ToInt64Entry>, I>>(object: I): Maps_Int64ToInt64Entry {
+  export function fromPartial<I extends Exact<DeepPartial<Maps_Int64ToInt64Entry>, I>>(
+    object: I,
+  ): Maps_Int64ToInt64Entry {
     const message = createBaseMaps_Int64ToInt64Entry();
     message.key = object.key ?? 0;
     message.value = object.value ?? 0;
     return message;
-  },
-};
+  }
+}
 
 function createBaseMaps_MapOfTimestampsEntry(): Maps_MapOfTimestampsEntry {
   return { key: "", value: undefined };
 }
 
-export const Maps_MapOfTimestampsEntry = {
-  encode(message: Maps_MapOfTimestampsEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Maps_MapOfTimestampsEntry {
+  export function encode(message: Maps_MapOfTimestampsEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
     }
@@ -629,9 +637,9 @@ export const Maps_MapOfTimestampsEntry = {
       Timestamp.encode(toTimestamp(message.value), writer.uint32(18).fork()).ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Maps_MapOfTimestampsEntry {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Maps_MapOfTimestampsEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMaps_MapOfTimestampsEntry();
@@ -659,33 +667,37 @@ export const Maps_MapOfTimestampsEntry = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): Maps_MapOfTimestampsEntry {
+  export function fromJSON(object: any): Maps_MapOfTimestampsEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
       value: isSet(object.value) ? fromJsonTimestamp(object.value) : undefined,
     };
-  },
+  }
 
-  toJSON(message: Maps_MapOfTimestampsEntry): unknown {
+  export function toJSON(message: Maps_MapOfTimestampsEntry): unknown {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined && (obj.value = message.value.toISOString());
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<Maps_MapOfTimestampsEntry>, I>>(base?: I): Maps_MapOfTimestampsEntry {
+  export function create<I extends Exact<DeepPartial<Maps_MapOfTimestampsEntry>, I>>(
+    base?: I,
+  ): Maps_MapOfTimestampsEntry {
     return Maps_MapOfTimestampsEntry.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<Maps_MapOfTimestampsEntry>, I>>(object: I): Maps_MapOfTimestampsEntry {
+  export function fromPartial<I extends Exact<DeepPartial<Maps_MapOfTimestampsEntry>, I>>(
+    object: I,
+  ): Maps_MapOfTimestampsEntry {
     const message = createBaseMaps_MapOfTimestampsEntry();
     message.key = object.key ?? "";
     message.value = object.value ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 declare var self: any | undefined;
 declare var window: any | undefined;

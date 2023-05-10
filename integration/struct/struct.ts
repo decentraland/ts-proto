@@ -12,15 +12,15 @@ function createBaseStructMessage(): StructMessage {
   return { value: undefined };
 }
 
-export const StructMessage = {
-  encode(message: StructMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace StructMessage {
+  export function encode(message: StructMessage, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.value !== undefined) {
       Struct.encode(Struct.wrap(message.value), writer.uint32(10).fork()).ldelim();
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): StructMessage {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): StructMessage {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseStructMessage();
@@ -41,28 +41,28 @@ export const StructMessage = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): StructMessage {
+  export function fromJSON(object: any): StructMessage {
     return { value: isObject(object.value) ? object.value : undefined };
-  },
+  }
 
-  toJSON(message: StructMessage): unknown {
+  export function toJSON(message: StructMessage): unknown {
     const obj: any = {};
     message.value !== undefined && (obj.value = message.value);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<StructMessage>, I>>(base?: I): StructMessage {
+  export function create<I extends Exact<DeepPartial<StructMessage>, I>>(base?: I): StructMessage {
     return StructMessage.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<StructMessage>, I>>(object: I): StructMessage {
+  export function fromPartial<I extends Exact<DeepPartial<StructMessage>, I>>(object: I): StructMessage {
     const message = createBaseStructMessage();
     message.value = object.value ?? undefined;
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

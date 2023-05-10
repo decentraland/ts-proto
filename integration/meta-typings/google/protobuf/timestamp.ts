@@ -116,8 +116,8 @@ function createBaseTimestamp(): Timestamp {
   return { seconds: 0, nanos: 0 };
 }
 
-export const Timestamp = {
-  encode(message: Timestamp, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace Timestamp {
+  export function encode(message: Timestamp, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.seconds !== 0) {
       writer.uint32(8).int64(message.seconds);
     }
@@ -125,9 +125,9 @@ export const Timestamp = {
       writer.uint32(16).int32(message.nanos);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Timestamp {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): Timestamp {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTimestamp();
@@ -155,8 +155,8 @@ export const Timestamp = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
-};
+  }
+}
 
 type ProtoMetaMessageOptions = {
   options?: { [key: string]: any };
