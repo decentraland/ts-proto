@@ -1,6 +1,7 @@
 /* eslint-disable */
 import * as Long from "long";
 import * as _m0 from "protobufjs/minimal";
+import { Timestamp } from "./google/protobuf/timestamp";
 
 export const protobufPackage = "optionalstest";
 
@@ -44,20 +45,20 @@ export function stateEnumToJSON(object: StateEnum): string {
 }
 
 export interface OptionalsTest {
-  id?: number;
-  child?: Child;
-  state?: StateEnum;
-  long?: number;
-  truth?: boolean;
-  description?: string;
-  data?: Uint8Array;
-  repId?: number[];
-  repChild?: Child[];
-  repState?: StateEnum[];
-  repLong?: number[];
-  repTruth?: boolean[];
-  repDescription?: string[];
-  repData?: Uint8Array[];
+  id?: number | undefined;
+  child?: Child | undefined;
+  state?: StateEnum | undefined;
+  long?: number | undefined;
+  truth?: boolean | undefined;
+  description?: string | undefined;
+  data?: Uint8Array | undefined;
+  repId?: number[] | undefined;
+  repChild?: Child[] | undefined;
+  repState?: StateEnum[] | undefined;
+  repLong?: number[] | undefined;
+  repTruth?: boolean[] | undefined;
+  repDescription?: string[] | undefined;
+  repData?: Uint8Array[] | undefined;
   optId?: number | undefined;
   optChild?: Child | undefined;
   optState?: StateEnum | undefined;
@@ -65,7 +66,8 @@ export interface OptionalsTest {
   optTruth?: boolean | undefined;
   optDescription?: string | undefined;
   optData?: Uint8Array | undefined;
-  translations?: { [key: string]: string };
+  translations?: { [key: string]: string } | undefined;
+  timestamp?: Date | undefined;
 }
 
 export interface OptionalsTest_TranslationsEntry {
@@ -84,7 +86,7 @@ function createBaseOptionalsTest(): OptionalsTest {
     long: 0,
     truth: false,
     description: "",
-    data: new Uint8Array(),
+    data: new Uint8Array(0),
     repId: [],
     repChild: [],
     repState: [],
@@ -100,6 +102,7 @@ function createBaseOptionalsTest(): OptionalsTest {
     optDescription: undefined,
     optData: undefined,
     translations: {},
+    timestamp: undefined,
   };
 }
 
@@ -193,6 +196,9 @@ export namespace OptionalsTest {
     Object.entries(message.translations || {}).forEach(([key, value]) => {
       OptionalsTest_TranslationsEntry.encode({ key: key as any, value }, writer.uint32(242).fork()).ldelim();
     });
+    if (message.timestamp !== undefined) {
+      Timestamp.encode(toTimestamp(message.timestamp), writer.uint32(250).fork()).ldelim();
+    }
     return writer;
   }
 
@@ -400,6 +406,13 @@ export namespace OptionalsTest {
             message.translations![entry30.key] = entry30.value;
           }
           continue;
+        case 31:
+          if (tag !== 250) {
+            break;
+          }
+
+          message.timestamp = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -417,7 +430,7 @@ export namespace OptionalsTest {
       long: isSet(object.long) ? Number(object.long) : 0,
       truth: isSet(object.truth) ? Boolean(object.truth) : false,
       description: isSet(object.description) ? String(object.description) : "",
-      data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(),
+      data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(0),
       repId: Array.isArray(object?.repId) ? object.repId.map((e: any) => Number(e)) : [],
       repChild: Array.isArray(object?.repChild) ? object.repChild.map((e: any) => Child.fromJSON(e)) : [],
       repState: Array.isArray(object?.repState) ? object.repState.map((e: any) => stateEnumFromJSON(e)) : [],
@@ -438,6 +451,7 @@ export namespace OptionalsTest {
           return acc;
         }, {})
         : {},
+      timestamp: isSet(object.timestamp) ? fromJsonTimestamp(object.timestamp) : undefined,
     };
   }
 
@@ -450,7 +464,7 @@ export namespace OptionalsTest {
     message.truth !== undefined && (obj.truth = message.truth);
     message.description !== undefined && (obj.description = message.description);
     message.data !== undefined &&
-      (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array()));
+      (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array(0)));
     if (message.repId) {
       obj.repId = message.repId.map((e) => Math.round(e));
     } else {
@@ -482,7 +496,7 @@ export namespace OptionalsTest {
       obj.repDescription = [];
     }
     if (message.repData) {
-      obj.repData = message.repData.map((e) => base64FromBytes(e !== undefined ? e : new Uint8Array()));
+      obj.repData = message.repData.map((e) => base64FromBytes(e !== undefined ? e : new Uint8Array(0)));
     } else {
       obj.repData = [];
     }
@@ -501,6 +515,7 @@ export namespace OptionalsTest {
         obj.translations[k] = v;
       });
     }
+    message.timestamp !== undefined && (obj.timestamp = message.timestamp.toISOString());
     return obj;
   }
 
@@ -516,7 +531,7 @@ export namespace OptionalsTest {
     message.long = object.long ?? 0;
     message.truth = object.truth ?? false;
     message.description = object.description ?? "";
-    message.data = object.data ?? new Uint8Array();
+    message.data = object.data ?? new Uint8Array(0);
     message.repId = object.repId?.map((e) => e) || [];
     message.repChild = object.repChild?.map((e) => Child.fromPartial(e)) || [];
     message.repState = object.repState?.map((e) => e) || [];
@@ -542,6 +557,7 @@ export namespace OptionalsTest {
       },
       {},
     );
+    message.timestamp = object.timestamp ?? undefined;
     return message;
   }
 }
@@ -665,10 +681,10 @@ export namespace Child {
   }
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
+declare const self: any | undefined;
+declare const window: any | undefined;
+declare const global: any | undefined;
+const tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
@@ -719,6 +735,28 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+function toTimestamp(date: Date): Timestamp {
+  const seconds = date.getTime() / 1_000;
+  const nanos = (date.getTime() % 1_000) * 1_000_000;
+  return { seconds, nanos };
+}
+
+function fromTimestamp(t: Timestamp): Date {
+  let millis = (t.seconds || 0) * 1_000;
+  millis += (t.nanos || 0) / 1_000_000;
+  return new Date(millis);
+}
+
+function fromJsonTimestamp(o: any): Date {
+  if (o instanceof Date) {
+    return o;
+  } else if (typeof o === "string") {
+    return new Date(o);
+  } else {
+    return fromTimestamp(Timestamp.fromJSON(o));
+  }
+}
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {

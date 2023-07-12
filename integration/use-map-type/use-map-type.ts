@@ -481,7 +481,7 @@ export namespace Maps_Int32ToInt32Entry {
 }
 
 function createBaseMaps_StringToBytesEntry(): Maps_StringToBytesEntry {
-  return { key: "", value: new Uint8Array() };
+  return { key: "", value: new Uint8Array(0) };
 }
 
 export namespace Maps_StringToBytesEntry {
@@ -528,7 +528,7 @@ export namespace Maps_StringToBytesEntry {
   export function fromJSON(object: any): Maps_StringToBytesEntry {
     return {
       key: isSet(object.key) ? String(object.key) : "",
-      value: isSet(object.value) ? bytesFromBase64(object.value) : new Uint8Array(),
+      value: isSet(object.value) ? bytesFromBase64(object.value) : new Uint8Array(0),
     };
   }
 
@@ -536,7 +536,7 @@ export namespace Maps_StringToBytesEntry {
     const obj: any = {};
     message.key !== undefined && (obj.key = message.key);
     message.value !== undefined &&
-      (obj.value = base64FromBytes(message.value !== undefined ? message.value : new Uint8Array()));
+      (obj.value = base64FromBytes(message.value !== undefined ? message.value : new Uint8Array(0)));
     return obj;
   }
 
@@ -549,7 +549,7 @@ export namespace Maps_StringToBytesEntry {
   ): Maps_StringToBytesEntry {
     const message = createBaseMaps_StringToBytesEntry();
     message.key = object.key ?? "";
-    message.value = object.value ?? new Uint8Array();
+    message.value = object.value ?? new Uint8Array(0);
     return message;
   }
 }
@@ -699,10 +699,10 @@ export namespace Maps_MapOfTimestampsEntry {
   }
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
+declare const self: any | undefined;
+declare const window: any | undefined;
+declare const global: any | undefined;
+const tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
@@ -761,8 +761,8 @@ function toTimestamp(date: Date): Timestamp {
 }
 
 function fromTimestamp(t: Timestamp): Date {
-  let millis = t.seconds * 1_000;
-  millis += t.nanos / 1_000_000;
+  let millis = (t.seconds || 0) * 1_000;
+  millis += (t.nanos || 0) / 1_000_000;
   return new Date(millis);
 }
 

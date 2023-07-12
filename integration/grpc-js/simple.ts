@@ -166,10 +166,10 @@ export const TestService = {
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: Uint8Array | undefined) =>
-      Buffer.from(BytesValue.encode({ value: value ?? new Uint8Array() }).finish()),
+      Buffer.from(BytesValue.encode({ value: value ?? new Uint8Array(0) }).finish()),
     requestDeserialize: (value: Buffer) => BytesValue.decode(value).value,
     responseSerialize: (value: Uint8Array | undefined) =>
-      Buffer.from(BytesValue.encode({ value: value ?? new Uint8Array() }).finish()),
+      Buffer.from(BytesValue.encode({ value: value ?? new Uint8Array(0) }).finish()),
     responseDeserialize: (value: Buffer) => BytesValue.decode(value).value,
   },
   unaryFloatValue: {
@@ -648,8 +648,8 @@ function toTimestamp(date: Date): Timestamp {
 }
 
 function fromTimestamp(t: Timestamp): Date {
-  let millis = t.seconds * 1_000;
-  millis += t.nanos / 1_000_000;
+  let millis = (t.seconds || 0) * 1_000;
+  millis += (t.nanos || 0) / 1_000_000;
   return new Date(millis);
 }
 

@@ -48,6 +48,7 @@ export type Options = {
   outputEncodeMethods: true | false | "encode-only" | "decode-only" | "encode-no-creation";
   outputJsonMethods: boolean;
   outputPartialMethods: boolean;
+  outputTypeAnnotations: boolean | "static-only";
   outputTypeRegistry: boolean;
   stringEnums: boolean;
   constEnums: boolean;
@@ -79,6 +80,7 @@ export type Options = {
   useReadonlyTypes: boolean;
   useSnakeTypeName: boolean;
   outputExtensions: boolean;
+  outputIndex: boolean;
   M: { [from: string]: string };
 };
 
@@ -98,6 +100,7 @@ export function defaultOptions(): Options {
     outputEncodeMethods: true,
     outputJsonMethods: true,
     outputPartialMethods: true,
+    outputTypeAnnotations: false,
     outputTypeRegistry: false,
     stringEnums: false,
     constEnums: false,
@@ -128,6 +131,7 @@ export function defaultOptions(): Options {
     useReadonlyTypes: false,
     useSnakeTypeName: true,
     outputExtensions: false,
+    outputIndex: false,
     M: {},
   };
 }
@@ -216,6 +220,10 @@ export function optionsFromParameter(parameter: string | undefined): Options {
     options.initializeFieldsAsUndefined = false;
   }
 
+  if (options.outputIndex) {
+    options.exportCommonSymbols = false;
+  }
+
   return options;
 }
 
@@ -260,4 +268,10 @@ export function getTsPoetOpts(_options: Options): ToStringOpts {
     dprintOptions: { preferSingleLine: true, lineWidth: 120 },
     ...(_options.esModuleInterop ? { forceDefaultImport: imports } : { forceModuleImport: imports }),
   };
+}
+
+export function addTypeToMessages(options: Options): boolean {
+  return (
+    (options.outputTypeAnnotations || options.outputTypeRegistry) && options.outputTypeAnnotations !== "static-only"
+  );
 }

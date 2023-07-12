@@ -543,7 +543,7 @@ export namespace StringValue {
 }
 
 function createBaseBytesValue(): BytesValue {
-  return { value: new Uint8Array() };
+  return { value: new Uint8Array(0) };
 }
 
 export namespace BytesValue {
@@ -584,7 +584,7 @@ export namespace BytesValue {
   export function toJSON(message: BytesValue): unknown {
     const obj: any = {};
     message.value !== undefined &&
-      (obj.value = base64FromBytes(message.value !== undefined ? message.value : new Uint8Array()));
+      (obj.value = base64FromBytes(message.value !== undefined ? message.value : new Uint8Array(0)));
     return obj;
   }
 
@@ -594,15 +594,15 @@ export namespace BytesValue {
 
   export function fromPartial(object: DeepPartial<BytesValue>): BytesValue {
     const message = createBaseBytesValue();
-    message.value = object.value ?? new Uint8Array();
+    message.value = object.value ?? new Uint8Array(0);
     return message;
   }
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
+declare const self: any | undefined;
+declare const window: any | undefined;
+declare const global: any | undefined;
+const tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }

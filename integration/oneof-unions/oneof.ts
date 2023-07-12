@@ -12,12 +12,13 @@ export interface PleaseChoose {
     | { $case: "aMessage"; aMessage: PleaseChoose_Submessage }
     | { $case: "aBool"; aBool: boolean }
     | { $case: "bunchaBytes"; bunchaBytes: Uint8Array }
-    | { $case: "anEnum"; anEnum: PleaseChoose_StateEnum };
+    | { $case: "anEnum"; anEnum: PleaseChoose_StateEnum }
+    | undefined;
   age: number;
   eitherOr?: { $case: "either"; either: string } | { $case: "or"; or: string } | {
     $case: "thirdOption";
     thirdOption: string;
-  };
+  } | undefined;
   signature: Uint8Array;
   value: any | undefined;
 }
@@ -72,7 +73,7 @@ export interface SimpleButOptional {
 }
 
 function createBasePleaseChoose(): PleaseChoose {
-  return { name: "", choice: undefined, age: 0, eitherOr: undefined, signature: new Uint8Array(), value: undefined };
+  return { name: "", choice: undefined, age: 0, eitherOr: undefined, signature: new Uint8Array(0), value: undefined };
 }
 
 export namespace PleaseChoose {
@@ -254,7 +255,7 @@ export namespace PleaseChoose {
         : isSet(object.thirdOption)
         ? { $case: "thirdOption", thirdOption: String(object.thirdOption) }
         : undefined,
-      signature: isSet(object.signature) ? bytesFromBase64(object.signature) : new Uint8Array(),
+      signature: isSet(object.signature) ? bytesFromBase64(object.signature) : new Uint8Array(0),
       value: isSet(object?.value) ? object.value : undefined,
     };
   }
@@ -280,7 +281,7 @@ export namespace PleaseChoose {
     message.eitherOr?.$case === "or" && (obj.or = message.eitherOr?.or);
     message.eitherOr?.$case === "thirdOption" && (obj.thirdOption = message.eitherOr?.thirdOption);
     message.signature !== undefined &&
-      (obj.signature = base64FromBytes(message.signature !== undefined ? message.signature : new Uint8Array()));
+      (obj.signature = base64FromBytes(message.signature !== undefined ? message.signature : new Uint8Array(0)));
     message.value !== undefined && (obj.value = message.value);
     return obj;
   }
@@ -332,7 +333,7 @@ export namespace PleaseChoose {
     ) {
       message.eitherOr = { $case: "thirdOption", thirdOption: object.eitherOr.thirdOption };
     }
-    message.signature = object.signature ?? new Uint8Array();
+    message.signature = object.signature ?? new Uint8Array(0);
     message.value = object.value ?? undefined;
     return message;
   }
@@ -467,10 +468,10 @@ export namespace SimpleButOptional {
   }
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
+declare const self: any | undefined;
+declare const window: any | undefined;
+declare const global: any | undefined;
+const tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }

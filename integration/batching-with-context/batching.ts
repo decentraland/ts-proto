@@ -679,11 +679,12 @@ export interface EntityService<Context extends DataLoaders> {
   WriteMethod(ctx: Context, request: WriteMethodRequest): Promise<WriteMethodResponse>;
 }
 
+export const EntityServiceServiceName = "batching.EntityService";
 export class EntityServiceClientImpl<Context extends DataLoaders> implements EntityService<Context> {
   private readonly rpc: Rpc<Context>;
   private readonly service: string;
   constructor(rpc: Rpc<Context>, opts?: { service?: string }) {
-    this.service = opts?.service || "batching.EntityService";
+    this.service = opts?.service || EntityServiceServiceName;
     this.rpc = rpc;
     this.BatchQuery = this.BatchQuery.bind(this);
     this.BatchMapQuery = this.BatchMapQuery.bind(this);
@@ -711,7 +712,7 @@ export class EntityServiceClientImpl<Context extends DataLoaders> implements Ent
       return new DataLoader<string, Entity>((ids) => {
         const request = { ids };
         return this.BatchMapQuery(ctx, request).then((res) => {
-          return ids.map((key) => res.entities[key]);
+          return ids.map((key) => res.entities[key] ?? fail());
         });
       }, { cacheKeyFn: hash, ...ctx.rpcDataLoaderOptions });
     });
@@ -775,4 +776,8 @@ function isObject(value: any): boolean {
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;
+}
+
+function fail(message?: string): never {
+  throw new Error(message ?? "Failed");
 }

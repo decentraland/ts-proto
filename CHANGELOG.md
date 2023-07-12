@@ -1,3 +1,108 @@
+# [1.153.0](https://github.com/stephenh/ts-proto/compare/v1.152.1...v1.153.0) (2023-07-12)
+
+
+### Features
+
+* Update protobufjs (and peer dependencies) to ^7 ([#874](https://github.com/stephenh/ts-proto/issues/874)) ([7f979a7](https://github.com/stephenh/ts-proto/commit/7f979a70af2e42c8c429ae5f65787e0b43ccb706))
+
+## [1.152.1](https://github.com/stephenh/ts-proto/compare/v1.152.0...v1.152.1) (2023-07-10)
+
+
+### Bug Fixes
+
+* Fix invocation error. ([f4e26bd](https://github.com/stephenh/ts-proto/commit/f4e26bd44f6882318defab1fccd0d6a833823fc0))
+
+# [1.152.0](https://github.com/stephenh/ts-proto/compare/v1.151.1...v1.152.0) (2023-07-10)
+
+
+### Features
+
+* Ensure strict(er) TS compliance for the generated code ([#868](https://github.com/stephenh/ts-proto/issues/868)) ([1405d4b](https://github.com/stephenh/ts-proto/commit/1405d4bcc866343605946ac4a0b30e7de9c75e71))
+
+## [1.151.1](https://github.com/stephenh/ts-proto/compare/v1.151.0...v1.151.1) (2023-07-05)
+
+
+### Bug Fixes
+
+* generate different MessageType when using static-only ([#863](https://github.com/stephenh/ts-proto/issues/863)) ([477e5f5](https://github.com/stephenh/ts-proto/commit/477e5f5bc0aaf70a92d7231f4a9e746d13b2bbcf)), closes [#861](https://github.com/stephenh/ts-proto/issues/861)
+
+# [1.151.0](https://github.com/stephenh/ts-proto/compare/v1.150.1...v1.151.0) (2023-07-04)
+
+
+### Features
+
+* Add static-only variant to to outputTypeAnnotations option ([#858](https://github.com/stephenh/ts-proto/issues/858)) ([d7c4af7](https://github.com/stephenh/ts-proto/commit/d7c4af7e068200b30cf773703ef906595aec6042))
+
+## [1.150.1](https://github.com/stephenh/ts-proto/compare/v1.150.0...v1.150.1) (2023-06-23)
+
+
+### Bug Fixes
+
+* don't generate transitively imported files for mapped imports ([#854](https://github.com/stephenh/ts-proto/issues/854)) ([edd9044](https://github.com/stephenh/ts-proto/commit/edd9044568739b089f1ec66b53d0cc36d540610b))
+
+# [1.150.0](https://github.com/stephenh/ts-proto/compare/v1.149.0...v1.150.0) (2023-06-20)
+
+
+### Features
+
+* expose service name as a separate exported constant ([#851](https://github.com/stephenh/ts-proto/issues/851)) ([84a4ed6](https://github.com/stephenh/ts-proto/commit/84a4ed610089363e3ee7a6a29581d8e0ef695f0d))
+
+# [1.149.0](https://github.com/stephenh/ts-proto/compare/v1.148.2...v1.149.0) (2023-06-13)
+
+
+### Features
+
+* support lib: es6 ([#850](https://github.com/stephenh/ts-proto/issues/850)) ([6280677](https://github.com/stephenh/ts-proto/commit/62806776beacb1e2b0ee921e4212f1e61ce5191e))
+
+## [1.148.2](https://github.com/stephenh/ts-proto/compare/v1.148.1...v1.148.2) (2023-06-04)
+
+
+### Bug Fixes
+
+* esModuleInterop not working for object-hash and dataloader imports ([#794](https://github.com/stephenh/ts-proto/issues/794)) ([9fc9632](https://github.com/stephenh/ts-proto/commit/9fc9632e03a18f7a2d6e95a72ff959be93199981))
+
+## [1.148.1](https://github.com/stephenh/ts-proto/compare/v1.148.0...v1.148.1) (2023-05-25)
+
+
+### Bug Fixes
+
+* add callback close condition ([#837](https://github.com/stephenh/ts-proto/issues/837)) ([2071c67](https://github.com/stephenh/ts-proto/commit/2071c67650a3ac80ec9b5845fec3227ee47841d0))
+
+# [1.148.0](https://github.com/stephenh/ts-proto/compare/v1.147.3...v1.148.0) (2023-05-23)
+
+
+### Features
+
+* Generate Index Files ([#821](https://github.com/stephenh/ts-proto/issues/821)) ([85bf206](https://github.com/stephenh/ts-proto/commit/85bf206ca8c1052849aea3e39522ad4918e0d736))
+
+## [1.147.3](https://github.com/stephenh/ts-proto/compare/v1.147.2...v1.147.3) (2023-05-16)
+
+
+### Bug Fixes
+
+* ensure generated fromTimestamp works when useOptionals=all ([#832](https://github.com/stephenh/ts-proto/issues/832)) ([1f82445](https://github.com/stephenh/ts-proto/commit/1f8244569de87ad99ed3676244e51291af9b3323))
+
+## [1.147.2](https://github.com/stephenh/ts-proto/compare/v1.147.1...v1.147.2) (2023-05-07)
+
+
+### Bug Fixes
+
+* import Observable as a type ([#826](https://github.com/stephenh/ts-proto/issues/826)) ([52e84ba](https://github.com/stephenh/ts-proto/commit/52e84ba7ee8826cf3b33455b38bacfd0c68884ea))
+
+## [1.147.1](https://github.com/stephenh/ts-proto/compare/v1.147.0...v1.147.1) (2023-05-02)
+
+
+### Bug Fixes
+
+* Try fixing the Buf publish step. ([47ef176](https://github.com/stephenh/ts-proto/commit/47ef176056108bba8fb553f0d7b53d11e139bfbc))
+
+# [1.147.0](https://github.com/stephenh/ts-proto/compare/v1.146.0...v1.147.0) (2023-05-02)
+
+
+### Features
+
+* Add type annotations flag ([#786](https://github.com/stephenh/ts-proto/issues/786)) ([b565ff5](https://github.com/stephenh/ts-proto/commit/b565ff57c0a64a3869ba7475c2b53f46504169d0))
+
 # [1.146.0](https://github.com/stephenh/ts-proto/compare/v1.145.0...v1.146.0) (2023-04-01)
 
 
