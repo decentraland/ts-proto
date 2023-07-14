@@ -12,7 +12,7 @@ function createBaseMessage(): Message {
 
 export namespace Message {
   export function fromJSON(object: any): Message {
-    return { data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array() };
+    return { data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(0) };
   }
 
   export function toJSON(message: Message): unknown {

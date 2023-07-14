@@ -578,7 +578,7 @@ export namespace BytesValue {
   }
 
   export function fromJSON(object: any): BytesValue {
-    return { value: isSet(object.value) ? bytesFromBase64(object.value) : new Uint8Array() };
+    return { value: isSet(object.value) ? bytesFromBase64(object.value) : new Uint8Array(0) };
   }
 
   export function toJSON(message: BytesValue): unknown {

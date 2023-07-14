@@ -118,7 +118,7 @@ EchoClientStream(request: AsyncIterable<EchoMsg>,abortSignal?: AbortSignal): Pro
 EchoBidiStream(request: AsyncIterable<EchoMsg>,abortSignal?: AbortSignal): AsyncIterable<EchoMsg>;
 }
 
-export class EchoerClientImpl implements Echoer {private readonly rpc: Rpc;private readonly service: string;constructor(rpc: Rpc, opts?: {service?: string}) {this.service = opts?.service || "simple.Echoer";this.rpc = rpc;this.Echo = this.Echo.bind(this);this.EchoServerStream = this.EchoServerStream.bind(this);this.EchoClientStream = this.EchoClientStream.bind(this);this.EchoBidiStream = this.EchoBidiStream.bind(this);}
+export const EchoerServiceName = "simple.Echoer";export class EchoerClientImpl implements Echoer {private readonly rpc: Rpc;private readonly service: string;constructor(rpc: Rpc, opts?: {service?: string}) {this.service = opts?.service || EchoerServiceName;this.rpc = rpc;this.Echo = this.Echo.bind(this);this.EchoServerStream = this.EchoServerStream.bind(this);this.EchoClientStream = this.EchoClientStream.bind(this);this.EchoBidiStream = this.EchoBidiStream.bind(this);}
     Echo(
       request: EchoMsg,abortSignal?: AbortSignal
     ): Promise<EchoMsg> {
@@ -259,6 +259,8 @@ type KeysOfUnion<T> = T extends T ? keyof T : never;
 function isSet(value: any): boolean {
       return value !== null && value !== undefined;
     }
+
+
 
 
 

@@ -9,15 +9,15 @@ function createBaseA(): A {
   return { a: "" };
 }
 
-export const A = {
-  encode(message: A, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export namespace A {
+  export function encode(message: A, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.a !== "") {
       writer.uint32(10).string(message.a);
     }
     return writer;
-  },
+  }
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): A {
+  export function decode(input: _m0.Reader | Uint8Array, length?: number): A {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseA();
@@ -38,28 +38,28 @@ export const A = {
       reader.skipType(tag & 7);
     }
     return message;
-  },
+  }
 
-  fromJSON(object: any): A {
+  export function fromJSON(object: any): A {
     return { a: isSet(object.a) ? String(object.a) : "" };
-  },
+  }
 
-  toJSON(message: A): unknown {
+  export function toJSON(message: A): unknown {
     const obj: any = {};
     message.a !== undefined && (obj.a = message.a);
     return obj;
-  },
+  }
 
-  create<I extends Exact<DeepPartial<A>, I>>(base?: I): A {
+  export function create<I extends Exact<DeepPartial<A>, I>>(base?: I): A {
     return A.fromPartial(base ?? {});
-  },
+  }
 
-  fromPartial<I extends Exact<DeepPartial<A>, I>>(object: I): A {
+  export function fromPartial<I extends Exact<DeepPartial<A>, I>>(object: I): A {
     const message = createBaseA();
     message.a = object.a ?? "";
     return message;
-  },
-};
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
