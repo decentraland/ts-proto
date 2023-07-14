@@ -653,7 +653,9 @@ export function toTypeName(
     type,
     (!isWithinOneOf(field) &&
       isMessage(field) &&
-      (options.useOptionals === false || options.useOptionals === "none" || options.useOptionals === "repeated_and_oneof")) ||
+      (options.useOptionals === false ||
+        options.useOptionals === "none" ||
+        options.useOptionals === "repeated_and_oneof")) ||
       (isWithinOneOf(field) && options.oneof === OneofOption.PROPERTIES) ||
       (isWithinOneOf(field) && field.proto3Optional) ||
       (isWithinOneOf(field) && options.useOptionals === "repeated_and_oneof") ||
