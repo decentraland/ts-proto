@@ -81,7 +81,7 @@ It will also generate client implementations of `PingService`; currently [Twirp]
 - `npm install ts-proto`
 - `protoc --plugin=./node_modules/.bin/protoc-gen-dcl_ts_proto --ts_proto_out=. ./simple.proto`
   - (Note that the output parameter name, `ts_proto_out`, is named based on the suffix of the plugin's name, i.e. "ts_proto" suffix in the `--plugin=./node_modules/.bin/protoc-gen-dcl_ts_proto` parameter becomes the `_out` prefix, per `protoc`'s CLI conventions.)
-  - On Windows, use `protoc --plugin=protoc-gen-dcl_ts_proto=.\node_modules\.bin\protoc-gen-dcl_ts_proto.cmd --ts_proto_out=. ./simple.proto` (see [#93](https://github.com/stephenh/ts-proto/issues/93))
+  - On Windows, use `protoc --plugin=protoc-gen-dcl_ts_proto=.\\node_modules\\.bin\\protoc-gen-ts_proto.cmd--ts_proto_out=. ./simple.proto` (see [#93](https://github.com/stephenh/ts-proto/issues/93))
   - Ensure you're using a modern `protoc`, i.e. the original `protoc` `3.0.0` doesn't support the `_opt` flag
 
 This will generate `*.ts` source files for the given `*.proto` types.
@@ -113,7 +113,7 @@ You can also use the official plugin published to the Buf Registry.
 ```yaml
 version: v1
 plugins:
-  - remote: buf.build/stephenh/plugins/ts-proto
+  - plugin: buf.build/community/stephenh-ts-proto
     out: ../gen/ts
     opt:
       - outputServices=...
@@ -343,7 +343,7 @@ Generated code will be placed in the Gradle build directory.
 
   (See [this issue](https://github.com/stephenh/ts-proto/issues/120#issuecomment-678375833) and [this issue](https://github.com/stephenh/ts-proto/issues/397#issuecomment-977259118) for discussions on `useOptional`.)
 
-- With `--ts_proto_opt=exportCommonSymbols=false`, utility types like `DeepPartial` won't be `export`d.
+- With `--ts_proto_opt=exportCommonSymbols=false`, utility types like `DeepPartial` and `protobufPackage` won't be `export`d.
 
   This should make it possible to use create barrel imports of the generated output, i.e. `import * from ./foo` and `import * from ./bar`.
 
@@ -417,7 +417,9 @@ Generated code will be placed in the Gradle build directory.
 
 - With `--ts_proto_opt=outputSchema=true`, meta typings will be generated that can later be used in other code generators.
 
-- With `--ts_proto_opt=outputTypeRegistry=true`, the type registry will be generated that can be used to resolve message types by fully-qualified name. Also, each message will get extra `$type` field containing fully-qualified name.
+- With `--ts_proto_opt=outputTypeAnnotations=true`, each message will be given a `$type` field containing its fully-qualified name. You can use `--ts_proto_opt=outputTypeAnnotations=static-only` to omit it from the `interface` declaration.
+
+- With `--ts_proto_opt=outputTypeRegistry=true`, the type registry will be generated that can be used to resolve message types by fully-qualified name. Also, each message will be given a `$type` field containing its fully-qualified name.
 
 - With `--ts_proto_opt=outputServices=grpc-js`, ts-proto will output service definitions and server / client stubs in [grpc-js](https://github.com/grpc/grpc-node/tree/master/packages/grpc-js) format.
 
@@ -509,6 +511,10 @@ Generated code will be placed in the Gradle build directory.
 
   Extension encode/decode methods are compliant with the `outputEncodeMethods` option, and if `unknownFields=true`,
   the `setExtension` and `getExtension` methods will be created for extendable messages, also compliant with `outputEncodeMethods` (setExtension = encode, getExtension = decode).
+
+- With `--ts_proto_opt=outputIndex=true`, index files will be generated based on the proto package namespaces.
+
+  This will disable `exportCommonSymbols` to avoid name collisions on the common symbols.
 
 ### NestJS Support
 

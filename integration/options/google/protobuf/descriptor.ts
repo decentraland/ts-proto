@@ -2565,7 +2565,7 @@ function createBaseUninterpretedOption(): UninterpretedOption {
     positiveIntValue: 0,
     negativeIntValue: 0,
     doubleValue: 0,
-    stringValue: new Uint8Array(),
+    stringValue: new Uint8Array(0),
     aggregateValue: "",
   };
 }
@@ -5788,10 +5788,10 @@ export const protoMetadata: ProtoMetadata = {
   dependencies: [],
 };
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
+declare const self: any | undefined;
+declare const window: any | undefined;
+declare const global: any | undefined;
+const tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }

@@ -234,11 +234,12 @@ export interface Clock {
   Now(request: Empty): Promise<Timestamp>;
 }
 
+export const ClockServiceName = "Clock";
 export class ClockClientImpl implements Clock {
   private readonly rpc: Rpc;
   private readonly service: string;
   constructor(rpc: Rpc, opts?: { service?: string }) {
-    this.service = opts?.service || "Clock";
+    this.service = opts?.service || ClockServiceName;
     this.rpc = rpc;
     this.Now = this.Now.bind(this);
   }
@@ -287,8 +288,8 @@ function toTimestamp(date: Date): Timestamp {
 }
 
 function fromTimestamp(t: Timestamp): Date {
-  let millis = t.seconds * 1_000;
-  millis += t.nanos / 1_000_000;
+  let millis = (t.seconds || 0) * 1_000;
+  millis += (t.nanos || 0) / 1_000_000;
   return new Date(millis);
 }
 

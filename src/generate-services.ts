@@ -21,9 +21,6 @@ import SourceInfo, { Fields } from "./sourceInfo";
 import { contextTypeVar } from "./main";
 import { Context } from "./context";
 
-const hash = imp("hash*object-hash");
-const dataloader = imp("DataLoader*dataloader");
-
 /**
  * Generates an interface for `serviceDesc`.
  *
@@ -184,8 +181,15 @@ export function generateServiceClientImpl(
   const { options } = ctx;
   const chunks: Code[] = [];
 
-  // Define the FooServiceImpl class
+  // Determine information about the service.
   const { name } = serviceDesc;
+  const serviceName = maybePrefixPackage(fileDesc, serviceDesc.name);
+
+  // Define the service name constant.
+  const serviceNameConst = `${name}ServiceName`;
+  chunks.push(code`export const ${serviceNameConst} = "${serviceName}";`);
+
+  // Define the FooServiceImpl class
   const i = options.context ? `${name}<Context>` : name;
   const t = options.context ? `<${contextTypeVar}>` : "";
   chunks.push(code`export class ${name}ClientImpl${t} implements ${def(i)} {`);
@@ -195,8 +199,7 @@ export function generateServiceClientImpl(
   chunks.push(code`private readonly rpc: ${rpcType};`);
   chunks.push(code`private readonly service: string;`);
   chunks.push(code`constructor(rpc: ${rpcType}, opts?: {service?: string}) {`);
-  const serviceID = maybePrefixPackage(fileDesc, serviceDesc.name);
-  chunks.push(code`this.service = opts?.service || "${serviceID}";`);
+  chunks.push(code`this.service = opts?.service || ${serviceNameConst};`);
   chunks.push(code`this.rpc = rpc;`);
 
   // Bind each FooService method to the FooServiceImpl class
@@ -228,7 +231,7 @@ export function generateServiceClientImpl(
 }
 
 /** We've found a BatchXxx method, create a synthetic GetXxx method that calls it. */
-function generateBatchingRpcMethod(_ctx: Context, batchMethod: BatchMethod): Code {
+function generateBatchingRpcMethod(ctx: Context, batchMethod: BatchMethod): Code {
   const {
     methodDesc,
     singleMethodName,
@@ -241,6 +244,11 @@ function generateBatchingRpcMethod(_ctx: Context, batchMethod: BatchMethod): Cod
   } = batchMethod;
   assertInstanceOf(methodDesc, FormattedMethodDescriptor);
 
+  const { options } = ctx;
+
+  const hash = options.esModuleInterop ? imp("hash=object-hash") : imp("hash*object-hash");
+  const dataloader = options.esModuleInterop ? imp("DataLoader=dataloader") : imp("DataLoader*dataloader");
+
   // Create the `(keys) => ...` lambda we'll pass to the DataLoader constructor
   const lambda: Code[] = [];
   lambda.push(code`
@@ -251,7 +259,7 @@ function generateBatchingRpcMethod(_ctx: Context, batchMethod: BatchMethod): Cod
     // If the return type is a map, lookup each key in the result
     lambda.push(code`
       return this.${methodDesc.formattedName}(ctx, request).then(res => {
-        return ${inputFieldName}.map(key => res.${outputFieldName}[key])
+        return ${inputFieldName}.map(key => res.${outputFieldName}[key] ?? ${ctx.utils.fail}())
       });
     `);
   } else {
@@ -286,6 +294,12 @@ function generateCachingRpcMethod(
   methodDesc: MethodDescriptorProto
 ): Code {
   assertInstanceOf(methodDesc, FormattedMethodDescriptor);
+
+  const { options } = ctx;
+
+  const hash = options.esModuleInterop ? imp("hash=object-hash") : imp("hash*object-hash");
+  const dataloader = options.esModuleInterop ? imp("DataLoader=dataloader") : imp("DataLoader*dataloader");
+
   const inputType = requestType(ctx, methodDesc);
   const outputType = responseType(ctx, methodDesc);
   const uniqueIdentifier = `${maybePrefixPackage(fileDesc, serviceDesc.name)}.${methodDesc.name}`;
@@ -338,7 +352,7 @@ export function generateRpcType(ctx: Context, hasStreamingMethods: boolean): Cod
   const maybeAbortSignalParam = options.useAbortSignal ? "abortSignal?: AbortSignal," : "";
   const methods = [[code`request`, code`Uint8Array`, code`Promise<Uint8Array>`]];
   if (hasStreamingMethods) {
-    const observable = observableType(ctx);
+    const observable = observableType(ctx, true);
     methods.push([code`clientStreamingRequest`, code`${observable}<Uint8Array>`, code`Promise<Uint8Array>`]);
     methods.push([code`serverStreamingRequest`, code`Uint8Array`, code`${observable}<Uint8Array>`]);
     methods.push([

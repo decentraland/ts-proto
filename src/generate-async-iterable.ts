@@ -5,7 +5,7 @@ export function generateEncodeTransform(fullName: string): Code {
   return code`
     // encodeTransform encodes a source of message objects.
     // Transform<${fullName}, Uint8Array>
-    export function async *encodeTransform(
+    export async function *encodeTransform(
       source: AsyncIterable<${fullName} | ${fullName}[]> | Iterable<${fullName} | ${fullName}[]>
     ): AsyncIterable<Uint8Array> {
       for await (const pkt of source) {
@@ -26,7 +26,7 @@ export function generateDecodeTransform(fullName: string): Code {
   return code`
     // decodeTransform decodes a source of encoded messages.
     // Transform<Uint8Array, ${fullName}>
-    export function async *decodeTransform(
+    export async function *decodeTransform(
       source: AsyncIterable<Uint8Array | Uint8Array[]> | Iterable<Uint8Array | Uint8Array[]>
     ): AsyncIterable<${fullName}> {
       for await (const pkt of source) {

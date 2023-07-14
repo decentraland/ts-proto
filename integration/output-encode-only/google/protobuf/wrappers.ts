@@ -198,7 +198,7 @@ export namespace StringValue {
 }
 
 function createBaseBytesValue(): BytesValue {
-  return { value: new Uint8Array() };
+  return { value: new Uint8Array(0) };
 }
 
 export namespace BytesValue {

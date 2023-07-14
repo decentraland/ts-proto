@@ -7,18 +7,18 @@ export interface Message {
 }
 
 function createBaseMessage(): Message {
-  return { data: new Uint8Array() };
+  return { data: new Uint8Array(0) };
 }
 
 export namespace Message {
   export function fromJSON(object: any): Message {
-    return { data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array() };
+    return { data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(0) };
   }
 
   export function toJSON(message: Message): unknown {
     const obj: any = {};
     message.data !== undefined &&
-      (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array()));
+      (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array(0)));
     return obj;
   }
 
@@ -28,15 +28,15 @@ export namespace Message {
 
   export function fromPartial<I extends Exact<DeepPartial<Message>, I>>(object: I): Message {
     const message = createBaseMessage();
-    message.data = object.data ?? new Uint8Array();
+    message.data = object.data ?? new Uint8Array(0);
     return message;
   }
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
+declare const self: any | undefined;
+declare const window: any | undefined;
+declare const global: any | undefined;
+const tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }

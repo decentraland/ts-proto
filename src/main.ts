@@ -77,7 +77,7 @@ import {
 import { generateEncodeTransform, generateDecodeTransform } from "./generate-async-iterable";
 import { generateEnum } from "./enums";
 import { visit, visitServices } from "./visit";
-import { DateOption, EnvOption, LongOption, OneofOption, Options, ServiceOption } from "./options";
+import { addTypeToMessages, DateOption, EnvOption, LongOption, OneofOption, Options, ServiceOption } from "./options";
 import { Context } from "./context";
 import { generateSchema } from "./schema";
 import { ConditionalOutput } from "ts-poet/build/ConditionalOutput";
@@ -172,7 +172,13 @@ export function generateFile(ctx: Context, fileDesc: FileDescriptorProto): [stri
   // We add `nestJs` here because enough though it doesn't use our encode/decode methods
   // for most/vanilla messages, we do generate static wrap/unwrap methods for the special
   // Struct/Value/wrapper types and use the `wrappers[...]` to have NestJS know about them.
-  if (options.outputEncodeMethods || options.outputJsonMethods || options.outputTypeRegistry || options.nestJs) {
+  if (
+    options.outputEncodeMethods ||
+    options.outputJsonMethods ||
+    options.outputTypeAnnotations ||
+    options.outputTypeRegistry ||
+    options.nestJs
+  ) {
     // then add the encoder/decoder/base instance
     visit(
       fileDesc,
@@ -192,7 +198,7 @@ export function generateFile(ctx: Context, fileDesc: FileDescriptorProto): [stri
 
         const staticMembers: Code[] = [];
 
-        if (options.outputTypeRegistry) {
+        if (options.outputTypeAnnotations || options.outputTypeRegistry) {
           staticMembers.push(code`export const $type = '${fullTypeName}'`);
         }
 
@@ -395,7 +401,8 @@ export type Utils = ReturnType<typeof makeDeepPartial> &
   ReturnType<typeof makeComparisonUtils> &
   ReturnType<typeof makeNiceGrpcServerStreamingMethodResult> &
   ReturnType<typeof makeGrpcWebErrorClass> &
-  ReturnType<typeof makeExtensionClass>;
+  ReturnType<typeof makeExtensionClass> &
+  ReturnType<typeof makeAssertionUtils>;
 
 /** These are runtime utility methods used by the generated code. */
 export function makeUtils(options: Options): Utils {
@@ -411,6 +418,7 @@ export function makeUtils(options: Options): Utils {
     ...makeNiceGrpcServerStreamingMethodResult(),
     ...makeGrpcWebErrorClass(bytes),
     ...makeExtensionClass(options),
+    ...makeAssertionUtils(),
   };
 }
 
@@ -525,10 +533,10 @@ function makeByteUtils() {
   const globalThis = conditionalOutput(
     "tsProtoGlobalThis",
     code`
-      declare var self: any | undefined;
-      declare var window: any | undefined;
-      declare var global: any | undefined;
-      var tsProtoGlobalThis: any = (() => {
+      declare const self: any | undefined;
+      declare const window: any | undefined;
+      declare const global: any | undefined;
+      const tsProtoGlobalThis: any = (() => {
         if (typeof globalThis !== "undefined") return globalThis;
         if (typeof self !== "undefined") return self;
         if (typeof window !== "undefined") return window;
@@ -596,7 +604,7 @@ function makeDeepPartial(options: Options, longs: ReturnType<typeof makeLongUtil
   );
 
   // Based on https://github.com/sindresorhus/type-fest/pull/259
-  const maybeExcludeType = options.outputTypeRegistry ? `| '$type'` : "";
+  const maybeExcludeType = addTypeToMessages(options) ? `| '$type'` : "";
   const Exact = conditionalOutput(
     "Exact",
     code`
@@ -609,7 +617,7 @@ function makeDeepPartial(options: Options, longs: ReturnType<typeof makeLongUtil
   );
 
   // Based on the type from ts-essentials
-  const keys = options.outputTypeRegistry ? code`Exclude<keyof T, '$type'>` : code`keyof T`;
+  const keys = addTypeToMessages(options) ? code`Exclude<keyof T, '$type'>` : code`keyof T`;
   const DeepPartial = conditionalOutput(
     "DeepPartial",
     code`
@@ -688,7 +696,7 @@ function makeTimestampMethods(options: Options, longs: ReturnType<typeof makeLon
     seconds = "Math.trunc(date.getTime() / 1_000).toString()";
   }
 
-  const maybeTypeField = options.outputTypeRegistry ? `$type: 'google.protobuf.Timestamp',` : "";
+  const maybeTypeField = addTypeToMessages(options) ? `$type: 'google.protobuf.Timestamp',` : "";
 
   const toTimestamp = conditionalOutput(
     "toTimestamp",
@@ -715,15 +723,15 @@ function makeTimestampMethods(options: Options, longs: ReturnType<typeof makeLon
     options.useDate === DateOption.STRING
       ? code`
           function fromTimestamp(t: ${Timestamp}): string {
-            let millis = ${toNumberCode} * 1_000;
-            millis += t.nanos / 1_000_000;
+            let millis = (${toNumberCode} || 0) * 1_000;
+            millis += (t.nanos || 0) / 1_000_000;
             return new Date(millis).toISOString();
           }
         `
       : code`
           function fromTimestamp(t: ${Timestamp}): Date {
-            let millis = ${toNumberCode} * 1_000;
-            millis += t.nanos / 1_000_000;
+            let millis = (${toNumberCode} || 0) * 1_000;
+            millis += (t.nanos || 0) / 1_000_000;
             return new Date(millis);
           }
         `
@@ -828,6 +836,19 @@ function makeExtensionClass(options: Options) {
   return { Extension };
 }
 
+function makeAssertionUtils() {
+  const fail = conditionalOutput(
+    "fail",
+    code`
+      function fail(message?: string): never {
+        throw new Error(message ?? "Failed");
+      }
+    `
+  );
+
+  return { fail };
+}
+
 // Create the interface with properties
 function generateInterfaceDeclaration(
   ctx: Context,
@@ -843,7 +864,7 @@ function generateInterfaceDeclaration(
   // interface name should be defined to avoid import collisions
   chunks.push(code`export interface ${def(fullName)} {`);
 
-  if (ctx.options.outputTypeRegistry) {
+  if (addTypeToMessages(options)) {
     chunks.push(code`$type: '${fullTypeName}',`);
   }
 
@@ -864,13 +885,16 @@ function generateInterfaceDeclaration(
     maybeAddComment(info, chunks, fieldDesc.options?.deprecated);
 
     const name = maybeSnakeToCamel(fieldDesc.name, options);
-    const type = toTypeName(ctx, messageDesc, fieldDesc);
-    const q = isOptionalProperty(fieldDesc, messageDesc.options, options) ? "?" : "";
-    chunks.push(code`${maybeReadonly(options)}${name}${q}: ${type}, `);
+    const isOptional = isOptionalProperty(fieldDesc, messageDesc.options, options);
+    const type = toTypeName(ctx, messageDesc, fieldDesc, isOptional);
+    if (isOptional && !type.toString().includes("undefined")) {
+      console.warn(name, type);
+    }
+    chunks.push(code`${maybeReadonly(options)}${name}${isOptional ? "?" : ""}: ${type}, `);
   });
 
   if (ctx.options.unknownFields) {
-    chunks.push(code`_unknownFields?: {[key: number]: Uint8Array[]},`);
+    chunks.push(code`_unknownFields?: {[key: number]: Uint8Array[]} | undefined,`);
   }
 
   chunks.push(code`}`);
@@ -896,7 +920,7 @@ function generateOneofProperty(
   );
 
   const name = maybeSnakeToCamel(messageDesc.oneofDecl[oneofIndex].name, options);
-  return code`${mbReadonly}${name}?: ${unionType},`;
+  return code`${mbReadonly}${name}?: ${unionType} | undefined,`;
 
   /*
   // Ideally we'd put the comments for each oneof field next to the anonymous
@@ -963,7 +987,7 @@ function generateBaseInstanceFactory(
     fields.push(code`${name}: ${val}`);
   }
 
-  if (ctx.options.outputTypeRegistry) {
+  if (addTypeToMessages(options)) {
     fields.unshift(code`$type: '${fullTypeName}'`);
   }
 
@@ -1238,7 +1262,7 @@ function getEncodeWriteSnippet(ctx: Context, field: FieldDescriptorProto): (plac
     const type = basicTypeName(ctx, field, { keepValueType: true });
     return (place) => code`${type}.encode(${utils.toTimestamp}(${place}), writer.uint32(${tag}).fork()).ldelim()`;
   } else if (isValueType(ctx, field)) {
-    const maybeTypeField = options.outputTypeRegistry ? `$type: '${field.typeName.slice(1)}',` : "";
+    const maybeTypeField = addTypeToMessages(options) ? `$type: '${field.typeName.slice(1)}',` : "";
 
     const type = basicTypeName(ctx, field, { keepValueType: true });
     const wrappedValue = (place: string): Code => {
@@ -1300,7 +1324,7 @@ function generateEncode(ctx: Context, fullName: string, messageDesc: DescriptorP
     if (isRepeated(field)) {
       if (isMapType(ctx, messageDesc, field)) {
         const valueType = (typeMap.get(field.typeName)![2] as DescriptorProto).field[1];
-        const maybeTypeField = options.outputTypeRegistry ? `$type: '${field.typeName.slice(1)}',` : "";
+        const maybeTypeField = addTypeToMessages(options) ? `$type: '${field.typeName.slice(1)}',` : "";
         const entryWriteSnippet = isValueType(ctx, valueType)
           ? code`
               if (value !== undefined) {
@@ -1423,8 +1447,7 @@ function generateEncode(ctx: Context, fullName: string, messageDesc: DescriptorP
 
   if (options.unknownFields) {
     chunks.push(code`if (message._unknownFields !== undefined) {
-      for (const key in message._unknownFields) {
-        const values = message._unknownFields[key];
+      for (const [key, values] of Object.entries(message._unknownFields)) {
         const tag = parseInt(key, 10);
         for (const value of values) {
           writer.uint32(tag);
@@ -1551,7 +1574,7 @@ function generateExtension(ctx: Context, message: DescriptorProto | undefined, e
         const type = basicTypeName(ctx, field, { keepValueType: true });
         return (place) => code`${type}.encode(${utils.toTimestamp}(${place}), writer.fork()).ldelim()`;
       } else if (isValueType(ctx, field)) {
-        const maybeTypeField = options.outputTypeRegistry ? `$type: '${field.typeName.slice(1)}',` : "";
+        const maybeTypeField = addTypeToMessages(options) ? `$type: '${field.typeName.slice(1)}',` : "";
 
         const type = basicTypeName(ctx, field, { keepValueType: true });
         const wrappedValue = (place: string): Code => {
@@ -1634,7 +1657,7 @@ function generateExtension(ctx: Context, message: DescriptorProto | undefined, e
 
       // start loop over all buffers
       chunks.push(code`
-        for (var buffer of input) {
+        for (const buffer of input) {
           const reader = ${Reader}.create(buffer);
       `);
 
@@ -1664,7 +1687,7 @@ function generateExtension(ctx: Context, message: DescriptorProto | undefined, e
     } else {
       // pick the last entry, since it overrides all previous entries if not repeated
       chunks.push(code`
-          const reader = ${Reader}.create(input[input.length -1]);
+          const reader = ${Reader}.create(input[input.length -1] ?? ${ctx.utils.fail}());
           return ${readSnippet};
         },
       `);
@@ -1696,7 +1719,7 @@ function generateFromJson(ctx: Context, fullName: string, fullTypeName: string, 
       return {
   `);
 
-  if (ctx.options.outputTypeRegistry) {
+  if (addTypeToMessages(options)) {
     chunks.push(code`$type: ${fullName}.$type,`);
   }
 

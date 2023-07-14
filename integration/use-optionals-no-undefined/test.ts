@@ -44,20 +44,20 @@ export function stateEnumToJSON(object: StateEnum): string {
 }
 
 export interface OptionalsTest {
-  id?: number;
-  child?: Child;
-  state?: StateEnum;
-  long?: number;
-  truth?: boolean;
-  description?: string;
-  data?: Uint8Array;
-  repId?: number[];
-  repChild?: Child[];
-  repState?: StateEnum[];
-  repLong?: number[];
-  repTruth?: boolean[];
-  repDescription?: string[];
-  repData?: Uint8Array[];
+  id?: number | undefined;
+  child?: Child | undefined;
+  state?: StateEnum | undefined;
+  long?: number | undefined;
+  truth?: boolean | undefined;
+  description?: string | undefined;
+  data?: Uint8Array | undefined;
+  repId?: number[] | undefined;
+  repChild?: Child[] | undefined;
+  repState?: StateEnum[] | undefined;
+  repLong?: number[] | undefined;
+  repTruth?: boolean[] | undefined;
+  repDescription?: string[] | undefined;
+  repData?: Uint8Array[] | undefined;
   optId?: number | undefined;
   optChild?: Child | undefined;
   optState?: StateEnum | undefined;
@@ -65,7 +65,7 @@ export interface OptionalsTest {
   optTruth?: boolean | undefined;
   optDescription?: string | undefined;
   optData?: Uint8Array | undefined;
-  translations?: { [key: string]: string };
+  translations?: { [key: string]: string } | undefined;
 }
 
 export interface OptionalsTest_TranslationsEntry {
@@ -465,7 +465,7 @@ export namespace OptionalsTest {
     message.truth !== undefined && (obj.truth = message.truth);
     message.description !== undefined && (obj.description = message.description);
     message.data !== undefined &&
-      (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array()));
+      (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array(0)));
     if (message.repId) {
       obj.repId = message.repId.map((e) => Math.round(e));
     } else {
@@ -497,7 +497,7 @@ export namespace OptionalsTest {
       obj.repDescription = [];
     }
     if (message.repData) {
-      obj.repData = message.repData.map((e) => base64FromBytes(e !== undefined ? e : new Uint8Array()));
+      obj.repData = message.repData.map((e) => base64FromBytes(e !== undefined ? e : new Uint8Array(0)));
     } else {
       obj.repData = [];
     }
@@ -679,10 +679,10 @@ export namespace Child {
   }
 }
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-declare var global: any | undefined;
-var tsProtoGlobalThis: any = (() => {
+declare const self: any | undefined;
+declare const window: any | undefined;
+declare const global: any | undefined;
+const tsProtoGlobalThis: any = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
